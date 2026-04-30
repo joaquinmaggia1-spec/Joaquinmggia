@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "@anthropic-ai/sdk": "^0.92.0",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "officegen": "^0.6.0"
   }
 }

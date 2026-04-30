@@ -81,9 +81,17 @@ function displayResult(presentation) {
   resultContainer.style.display = 'block';
 
   // Setup buttons
-  document.getElementById('viewBtn').onclick = () => {
-    console.log('Ver presentación:', presentation);
-    alert('Presentación generada. La puedes editar directamente en Gamma.');
+  document.getElementById('downloadBtn').onclick = () => {
+    if (presentation.downloadUrl) {
+      const a = document.createElement('a');
+      a.href = presentation.downloadUrl;
+      a.download = presentation.pptxFile;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } else {
+      alert('Error: No download link available');
+    }
   };
 
   document.getElementById('copyBtn').onclick = () => {
@@ -108,6 +116,7 @@ async function loadPresentations() {
     presentations.reverse().forEach(pres => {
       const item = document.createElement('div');
       item.className = 'presentation-item';
+      const downloadBtn = pres.downloadUrl ? `<button class="btn btn-secondary" onclick="downloadPresentation('${pres.downloadUrl}', '${pres.pptxFile}')">⬇️ Descargar</button>` : '';
       item.innerHTML = `
         <h4>${pres.title}</h4>
         <div class="presentation-meta">
@@ -116,9 +125,9 @@ async function loadPresentations() {
         <div class="presentation-idea">
           <strong>Idea:</strong> ${pres.originalIdea}
         </div>
-        <button class="btn btn-secondary" onclick="viewPresentation('${pres.id}')">
-          Ver Detalle
-        </button>
+        <div style="margin-top: 12px;">
+          ${downloadBtn}
+        </div>
       `;
       presentationsList.appendChild(item);
     });
@@ -127,9 +136,14 @@ async function loadPresentations() {
   }
 }
 
-// View Presentation Details
-function viewPresentation(id) {
-  console.log('Viewing presentation:', id);
+// Download Presentation
+function downloadPresentation(downloadUrl, filename) {
+  const a = document.createElement('a');
+  a.href = downloadUrl;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 // Load presentations on page load

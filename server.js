@@ -1,9 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { dirname, join } from 'path';
 import { config } from 'dotenv';
 import { generatePresentation } from './lib/presentationGenerator.js';
+import { generatePPTX } from './lib/pptxGenerator.js';
 import { loadConfig, savePresentation } from './lib/configManager.js';
 
 config();
@@ -33,12 +34,23 @@ app.post('/api/generate', async (req, res) => {
       theme: appConfig.theme
     });
 
+    // Generate PPTX
+    const pptxInfo = await generatePPTX(presentation);
+
     // Save presentation metadata
-    const saved = savePresentation(presentation);
+    const saved = savePresentation({
+      ...presentation,
+      pptxFile: pptxInfo.filename,
+      downloadUrl: `/api/download/${pptxInfo.filename}`
+    });
 
     res.json({
       success: true,
-      presentation,
+      presentation: {
+        ...presentation,
+        pptxFile: pptxInfo.filename,
+        downloadUrl: `/api/download/${pptxInfo.filename}`
+      },
       saved
     });
   } catch (error) {
@@ -70,6 +82,27 @@ app.get('/api/presentations', (req, res) => {
     res.json(presentations);
   } catch (error) {
     res.status(500).json({ error: 'Failed to load presentations' });
+  }
+});
+
+app.get('/api/download/:filename', (req, res) => {
+  try {
+    const { filename } = req.params;
+    const filepath = join(__dirname, `downloads/${filename}`);
+
+    // Security: prevent directory traversal
+    if (!filepath.startsWith(join(__dirname, 'downloads'))) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
+    res.download(filepath, filename, (err) => {
+      if (err) {
+        console.error('Download error:', err);
+        res.status(500).json({ error: 'Download failed' });
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Download failed', details: error.message });
   }
 });
 
