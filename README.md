@@ -4,10 +4,12 @@ Un generador automático de presentaciones impulsado por IA, diseñado específi
 
 ## Características
 
-✨ **Generación Automática**: Crea presentaciones completas a partir de tus ideas
-🎨 **Branding Integrado**: Mantiene consistentemente el estilo de VÉRTICE STUDIO
-📱 **Web App**: Interfaz limpia y minimalista, accesible desde cualquier dispositivo
-💾 **Almacenamiento**: Guarda todas tus presentaciones generadas
+✨ **Generación Automática**: Crea presentaciones completas a partir de tus ideas  
+📊 **Múltiples Formatos**: Exporta a PPTX (editable) y PDF (compartible)  
+🎨 **Branding Customizable**: Personaliza colores, nombre, tagline de la marca  
+☁️ **Google Drive**: Guarda automáticamente en Google Drive  
+📱 **Web App**: Interfaz limpia y minimalista, accesible desde cualquier dispositivo  
+💾 **Historial**: Acceso rápido a todas tus presentaciones generadas  
 ⚡ **Rápido**: Genera presentaciones en segundos usando Claude AI
 
 ## Requisitos
@@ -55,13 +57,32 @@ El archivo `config.yaml` contiene:
 - **Presentation**: Configuración de generación de presentaciones
 - **Theme**: Tema visual por defecto (modern-minimalist)
 
-## Uso
+## Uso Rápido
 
-1. Ingresa tu idea para la presentación
-2. (Opcional) Añade contexto adicional
-3. Selecciona el número de diapositivas
-4. Haz clic en "Generar Presentación"
-5. La presentación se genera automáticamente manteniendo el branding
+1. **Ingresa tu idea** (ej: "Propuesta de Marketing Digital")
+2. **(Opcional) Añade contexto** - audiencia, objetivos, etc.
+3. **Selecciona cantidad de diapositivas** (5-50)
+4. **Haz clic en "Generar Presentación"**
+5. **Descarga** en PPTX (editable) o PDF (compartible)
+
+## Customización de Branding
+
+1. Haz click en **⚙️** (arriba a la derecha)
+2. Personaliza:
+   - Nombre de la marca
+   - Tagline
+   - Colores (primario/secundario)
+   - Email, teléfono, sitio web
+3. Haz click en "Guardar Configuración"
+
+## Google Drive (Opcional)
+
+Para guardar automáticamente en Google Drive:
+
+1. Sigue la guía en [GOOGLE_DRIVE_SETUP.md](./GOOGLE_DRIVE_SETUP.md)
+2. Coloca `credentials.json` en la raíz del proyecto
+3. Activa en configuración (⚙️)
+4. Las nuevas presentaciones se guardarán automáticamente
 
 ## Estructura del Proyecto
 

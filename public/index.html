@@ -10,10 +10,60 @@
   <div class="container">
     <header class="header">
       <div class="header-content">
-        <h1 class="logo">VÉRTICE</h1>
+        <div class="header-top">
+          <h1 class="logo">VÉRTICE</h1>
+          <button id="settingsBtn" class="settings-btn" title="Configuración">⚙️</button>
+        </div>
         <p class="tagline">Generador Automático de Presentaciones</p>
       </div>
     </header>
+
+    <div id="settingsPanel" class="settings-panel" style="display: none;">
+      <div class="settings-content">
+        <h2>Configuración de Branding</h2>
+        <div class="settings-grid">
+          <div class="setting-group">
+            <label for="brandName">Nombre de la Marca</label>
+            <input type="text" id="brandName" placeholder="VÉRTICE STUDIO">
+          </div>
+          <div class="setting-group">
+            <label for="brandTagline">Tagline</label>
+            <input type="text" id="brandTagline" placeholder="el punto donde todo conecta">
+          </div>
+          <div class="setting-group">
+            <label for="brandPrimary">Color Primario</label>
+            <input type="color" id="brandPrimary" value="#000000">
+          </div>
+          <div class="setting-group">
+            <label for="brandSecondary">Color Secundario</label>
+            <input type="color" id="brandSecondary" value="#FFFFFF">
+          </div>
+          <div class="setting-group">
+            <label for="brandEmail">Email</label>
+            <input type="email" id="brandEmail" placeholder="hola@vertice.com">
+          </div>
+          <div class="setting-group">
+            <label for="brandPhone">Teléfono</label>
+            <input type="tel" id="brandPhone" placeholder="+54 9 XXX XXX XXXX">
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <h3>Google Drive (Opcional)</h3>
+        <div class="setting-group">
+          <label>
+            <input type="checkbox" id="googleDriveEnabled">
+            Guardar automáticamente en Google Drive
+          </label>
+          <p class="help-text">Requiere archivo credentials.json</p>
+        </div>
+
+        <div class="settings-actions">
+          <button id="saveBrandingBtn" class="btn btn-primary">Guardar Configuración</button>
+          <button id="closeBrandingBtn" class="btn btn-secondary">Cerrar</button>
+        </div>
+      </div>
+    </div>
 
     <main class="main-content">
       <section class="generator-section">
@@ -69,8 +119,12 @@
             </div>
 
             <div class="result-actions">
-              <button id="downloadBtn" class="btn btn-secondary">⬇️ Descargar PPTX</button>
-              <button id="copyBtn" class="btn btn-secondary">Copiar Detalles</button>
+              <button id="downloadPptxBtn" class="btn btn-secondary">📊 Descargar PPTX</button>
+              <button id="downloadPdfBtn" class="btn btn-secondary">📄 Descargar PDF</button>
+              <button id="copyBtn" class="btn btn-secondary">📋 Copiar Detalles</button>
+            </div>
+            <div id="googleDriveStatus" class="google-drive-status" style="display: none; margin-top: 12px;">
+              ☁️ Guardado en Google Drive
             </div>
 
             <div id="resultPreview" class="result-preview">

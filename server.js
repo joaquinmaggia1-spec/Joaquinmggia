@@ -5,7 +5,9 @@ import { dirname, join } from 'path';
 import { config } from 'dotenv';
 import { generatePresentation } from './lib/presentationGenerator.js';
 import { generatePPTX } from './lib/pptxGenerator.js';
+import { generatePDF } from './lib/pdfGenerator.js';
 import { loadConfig, savePresentation } from './lib/configManager.js';
+import { initGoogleDrive, uploadToGoogleDrive, uploadPDFToGoogleDrive, isGoogleDriveAvailable } from './lib/googleDriveManager.js';
 
 config();
 
@@ -37,20 +39,42 @@ app.post('/api/generate', async (req, res) => {
     // Generate PPTX
     const pptxInfo = await generatePPTX(presentation);
 
+    // Generate PDF
+    const pdfInfo = await generatePDF(presentation, appConfig.branding);
+
+    // Upload to Google Drive if enabled
+    let googleDriveLinks = null;
+    if (appConfig.googleDrive?.enabled && isGoogleDriveAvailable()) {
+      const pptxGD = await uploadToGoogleDrive(
+        pptxInfo.filepath,
+        pptxInfo.filename,
+        appConfig.googleDrive.folderId
+      );
+      const pdfGD = await uploadPDFToGoogleDrive(
+        pdfInfo.filepath,
+        pdfInfo.filename,
+        appConfig.googleDrive.folderId
+      );
+      googleDriveLinks = { pptx: pptxGD, pdf: pdfGD };
+    }
+
     // Save presentation metadata
-    const saved = savePresentation({
+    const presentationData = {
       ...presentation,
       pptxFile: pptxInfo.filename,
-      downloadUrl: `/api/download/${pptxInfo.filename}`
-    });
+      pdfFile: pdfInfo.filename,
+      downloadUrls: {
+        pptx: `/api/download/${pptxInfo.filename}`,
+        pdf: `/api/download/${pdfInfo.filename}`
+      },
+      googleDriveLinks: googleDriveLinks
+    };
+
+    const saved = savePresentation(presentationData);
 
     res.json({
       success: true,
-      presentation: {
-        ...presentation,
-        pptxFile: pptxInfo.filename,
-        downloadUrl: `/api/download/${pptxInfo.filename}`
-      },
+      presentation: presentationData,
       saved
     });
   } catch (error) {
@@ -70,6 +94,18 @@ app.put('/api/config', (req, res) => {
   try {
     const updated = { ...appConfig, ...req.body };
     // Save updated config to yaml
+
+    // If Google Drive settings changed, reinitialize
+    if (req.body.googleDrive?.enabled !== undefined) {
+      if (req.body.googleDrive.enabled) {
+        initGoogleDrive().then(success => {
+          if (success) {
+            console.log('✓ Google Drive initialized');
+          }
+        });
+      }
+    }
+
     res.json(updated);
   } catch (error) {
     res.status(500).json({ error: 'Failed to update config' });
@@ -107,7 +143,21 @@ app.get('/api/download/:filename', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
+// Initialize Google Drive if enabled
+if (appConfig.googleDrive?.enabled) {
+  initGoogleDrive().then(success => {
+    if (success) {
+      console.log('✓ Google Drive integration ready');
+    } else {
+      console.log('⚠️  Google Drive integration not available');
+    }
+  });
+}
+
 app.listen(PORT, () => {
   console.log(`🎨 Presentation Generator running at http://localhost:${PORT}`);
   console.log(`🎯 VÉRTICE STUDIO branding ready`);
+  console.log(`📥 Downloads folder: ./downloads`);
+  console.log(`📄 Formats: PPTX + PDF`);
 });

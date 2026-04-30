@@ -1,20 +1,34 @@
 branding:
   name: "VÉRTICE STUDIO"
+  tagline: "el punto donde todo conecta"
   style: "minimalist"
   colors:
     primary: "#000000"
     secondary: "#FFFFFF"
     accent: "#333333"
   typography:
-    font: "Helvetica, Arial, sans-serif"
+    font: "Helvetica"
     headingWeight: 700
     bodyWeight: 400
+  contact:
+    email: "hola@vertice.com"
+    phone: "+54 9 XXX XXX XXXX"
+    website: "www.vertice.com"
+    instagram: "@vertice.studio"
 
 presentation:
   defaultSlides: 10
-  format: "gamma_link"
+  formats:
+    - "pptx"
+    - "pdf"
   autoSave: true
-  outputFolder: "./presentations"
+  outputFolder: "./downloads"
+  autoSaveCloud: false
+
+googleDrive:
+  enabled: false
+  folderId: ""
+  credentialsPath: "./credentials.json"
 
 theme:
   name: "modern-minimalist"

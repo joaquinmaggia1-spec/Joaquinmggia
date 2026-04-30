@@ -2,5 +2,8 @@ node_modules/
 .env
 .env.local
 presentations.json
+credentials.json
+token.json
 *.log
 .DS_Store
+downloads/
