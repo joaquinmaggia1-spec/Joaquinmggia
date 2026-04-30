@@ -1,0 +1,21 @@
+branding:
+  name: "VÉRTICE STUDIO"
+  style: "minimalist"
+  colors:
+    primary: "#000000"
+    secondary: "#FFFFFF"
+    accent: "#333333"
+  typography:
+    font: "Helvetica, Arial, sans-serif"
+    headingWeight: 700
+    bodyWeight: 400
+
+presentation:
+  defaultSlides: 10
+  format: "gamma_link"
+  autoSave: true
+  outputFolder: "./presentations"
+
+theme:
+  name: "modern-minimalist"
+  description: "Clean, modern design aligned with VÉRTICE identity"

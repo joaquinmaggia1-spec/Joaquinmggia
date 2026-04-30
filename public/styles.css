@@ -1,0 +1,309 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  border-bottom: 3px solid white;
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 40px 20px;
+}
+
+.generator-section,
+.presentations-section {
+  margin-bottom: 60px;
+}
+
+.presentations-section h2,
+.generator-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #000;
+  letter-spacing: 1px;
+}
+
+/* Generator Card */
+.generator-card {
+  background: white;
+  padding: 40px;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.generator-card h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 15px;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Buttons */
+.btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: #000;
+  color: white;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background: #1a1a1a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: white;
+  color: #000;
+  border: 2px solid #000;
+  margin-right: 10px;
+}
+
+.btn-secondary:hover {
+  background: #f8f8f8;
+}
+
+/* Result Container */
+.result-container {
+  margin-top: 30px;
+}
+
+.result-card {
+  background: white;
+  padding: 30px;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #000;
+}
+
+.result-header {
+  margin-bottom: 20px;
+}
+
+.result-header h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.result-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+}
+
+.result-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.result-preview {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.slide-preview {
+  background: #f8f8f8;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-left: 3px solid #000;
+  border-radius: 2px;
+}
+
+.slide-preview h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.slide-preview p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Presentations List */
+.presentations-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.presentation-item {
+  background: white;
+  padding: 20px;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.presentation-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.presentation-item h4 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.presentation-meta {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 12px;
+}
+
+.presentation-idea {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #999;
+  padding: 40px 20px;
+}
+
+/* Footer */
+.footer {
+  background: #000;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  margin-top: 40px;
+}
+
+/* Loading State */
+.btn-loader {
+  display: inline-block;
+}
+
+.btn-text {
+  display: inline-block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .logo {
+    font-size: 36px;
+  }
+
+  .header {
+    padding: 40px 20px;
+  }
+
+  .generator-card {
+    padding: 25px;
+  }
+
+  .presentations-list {
+    grid-template-columns: 1fr;
+  }
+
+  .result-actions {
+    flex-direction: column;
+  }
+
+  .btn-secondary {
+    margin-right: 0;
+    width: 100%;
+  }
+}

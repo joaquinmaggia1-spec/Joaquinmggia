@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VÉRTICE Presentation Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-content">
+        <h1 class="logo">VÉRTICE</h1>
+        <p class="tagline">Generador Automático de Presentaciones</p>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="generator-section">
+        <div class="generator-card">
+          <h2>Nueva Presentación</h2>
+
+          <form id="generatorForm" class="form">
+            <div class="form-group">
+              <label for="idea">Tu Idea *</label>
+              <input
+                type="text"
+                id="idea"
+                name="idea"
+                placeholder="Ej: Propuesta de Marketing Digital para E-commerce"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="context">Contexto (opcional)</label>
+              <textarea
+                id="context"
+                name="context"
+                placeholder="Información adicional, público objetivo, objetivos específicos..."
+                rows="4"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="numSlides">Número de Diapositivas</label>
+              <input
+                type="number"
+                id="numSlides"
+                name="numSlides"
+                min="5"
+                max="50"
+                value="10"
+              >
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+              <span class="btn-text">Generar Presentación</span>
+              <span class="btn-loader" style="display: none;">Generando...</span>
+            </button>
+          </form>
+        </div>
+
+        <div id="resultContainer" class="result-container" style="display: none;">
+          <div class="result-card">
+            <div class="result-header">
+              <h3>✓ Presentación Generada</h3>
+              <p id="resultTitle" class="result-title"></p>
+            </div>
+
+            <div class="result-actions">
+              <button id="viewBtn" class="btn btn-secondary">Ver Presentación</button>
+              <button id="copyBtn" class="btn btn-secondary">Copiar Link</button>
+            </div>
+
+            <div id="resultPreview" class="result-preview">
+              <!-- Preview de diapositivas -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="presentations-section">
+        <h2>Presentaciones Generadas</h2>
+        <div id="presentationsList" class="presentations-list">
+          <p class="empty-state">No hay presentaciones aún</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>VÉRTICE STUDIO • Generador de Presentaciones AI</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
