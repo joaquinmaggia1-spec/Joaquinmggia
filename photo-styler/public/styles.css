@@ -1,0 +1,254 @@
+:root {
+  --bg: #f6f5f3;
+  --panel: #ffffff;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --accent: #d4572a;
+  --border: #e3e1dc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.topbar {
+  padding: 2rem 2rem 1rem;
+  text-align: center;
+}
+
+.topbar h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.8rem;
+}
+
+.topbar p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+#resultsPanel {
+  grid-column: 1 / -1;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: -0.5rem;
+}
+
+.style-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.style-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  cursor: pointer;
+}
+
+.style-card.selected {
+  border-color: var(--accent);
+  background: #fdf3ee;
+}
+
+.style-card .thumbs {
+  display: flex;
+  gap: 4px;
+}
+
+.style-card .thumbs img {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.style-card .info {
+  flex: 1;
+}
+
+.style-card .info strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.style-card .info span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.style-card .delete-btn {
+  border: none;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.new-style summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.new-style form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+input[type='text'],
+textarea {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--ink);
+  resize: vertical;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.new-style button[type='submit'],
+#processBtn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+#processBtn:disabled {
+  background: #cfcac3;
+  cursor: not-allowed;
+}
+
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.dropzone button {
+  background: none;
+  border: none;
+  color: var(--accent);
+  text-decoration: underline;
+  font-size: inherit;
+}
+
+.dropzone .preview {
+  max-width: 100%;
+  max-height: 260px;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+.extra-instructions {
+  margin-bottom: 1rem;
+}
+
+.status {
+  min-height: 1.2rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.result-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.result-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: #eee;
+}
+
+.result-card .result-info {
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-card .result-info a {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

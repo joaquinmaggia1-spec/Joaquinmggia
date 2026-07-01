@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Styler — Fotos hiperreales para redes</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>📸 Photo Styler</h1>
+    <p>Subí una foto, elegí (o creá) tu estilo y llevate versiones hiperrealistas listas para redes.</p>
+  </header>
+
+  <main class="layout">
+    <!-- Panel de estilos -->
+    <section class="panel" id="stylesPanel">
+      <h2>1. Estilo</h2>
+      <p class="hint">El look hiperreal siempre se mantiene. Podés sumarle un estilo propio (paleta, mood, referencias).</p>
+
+      <div id="styleList" class="style-list"></div>
+
+      <details class="new-style">
+        <summary>+ Crear nuevo estilo</summary>
+        <form id="newStyleForm">
+          <label>
+            Nombre
+            <input type="text" id="styleName" placeholder="Ej: Editorial cálido" required />
+          </label>
+          <label>
+            Descripción del estilo (paleta, iluminación, mood, referencias de moda/cine)
+            <textarea id="styleDescription" rows="3" placeholder="Ej: tonos cálidos tipo golden hour, alto contraste, grano fino de película, iluminación lateral suave" required></textarea>
+          </label>
+          <label>
+            Imágenes de referencia (opcional)
+            <input type="file" id="styleReferenceInput" accept="image/*" multiple />
+          </label>
+          <button type="submit">Guardar estilo</button>
+        </form>
+      </details>
+    </section>
+
+    <!-- Panel de subida -->
+    <section class="panel" id="uploadPanel">
+      <h2>2. Tu foto</h2>
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="photoInput" accept="image/*" hidden />
+        <p>Arrastrá tu foto acá o <button type="button" id="browseBtn">elegí un archivo</button></p>
+        <img id="photoPreview" class="preview" hidden />
+      </div>
+
+      <label class="extra-instructions">
+        Instrucciones extra (opcional)
+        <textarea id="extraInstructions" rows="2" placeholder="Ej: resaltar el atardecer de fondo, mantener el logo de la remera"></textarea>
+      </label>
+
+      <button id="processBtn" disabled>✨ Generar versión hiperreal</button>
+      <p id="statusMsg" class="status"></p>
+    </section>
+
+    <!-- Panel de resultados -->
+    <section class="panel" id="resultsPanel" hidden>
+      <h2>3. Resultados listos para redes</h2>
+      <div id="resultsGrid" class="results-grid"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

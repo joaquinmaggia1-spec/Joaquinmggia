@@ -1,0 +1,19 @@
+{
+  "name": "photo-styler",
+  "version": "1.0.0",
+  "description": "App que estiliza fotos manteniendo un look hiperreal, usando estilos propios o de referencia, y las deja optimizadas para redes sociales",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "multer": "^2.0.0",
+    "sharp": "^0.33.4",
+    "@google/genai": "^0.3.1"
+  }
+}
