@@ -1,0 +1,209 @@
+/* ============================================================
+   VÉRTICE STD. — Design System Tokens
+   colors_and_type.css
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Cormorant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap');
+
+/* ============================================================
+   COLOR PRIMITIVES
+   ============================================================ */
+:root {
+  /* Neutrals */
+  --color-black:       #111010;
+  --color-ink:         #1E1D1D;
+  --color-graphite:    #3A3938;
+  --color-stone:       #6B6966;
+  --color-mist:        #A8A5A2;
+  --color-fog:         #D4D1CE;
+  --color-smoke:       #EDEBE8;
+  --color-paper:       #F6F4F1;
+  --color-white:       #FEFEFE;
+
+  /* Accent — warm sand (derived from logo warmth) */
+  --color-sand:        #C9B99A;
+  --color-sand-light:  #E8DDD0;
+  --color-sand-deep:   #9E8B70;
+
+  /* Semantic */
+  --color-bg:          var(--color-white);
+  --color-bg-subtle:   var(--color-paper);
+  --color-bg-muted:    var(--color-smoke);
+  --color-border:      var(--color-fog);
+  --color-border-strong: var(--color-stone);
+
+  --color-fg:          var(--color-ink);
+  --color-fg-muted:    var(--color-stone);
+  --color-fg-subtle:   var(--color-mist);
+  --color-fg-inverse:  var(--color-white);
+
+  --color-accent:      var(--color-sand);
+  --color-accent-deep: var(--color-sand-deep);
+
+  /* States */
+  --color-hover:       var(--color-paper);
+  --color-active:      var(--color-smoke);
+}
+
+/* ============================================================
+   TYPOGRAPHY PRIMITIVES
+   ============================================================ */
+:root {
+  /* Font families */
+  --font-display:  'Cormorant', 'Cormorant Garamond', Georgia, serif;
+  --font-body:     'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:     'JetBrains Mono', 'Courier New', monospace;
+
+  /* Scale (Major Third × 1.25) */
+  --text-xs:    0.75rem;    /* 12px */
+  --text-sm:    0.875rem;   /* 14px */
+  --text-base:  1rem;       /* 16px */
+  --text-md:    1.125rem;   /* 18px */
+  --text-lg:    1.25rem;    /* 20px */
+  --text-xl:    1.5rem;     /* 24px */
+  --text-2xl:   2rem;       /* 32px */
+  --text-3xl:   2.5rem;     /* 40px */
+  --text-4xl:   3.5rem;     /* 56px */
+  --text-5xl:   5rem;       /* 80px */
+  --text-6xl:   7rem;       /* 112px */
+
+  /* Weights */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold: 600;
+  --weight-bold:    700;
+
+  /* Leading */
+  --leading-tight:  1.1;
+  --leading-snug:   1.25;
+  --leading-normal: 1.5;
+  --leading-loose:  1.75;
+
+  /* Tracking */
+  --tracking-tight:    0em;
+  --tracking-normal:    0em;
+  --tracking-wide:      0.06em;
+  --tracking-widest:    0.15em;
+}
+
+/* ============================================================
+   SEMANTIC TYPE STYLES
+   ============================================================ */
+:root {
+  /* Display — serif, large, editorial */
+  --h-display-font:     var(--font-display);
+  --h-display-size:     var(--text-6xl);
+  --h-display-weight:   var(--weight-light);
+  --h-display-leading:  var(--leading-tight);
+  --h-display-tracking: var(--tracking-tight);
+
+  /* H1 */
+  --h1-font:     var(--font-display);
+  --h1-size:     var(--text-5xl);
+  --h1-weight:   var(--weight-regular);
+  --h1-leading:  var(--leading-tight);
+  --h1-tracking: var(--tracking-tight);
+
+  /* H2 */
+  --h2-font:     var(--font-display);
+  --h2-size:     var(--text-4xl);
+  --h2-weight:   var(--weight-regular);
+  --h2-leading:  var(--leading-snug);
+  --h2-tracking: var(--tracking-tight);
+
+  /* H3 */
+  --h3-font:     var(--font-display);
+  --h3-size:     var(--text-3xl);
+  --h3-weight:   var(--weight-semibold);
+  --h3-leading:  var(--leading-snug);
+  --h3-tracking: var(--tracking-normal);
+
+  /* H4 */
+  --h4-font:     var(--font-body);
+  --h4-size:     var(--text-lg);
+  --h4-weight:   var(--weight-medium);
+  --h4-leading:  var(--leading-snug);
+  --h4-tracking: var(--tracking-wide);
+
+  /* Body */
+  --body-font:     var(--font-body);
+  --body-size:     var(--text-base);
+  --body-weight:   var(--weight-regular);
+  --body-leading:  var(--leading-normal);
+
+  /* Small / Caption */
+  --caption-font:     var(--font-body);
+  --caption-size:     var(--text-sm);
+  --caption-weight:   var(--weight-regular);
+  --caption-tracking: var(--tracking-wide);
+
+  /* Label */
+  --label-font:     var(--font-body);
+  --label-size:     var(--text-xs);
+  --label-weight:   var(--weight-medium);
+  --label-tracking: var(--tracking-widest);
+  --label-transform: uppercase;
+}
+
+/* ============================================================
+   SPACING TOKENS
+   ============================================================ */
+:root {
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+  --space-32: 128px;
+  --space-40: 160px;
+  --space-48: 192px;
+}
+
+/* ============================================================
+   RADII & BORDERS
+   ============================================================ */
+:root {
+  --radius-none:   0px;
+  --radius-sm:     2px;
+  --radius-md:     4px;
+  --radius-lg:     8px;
+  --radius-pill:   999px;
+
+  --border-thin:   1px;
+  --border-base:   1.5px;
+  --border-thick:  2px;
+}
+
+/* ============================================================
+   SHADOWS / ELEVATION
+   ============================================================ */
+:root {
+  --shadow-none:   none;
+  --shadow-xs:     0 1px 2px 0 oklch(0% 0 0 / 0.06);
+  --shadow-sm:     0 2px 8px 0 oklch(0% 0 0 / 0.08);
+  --shadow-md:     0 4px 20px 0 oklch(0% 0 0 / 0.10);
+  --shadow-lg:     0 8px 40px 0 oklch(0% 0 0 / 0.12);
+  --shadow-xl:     0 16px 64px 0 oklch(0% 0 0 / 0.14);
+}
+
+/* ============================================================
+   TRANSITIONS
+   ============================================================ */
+:root {
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --duration-fast:   150ms;
+  --duration-base:   250ms;
+  --duration-slow:   400ms;
+  --duration-slower: 600ms;
+}
