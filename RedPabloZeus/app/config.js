@@ -10,5 +10,5 @@ export const CONFIG = {
   // Para verificar el dominio en Meta Business Manager:
   // Entrá a business.facebook.com → Brand Safety → Dominios → Agregar → copiá el código y pegalo acá
   FB_DOMAIN_VERIFICATION: "",
-  SITE_URL:      "https://zeusfichas.vercel.app",
+  SITE_URL:      "https://redpablozeus.vercel.app",
 };
