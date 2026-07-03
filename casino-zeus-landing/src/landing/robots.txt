@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /privacidad
+
+Sitemap: https://casinzeus.com/sitemap.xml
