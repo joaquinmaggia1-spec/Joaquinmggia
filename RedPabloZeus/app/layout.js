@@ -3,12 +3,38 @@ import Script from 'next/script'
 import './globals.css'
 
 export const metadata = {
+  metadataBase: new URL(CONFIG.SITE_URL),
   title: 'RED ZEUS — Bono de bienvenida 100%',
   description: 'Duplicá tu primera carga con el bono de bienvenida del 100%. Retiros en menos de 10 minutos. Reclamá por WhatsApp al instante.',
+  alternates: {
+    canonical: CONFIG.SITE_URL,
+  },
   openGraph: {
     title: 'RED ZEUS — Bono de bienvenida 100%',
-    description: 'Duplicá tu primera carga. Bono del 100% para nuevos jugadores. Reclamá ya por WhatsApp.',
+    description: 'Duplicá tu primera carga. Bono del 100% para nuevos jugadores. Retiros en menos de 10 min. Reclamá ya por WhatsApp.',
     type: 'website',
+    url: CONFIG.SITE_URL,
+    siteName: 'RED ZEUS',
+    locale: 'es_AR',
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'RED ZEUS — Bono de bienvenida 100%',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'RED ZEUS — Bono de bienvenida 100%',
+    description: 'Duplicá tu primera carga. Bono del 100% para nuevos jugadores.',
+    images: ['/opengraph-image'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
   },
 }
 
@@ -18,7 +44,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <head>
-        {/* Meta Pixel — Base Code */}
+        {/* Meta domain verification — completá FB_DOMAIN_VERIFICATION en config.js */}
+        {CONFIG.FB_DOMAIN_VERIFICATION && (
+          <meta name="facebook-domain-verification" content={CONFIG.FB_DOMAIN_VERIFICATION} />
+        )}
+
+        {/* Meta Pixel */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -31,6 +62,13 @@ export default function RootLayout({ children }) {
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '${pixelId}');
             fbq('track', 'PageView');
+            fbq('track', 'ViewContent', {
+              content_name: 'Landing Bono 100%',
+              content_category: 'Casino',
+              content_ids: ['bono-100'],
+              content_type: 'product',
+              currency: 'ARS',
+            });
           `}
         </Script>
         <noscript>
