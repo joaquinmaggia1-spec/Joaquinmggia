@@ -1,0 +1,250 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #100c0b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #EC8153;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #E94D1D;
+}
+
+@keyframes blink {
+  0%, 45% { opacity: 1; }
+  50%, 100% { opacity: .15; }
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); opacity: .7; }
+  50% { transform: translateY(9px); opacity: 1; }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(233, 77, 29, .45), 0 0 44px -6px rgba(233, 77, 29, .35);
+    border-color: #5c3128;
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(233, 77, 29, 0), 0 0 78px -4px rgba(233, 77, 29, .6);
+    border-color: #E94D1D;
+  }
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: #100c0b;
+  color: #C3B6A8;
+  font-family: 'Space Grotesk', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 52px;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.glyphs {
+  position: absolute;
+  inset: -40px;
+  z-index: 0;
+  opacity: .4;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 56px;
+  font-size: 62px;
+  line-height: 1;
+  color: #E94D1D;
+  pointer-events: none;
+  user-select: none;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(ellipse at center, rgba(16, 12, 11, .72) 0%, rgba(16, 12, 11, .94) 62%, #100c0b 100%);
+  pointer-events: none;
+}
+
+.brand {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  background: #E94D1D;
+  display: grid;
+  place-items: center;
+  color: #100c0b;
+  font-weight: 700;
+  font-size: 21px;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -.02em;
+  color: #F5EFE8;
+}
+
+.pill {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #8E7967;
+  border: 1px solid #3a2a26;
+  border-radius: 99px;
+  padding: 6px 12px;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px;
+  max-width: 1000px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #8E7967;
+}
+
+.status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  background: #E94D1D;
+  animation: blink 1.6s steps(1, end) infinite;
+}
+
+h1 {
+  margin: 0;
+  font-size: 112px;
+  line-height: .92;
+  letter-spacing: -.04em;
+  font-weight: 700;
+  color: #F5EFE8;
+  text-wrap: balance;
+}
+
+.cta-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.cta-hint p {
+  margin: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 20px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #EC8153;
+}
+
+.arrow {
+  font-size: 34px;
+  line-height: 1;
+  color: #E94D1D;
+  animation: bounceDown 1.6s ease-in-out infinite;
+}
+
+.bono-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 34px;
+  background: #1a1210;
+  border: 2px solid #5c3128;
+  border-radius: 24px;
+  padding: 38px 54px;
+  animation: glow 2.4s ease-in-out infinite;
+  cursor: pointer;
+  transition: transform .25s ease;
+}
+
+.bono-card:hover {
+  transform: translateY(-3px) scale(1.015);
+}
+
+.bono-pct {
+  font-size: 100px;
+  font-weight: 700;
+  color: #E94D1D;
+  letter-spacing: -.035em;
+  line-height: 1;
+}
+
+.bono-copy {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 21px;
+  line-height: 1.5;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #F5EFE8;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 60px 24px;
+    gap: 40px;
+  }
+  h1 {
+    font-size: 15vw;
+  }
+  .bono-card {
+    flex-direction: column;
+    gap: 14px;
+    padding: 30px 34px;
+    text-align: center;
+  }
+  .bono-copy {
+    text-align: center;
+  }
+  .bono-pct {
+    font-size: 72px;
+  }
+}
+
+@media (max-width: 520px) {
+  .glyphs {
+    font-size: 40px;
+    gap: 34px;
+  }
+  .cta-hint p {
+    font-size: 15px;
+  }
+  .status {
+    font-size: 11px;
+  }
+}
