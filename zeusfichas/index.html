@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RED ZEUS — Bono de bienvenida 100%</title>
+<meta name="description" content="Duplicá tu primera carga con el bono de bienvenida del 100%. Cargá, jugá y retirá. Reclamalo ahora por WhatsApp.">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="RED ZEUS — Bono de bienvenida 100%">
+<meta property="og:description" content="Duplicá tu primera carga con el bono de bienvenida del 100%. Cargá, jugá y retirá. Reclamalo ahora por WhatsApp.">
+<meta property="og:locale" content="es_AR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RED ZEUS — Bono de bienvenida 100%">
+<meta name="twitter:description" content="Duplicá tu primera carga con el bono de bienvenida del 100%. Cargá, jugá y retirá.">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '27699727559622445');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=27699727559622445&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- ============================================================
+     RED ZEUS — Landing premium (Bono 50% · captación WhatsApp)
+     Fusión: energía casino + elegancia editorial (Vértice STD.)
+     Vanilla HTML/CSS/JS · un solo archivo · mobile-first
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+<style>
+/* ============================================================
+   TOKENS — Vértice STD. (base) + extensiones casino "fusión"
+   ============================================================ */
+:root{
+  /* Neutrales Vértice */
+  --black:#0B0A0A; --ink:#141312; --graphite:#3A3938; --stone:#6B6966;
+  --mist:#A8A5A2; --fog:#D4D1CE; --smoke:#EDEBE8; --paper:#F6F4F1; --white:#FEFEFE;
+
+  /* Oro editorial (sand Vértice) + champagne brillante para el shimmer */
+  --gold:#C9B99A; --gold-deep:#9E8B70; --gold-light:#E8DDD0;
+  --champagne:#F3E4C2; --champagne-hi:#FFF7E3;
+
+  /* Acentos "mesa de casino" — uso contenido */
+  --borgona:#7A1F2B; --borgona-deep:#591620; --esmeralda:#11503C;
+
+  /* WhatsApp — reservado para CTAs */
+  --wa:#25D366; --wa-deep:#128C7E;
+
+  /* Tipografía */
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans','Helvetica Neue',Arial,sans-serif;
+
+  /* Motion */
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans); background:var(--black); color:var(--white);
+  line-height:1.6; overflow-x:hidden; -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--ink)}
+
+/* Utilidades tipográficas editoriales */
+.overline{
+  font-family:var(--sans); font-size:11px; font-weight:500;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-deep);
+}
+.serif{font-family:var(--serif)}
+.italic{font-style:italic}
+
+/* Oro brillante con shimmer (para "50%" y números) */
+.shimmer{
+  background:linear-gradient(100deg,var(--gold-deep) 0%,var(--gold) 22%,var(--champagne-hi) 50%,var(--gold) 78%,var(--gold-deep) 100%);
+  background-size:220% auto;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:shimmer 4.5s linear infinite;
+}
+@keyframes shimmer{to{background-position:-220% center}}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+section{position:relative}
+.eyebrow-row{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.eyebrow-row .rule{height:1px;width:34px;background:var(--gold);opacity:.6}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  font-family:var(--sans); font-weight:600; cursor:pointer; border:none; white-space:nowrap;
+  text-transform:uppercase; letter-spacing:0.06em; line-height:1;
+  transition:transform var(--ease) .35s, box-shadow var(--ease) .35s, background .25s;
+}
+/* CTA principal WhatsApp con glow pulsante */
+.btn-wa{
+  background:linear-gradient(180deg,#2bdd6e,var(--wa)); color:#062b15;
+  font-size:15px; padding:19px 34px; border-radius:6px; min-height:56px;
+  box-shadow:0 0 0 0 rgba(37,211,102,.45), 0 14px 38px -8px rgba(37,211,102,.5);
+  animation:waPulse 2.6s var(--ease) infinite;
+  text-shadow:0 1px 0 rgba(255,255,255,.25);
+}
+.btn-wa:hover{transform:translateY(-2px) scale(1.02);animation-play-state:paused;
+  box-shadow:0 0 0 4px rgba(37,211,102,.25), 0 20px 46px -8px rgba(37,211,102,.65)}
+.btn-wa.lg{font-size:17px;padding:22px 44px;min-height:64px}
+.btn-wa .ic{width:22px;height:22px;flex:none}
+@keyframes waPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.5), 0 14px 38px -8px rgba(37,211,102,.45)}
+  55%{box-shadow:0 0 0 16px rgba(37,211,102,0), 0 14px 38px -8px rgba(37,211,102,.45)}
+}
+/* Oro fantasma */
+.btn-gold{
+  background:transparent;color:var(--champagne);
+  border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);
+  font-size:12px;padding:14px 26px;border-radius:4px;min-height:48px;
+}
+.btn-gold:hover{background:color-mix(in srgb,var(--gold) 12%,transparent);border-color:var(--gold);transform:translateY(-1px)}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  background:color-mix(in srgb,var(--black) 70%,transparent);
+  backdrop-filter:blur(14px); border-bottom:1px solid transparent;
+  transition:border-color .3s, background .3s;
+}
+nav.scrolled{border-color:color-mix(in srgb,var(--gold) 18%,transparent);
+  background:color-mix(in srgb,var(--black) 88%,transparent)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .mark{width:26px;height:26px;color:var(--gold)}
+.brand .name{font-family:var(--serif);font-weight:600;font-size:23px;letter-spacing:0.04em;white-space:nowrap}
+.brand .name b{color:var(--borgona);font-weight:600}
+.brand .name .z{color:var(--gold)}
+.nav-cta{display:inline-flex}
+
+/* ============================================================
+   FONDO DECORATIVO — fichas, ruleta, brillos
+   ============================================================ */
+.fx{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.chip{
+  position:absolute; border-radius:50%; opacity:.0;
+  border:1.5px solid color-mix(in srgb,var(--gold) 42%,transparent);
+  display:grid;place-items:center;
+  animation:floatChip linear infinite;
+  will-change:transform;
+}
+.chip::before{content:'';position:absolute;inset:5px;border-radius:50%;
+  border:1px dashed color-mix(in srgb,var(--gold) 32%,transparent)}
+.chip span{font-family:var(--serif);color:color-mix(in srgb,var(--gold) 70%,transparent);line-height:1}
+@keyframes floatChip{
+  0%{transform:translateY(20px) rotate(0deg);opacity:0}
+  12%{opacity:var(--op,.5)}
+  88%{opacity:var(--op,.5)}
+  100%{transform:translateY(-120px) rotate(180deg);opacity:0}
+}
+/* Ruleta tenue girando */
+.roulette{
+  position:absolute; border-radius:50%; opacity:.05;
+  border:1px solid var(--gold);
+  background:
+    repeating-conic-gradient(from 0deg,var(--gold) 0 9deg,transparent 9deg 18deg);
+  -webkit-mask:radial-gradient(circle,transparent 58%,#000 58.5%,#000 62%,transparent 62.5%);
+          mask:radial-gradient(circle,transparent 58%,#000 58.5%,#000 62%,transparent 62.5%);
+  animation:spin 60s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* Brillos dorados (partículas) */
+.spark{position:absolute;width:3px;height:3px;border-radius:50%;
+  background:var(--champagne);box-shadow:0 0 6px 1px var(--champagne);
+  opacity:0;animation:spark linear infinite}
+@keyframes spark{0%{opacity:0;transform:translateY(0) scale(.6)}
+  20%{opacity:.9}50%{opacity:.3}80%{opacity:.8}
+  100%{opacity:0;transform:translateY(-90px) scale(1)}}
+
+/* ----- MOTION GRAPHICS de fondo: orbes de luz, haz, grilla ----- */
+.orb{
+  position:absolute;border-radius:50%;filter:blur(70px);
+  mix-blend-mode:screen;will-change:transform;pointer-events:none;
+}
+.orb.gold{width:520px;height:520px;background:radial-gradient(circle,color-mix(in srgb,var(--gold) 60%,transparent),transparent 68%);animation:drift1 26s ease-in-out infinite}
+.orb.red{width:600px;height:600px;background:radial-gradient(circle,color-mix(in srgb,var(--borgona) 78%,transparent),transparent 66%);animation:drift2 32s ease-in-out infinite}
+.orb.em{width:420px;height:420px;background:radial-gradient(circle,color-mix(in srgb,var(--esmeralda) 70%,transparent),transparent 68%);animation:drift3 38s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,-55px) scale(1.18)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1.05)}50%{transform:translate(-80px,40px) scale(.85)}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(.95)}33%{transform:translate(50px,50px) scale(1.2)}66%{transform:translate(-40px,-30px) scale(1)}}
+
+/* Haz de luz que barre lentamente */
+.beam{
+  position:absolute;top:-30%;left:-30%;width:160%;height:160%;
+  background:linear-gradient(75deg,transparent 42%,color-mix(in srgb,var(--champagne) 14%,transparent) 49%,color-mix(in srgb,var(--champagne) 22%,transparent) 50%,color-mix(in srgb,var(--champagne) 14%,transparent) 51%,transparent 58%);
+  mix-blend-mode:screen;animation:sweep 11s ease-in-out infinite;pointer-events:none;
+}
+@keyframes sweep{0%{transform:translateX(-30%) rotate(0deg);opacity:0}
+  30%{opacity:1}70%{opacity:1}100%{transform:translateX(35%) rotate(0deg);opacity:0}}
+
+/* Grilla tenue con deriva (textura motion editorial) */
+.grid-fx{
+  position:absolute;inset:-2px;pointer-events:none;opacity:.5;
+  background-image:
+    linear-gradient(color-mix(in srgb,var(--gold) 7%,transparent) 1px,transparent 1px),
+    linear-gradient(90deg,color-mix(in srgb,var(--gold) 7%,transparent) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask:radial-gradient(120% 80% at 50% 40%,#000 30%,transparent 75%);
+          mask:radial-gradient(120% 80% at 50% 40%,#000 30%,transparent 75%);
+  animation:gridDrift 24s linear infinite;
+}
+@keyframes gridDrift{to{background-position:64px 64px,64px 64px}}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:120px 0 70px;
+  background:
+    radial-gradient(120% 90% at 50% -10%, color-mix(in srgb,var(--borgona) 26%,transparent) 0%, transparent 55%),
+    radial-gradient(80% 70% at 85% 110%, color-mix(in srgb,var(--gold) 10%,transparent) 0%, transparent 60%),
+    linear-gradient(180deg,#0b0a0a,#100d0c 60%,#0b0a0a);
+}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:880px;margin:0 auto}
+.badge{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:11.5px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--champagne);padding:9px 18px;border-radius:999px;
+  border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);
+  background:color-mix(in srgb,var(--borgona) 22%,transparent);
+  margin-bottom:30px;
+}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--borgona);
+  box-shadow:0 0 0 0 var(--borgona);animation:blink 1.6s ease-out infinite}
+@keyframes blink{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--borgona) 80%,transparent)}
+  70%,100%{box-shadow:0 0 0 8px transparent}}
+.hero h1{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(46px,9vw,104px);line-height:.96;letter-spacing:-0.025em;
+  margin-bottom:8px;
+}
+.hero h1 .em{font-style:italic;font-weight:400}
+.hero .lead{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:clamp(22px,4.4vw,40px);color:var(--gold-light);
+  line-height:1.15;margin:14px auto 6px;max-width:18ch;
+}
+.hero .lead b{font-style:normal;font-weight:600}
+.hero .sub{font-size:clamp(15px,2.2vw,18px);color:var(--mist);max-width:46ch;margin:20px auto 38px}
+.hero-actions{display:flex;flex-direction:column;align-items:center;gap:16px}
+.trust{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+  font-size:12.5px;color:var(--stone);margin-top:8px}
+.trust .star{color:var(--gold)}
+.trust .sep{width:4px;height:4px;border-radius:50%;background:var(--graphite)}
+
+/* Big 50% mark detrás del subtítulo */
+.bonus-flash{
+  display:block;font-family:var(--serif);font-weight:700;
+  font-size:clamp(86px,20vw,230px);line-height:.8;letter-spacing:-0.04em;
+  margin:6px 0 2px;
+}
+
+/* ============================================================
+   SECCIONES GENÉRICAS
+   ============================================================ */
+.band{padding:96px 0}
+.band.paper{background:var(--paper);color:var(--ink)}
+.band.ink{background:linear-gradient(180deg,#0e0c0b,#0b0a0a)}
+.sec-head{max-width:640px;margin-bottom:54px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-head h2{
+  font-family:var(--serif);font-weight:400;letter-spacing:-0.02em;
+  font-size:clamp(32px,5vw,52px);line-height:1.08;
+}
+.sec-head h2 em{font-style:italic;color:var(--gold-deep)}
+.paper .sec-head h2 em{color:var(--gold-deep)}
+.ink .sec-head h2 em{color:var(--gold)}
+.sec-head p{margin-top:16px;color:var(--stone);font-size:16px;max-width:52ch}
+.center.sec-head p{margin-left:auto;margin-right:auto}
+
+/* ============================================================
+   BENEFICIOS
+   ============================================================ */
+.benefits{display:grid;grid-template-columns:1fr;gap:1px;background:var(--fog)}
+.benefit{
+  background:var(--white);padding:34px 30px;display:flex;flex-direction:column;gap:14px;
+  transition:transform var(--ease) .4s, box-shadow var(--ease) .4s, background .3s;
+}
+.benefit:hover{transform:translateY(-5px);box-shadow:0 18px 40px -16px rgba(0,0,0,.28);z-index:1}
+.benefit .ico{width:30px;height:30px;color:var(--ink);stroke-width:1.5}
+.benefit .num{font-family:var(--serif);font-size:13px;color:var(--mist);letter-spacing:.04em}
+.benefit h3{font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.15;color:var(--ink)}
+.benefit p{font-size:14.5px;color:var(--stone);line-height:1.55}
+
+/* ============================================================
+   BONO — ticket dorado + pasos
+   ============================================================ */
+.bono-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
+.ticket{
+  position:relative;border-radius:10px;padding:46px 34px;text-align:center;
+  background:
+    radial-gradient(120% 100% at 50% 0%, #1a1512, #0e0b0a);
+  border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.8), inset 0 0 0 1px color-mix(in srgb,var(--gold) 10%,transparent);
+  overflow:hidden;
+}
+.ticket::before,.ticket::after{content:'';position:absolute;width:30px;height:30px;border-radius:50%;
+  background:var(--ink);top:50%;transform:translateY(-50%)}
+.paper .ticket::before,.paper .ticket::after{background:var(--paper)}
+.ticket::before{left:-15px}.ticket::after{right:-15px}
+.ticket .tk-label{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep)}
+.ticket .tk-big{font-family:var(--serif);font-weight:700;font-size:clamp(70px,17vw,128px);line-height:.85;margin:10px 0 4px}
+.ticket .tk-sub{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--gold-light)}
+.ticket .tk-fine{font-size:12.5px;color:var(--stone);margin-top:18px;letter-spacing:.02em}
+.ticket .perf{position:absolute;left:18px;right:18px;height:1px;
+  background:repeating-linear-gradient(90deg,color-mix(in srgb,var(--gold) 40%,transparent) 0 6px,transparent 6px 12px)}
+.ticket .perf.top{top:84px}.ticket .perf.bot{bottom:84px}
+
+.steps{display:flex;flex-direction:column;gap:6px}
+.step{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid color-mix(in srgb,var(--gold) 16%,transparent)}
+.step:last-child{border-bottom:none}
+.step .sn{font-family:var(--serif);font-weight:300;font-size:46px;line-height:1;color:var(--gold);min-width:54px}
+.step h4{font-size:17px;font-weight:600;color:var(--white);letter-spacing:.01em;margin-bottom:5px}
+.paper .step h4{color:var(--ink)}
+.step p{font-size:14.5px;color:var(--stone)}
+
+/* ============================================================
+   PRUEBA SOCIAL — contadores + testimonios
+   ============================================================ */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:color-mix(in srgb,var(--gold) 18%,transparent);
+  border:1px solid color-mix(in srgb,var(--gold) 18%,transparent);border-radius:8px;overflow:hidden;margin-bottom:56px}
+.stat{background:linear-gradient(180deg,#100d0c,#0b0a0a);padding:34px 22px;text-align:center}
+.stat .n{font-family:var(--serif);font-weight:300;font-size:clamp(44px,8vw,68px);line-height:1;display:block}
+.stat .l{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-top:8px}
+.reviews{display:grid;grid-template-columns:1fr;gap:18px}
+.review{
+  background:color-mix(in srgb,var(--white) 4%,transparent);
+  border:1px solid color-mix(in srgb,var(--gold) 16%,transparent);
+  border-radius:8px;padding:26px 26px 24px;
+}
+.review .rs{color:var(--gold);letter-spacing:3px;font-size:14px;margin-bottom:12px}
+.review p{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.4;color:var(--gold-light)}
+.review .who{display:flex;align-items:center;gap:12px;margin-top:18px}
+.review .av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--serif);font-weight:600;font-size:16px;color:var(--ink);
+  background:linear-gradient(135deg,var(--gold-light),var(--gold))}
+.review .who b{font-size:14px;font-weight:600;color:var(--white)}
+.review .who span{font-size:12px;color:var(--stone);display:block}
+
+/* ============================================================
+   MÉTODOS DE PAGO
+   ============================================================ */
+.pays{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--fog)}
+.pay{background:var(--white);padding:26px 18px;display:flex;flex-direction:column;align-items:center;gap:12px;
+  transition:background .3s}
+.pay:hover{background:var(--paper)}
+.pay .pico{width:30px;height:30px;color:var(--ink);stroke-width:1.5}
+.pay b{font-size:13px;font-weight:600;color:var(--ink);text-align:center}
+.pay span{font-size:11px;color:var(--mist);text-align:center}
+
+/* ============================================================
+   CTA FINAL
+   ============================================================ */
+.final{
+  text-align:center;padding:104px 0;position:relative;overflow:hidden;
+  background:
+    radial-gradient(100% 80% at 50% 0%, color-mix(in srgb,var(--borgona) 30%,transparent), transparent 60%),
+    linear-gradient(180deg,#0c0a09,#0b0a0a);
+}
+.final h2{font-family:var(--serif);font-weight:300;font-size:clamp(38px,7vw,76px);line-height:1;letter-spacing:-0.02em;margin-bottom:8px}
+.final .fb{font-family:var(--serif);font-weight:700;font-size:clamp(60px,15vw,150px);line-height:.85;margin:6px 0}
+.final .urg{display:inline-flex;align-items:center;gap:9px;margin:18px 0 30px;
+  font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--champagne)}
+.final .urg .ic{width:16px;height:16px;color:var(--borgona)}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{background:#070606;padding:54px 0 40px;border-top:1px solid color-mix(in srgb,var(--gold) 12%,transparent)}
+.foot-top{display:flex;flex-direction:column;gap:24px}
+.foot-brand{display:flex;align-items:center;gap:11px}
+.foot-brand .mark{width:24px;height:24px;color:var(--gold)}
+.foot-brand .name{font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:.04em}
+.foot-brand .name b{color:var(--borgona)} .foot-brand .name .z{color:var(--gold)}
+.responsible{display:flex;gap:14px;align-items:flex-start;
+  border:1px solid color-mix(in srgb,var(--gold) 14%,transparent);border-radius:8px;padding:18px 20px;
+  background:color-mix(in srgb,var(--white) 3%,transparent)}
+.responsible .plus{font-family:var(--serif);font-weight:700;font-size:30px;color:var(--borgona);line-height:1;flex:none}
+.responsible p{font-size:12.5px;color:var(--stone);line-height:1.6}
+.foot-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:6px}
+.foot-links a{font-size:12.5px;color:var(--mist);transition:color .25s}
+.foot-links a:hover{color:var(--gold)}
+.foot-copy{font-size:12px;color:var(--graphite);margin-top:26px;border-top:1px solid color-mix(in srgb,var(--white) 6%,transparent);padding-top:22px}
+
+/* ============================================================
+   BOTÓN FLOTANTE WHATSAPP
+   ============================================================ */
+.wa-float{
+  position:fixed;right:18px;bottom:18px;z-index:80;
+  width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(180deg,#2bdd6e,var(--wa));color:#062b15;
+  display:grid;place-items:center;
+  box-shadow:0 10px 30px -6px rgba(0,0,0,.5);
+  animation:waPulse 2.6s var(--ease) infinite;
+  transition:transform .3s var(--ease-spring);
+}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:30px;height:30px}
+.wa-float .tip{
+  position:absolute;right:72px;white-space:nowrap;
+  background:var(--white);color:var(--ink);font-size:12.5px;font-weight:600;
+  padding:9px 14px;border-radius:6px;box-shadow:0 6px 20px -6px rgba(0,0,0,.5);
+  opacity:0;transform:translateX(8px);transition:.3s var(--ease);pointer-events:none;
+}
+.wa-float .tip::after{content:'';position:absolute;right:-5px;top:50%;transform:translateY(-50%) rotate(45deg);
+  width:10px;height:10px;background:var(--white)}
+.wa-float:hover .tip{opacity:1;transform:translateX(0)}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease), transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}
+.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+
+/* ============================================================
+   RESPONSIVE  (mobile-first → escalado)
+   ============================================================ */
+@media(min-width:600px){
+  .wrap{padding:0 32px}
+  .benefits{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .pays{grid-template-columns:repeat(4,1fr)}
+  .reviews{grid-template-columns:1fr 1fr}
+  .hero-actions{flex-direction:row;justify-content:center}
+}
+@media(min-width:900px){
+  .wrap{padding:0 40px}
+  .benefits{grid-template-columns:repeat(4,1fr)}
+  .bono-grid{grid-template-columns:1.05fr .95fr;gap:64px}
+  .band{padding:120px 0}
+  .reviews{grid-template-columns:repeat(3,1fr)}
+  .wa-float{width:66px;height:66px;right:26px;bottom:26px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important}
+  .reveal{opacity:1;transform:none}
+  .chip,.spark,.roulette,.beam,.grid-fx,.orb{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ NAV -->
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand" aria-label="RED ZEUS inicio">
+      <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M13 2 4 13.5h6L9 22l11-13h-7l2-7Z"/></svg>
+      <span class="name"><b>RED</b> <span class="z">ZEUS</span></span>
+    </a>
+    <a class="btn btn-wa nav-cta wa-link" target="_blank" rel="noopener" style="font-size:15px;padding:17px 32px;min-height:56px">
+      <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.519 5.26l-.999 3.648 3.97-1.207zm5.475-7.726c-.183-.314-.66-.66-1.32-.66-.66 0-1.32.66-1.32 1.32 0 .66.66 1.32 1.32 1.98z" opacity="0"/><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+      Quiero mi bono
+    </a>
+  </div>
+</nav>
+
+<!-- ============================================================ HERO -->
+<section class="hero" id="top">
+  <div class="fx" id="heroFx">
+    <div class="grid-fx"></div>
+    <div class="orb red" style="top:-12%;left:50%;margin-left:-300px"></div>
+    <div class="orb gold" style="bottom:-18%;right:-6%"></div>
+    <div class="orb em" style="bottom:-10%;left:-12%"></div>
+    <div class="beam"></div>
+    <div class="roulette" style="width:520px;height:520px;right:-160px;top:8%"></div>
+    <div class="roulette" style="width:300px;height:300px;left:-110px;bottom:6%;animation-direction:reverse"></div>
+  </div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <span class="badge"><span class="dot"></span> Oferta por tiempo limitado</span>
+      <h1>Ganá más<br><span class="em">desde hoy.</span></h1>
+      <span class="bonus-flash shimmer" id="bonusFlash">+100%</span>
+      <div class="hero-actions">
+        <a class="btn btn-wa lg wa-link" target="_blank" rel="noopener">
+          <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.86 9.86 0 0 1-5.031-1.378l-.361-.214-3.741 .982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.511-5.26c.002-5.45 4.437-9.884 9.889-9.884a9.825 9.825 0 0 1 6.993 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.884-9.889 9.884z"/></svg>
+          Quiero mi bono de 100%
+        </a>
+      </div>
+      <p class="lead">Duplicá tu primera carga con el <b>bono de bienvenida del 100%</b>.</p>
+      <p class="sub">Cargá, jugá y retirá. Reclamás tu bono en menos de un minuto, directo por WhatsApp. Sin vueltas.</p>
+      <div class="trust">
+        <span class="star">★★★★★</span>
+        <span>4.9 / 5 según jugadores</span>
+        <span class="sep"></span>
+        <span>Retiros en menos de 10 min</span>
+        <span class="sep"></span>
+        <span>Soporte 24/7</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ BENEFICIOS -->
+<section class="band paper" id="beneficios">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow-row"><span class="rule"></span><span class="overline">Por qué elegirnos</span></div>
+      <h2>Una mesa hecha para <em>jugadores reales.</em></h2>
+      <p>Pagos veloces, atención de verdad y métodos de carga que ya usás todos los días.</p>
+    </div>
+    <div class="benefits">
+      <div class="benefit reveal">
+        <span class="num">01</span>
+        <i data-lucide="zap" class="ico"></i>
+        <h3>Retiros en minutos</h3>
+        <p>Solicitá y cobrás en menos de 10 minutos. Sin demoras ni excusas.</p>
+      </div>
+      <div class="benefit reveal d1">
+        <span class="num">02</span>
+        <i data-lucide="headset" class="ico"></i>
+        <h3>Soporte 24/7</h3>
+        <p>Personas reales por WhatsApp, a cualquier hora, todos los días del año.</p>
+      </div>
+      <div class="benefit reveal d2">
+        <span class="num">03</span>
+        <i data-lucide="wallet" class="ico"></i>
+        <h3>Métodos locales</h3>
+        <p>Mercado Pago, transferencia y cripto. Cargás en segundos desde tu celular.</p>
+      </div>
+      <div class="benefit reveal d3">
+        <span class="num">04</span>
+        <i data-lucide="shield-check" class="ico"></i>
+        <h3>Juego seguro</h3>
+        <p>Plataforma protegida y datos cifrados. Tu información siempre resguardada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ BONO DESTACADO -->
+<section class="band ink" id="bono">
+  <div class="fx"><div class="orb red" style="top:-20%;left:-10%"></div><div class="orb gold" style="bottom:-25%;right:-8%"></div></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="sec-head center reveal">
+      <div class="eyebrow-row" style="justify-content:center"><span class="rule"></span><span class="overline">El bono</span><span class="rule"></span></div>
+      <h2>Tu primera carga vale <em>el doble.</em></h2>
+    </div>
+    <div class="bono-grid">
+      <div class="ticket reveal">
+        <span class="perf top"></span>
+        <span class="tk-label">Bono de bienvenida</span>
+        <div class="tk-big shimmer">+100%</div>
+        <div class="tk-sub">extra en tu primera carga</div>
+        <p class="tk-fine">Cargás $10.000 → jugás con $20.000. Válido para nuevos jugadores.</p>
+        <span class="perf bot"></span>
+      </div>
+      <div class="steps reveal d1">
+        <div class="step">
+          <span class="sn">1</span>
+          <div><h4>Escribinos por WhatsApp</h4><p>Tocá el botón y mandá el mensaje. Te respondemos al instante.</p></div>
+        </div>
+        <div class="step">
+          <span class="sn">2</span>
+          <div><h4>Hacé tu primera carga</h4><p>Elegí tu método favorito: Mercado Pago, transferencia o cripto.</p></div>
+        </div>
+        <div class="step">
+          <span class="sn">3</span>
+          <div><h4>Recibí tu 100% extra</h4><p>Acreditamos el bono al toque y arrancás a jugar con el doble.</p></div>
+        </div>
+        <a class="btn btn-wa wa-link" target="_blank" rel="noopener" style="margin-top:10px;align-self:flex-start">
+          <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.86 9.86 0 0 1-5.031-1.378l-.361-.214-3.741 .982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.511-5.26c.002-5.45 4.437-9.884 9.889-9.884a9.825 9.825 0 0 1 6.993 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.884-9.889 9.884z"/></svg>
+          Reclamar mi 100%
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PRUEBA SOCIAL -->
+<section class="band" id="jugadores" style="background:linear-gradient(180deg,#0b0a0a,#0e0c0b)">
+  <div class="fx"><div class="orb gold" style="top:-18%;right:-12%"></div><div class="orb em" style="bottom:-22%;left:-10%"></div></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="sec-head center reveal">
+      <div class="eyebrow-row" style="justify-content:center"><span class="rule"></span><span class="overline">Comunidad</span><span class="rule"></span></div>
+      <h2>Miles ya están <em>cobrando.</em></h2>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><span class="n shimmer count" data-to="5200" data-suffix="+">0</span><span class="l">Jugadores activos</span></div>
+      <div class="stat"><span class="n shimmer count" data-to="10" data-prefix="&lt;" data-suffix=" min">0</span><span class="l">Retiro promedio</span></div>
+      <div class="stat"><span class="n shimmer count" data-to="98" data-suffix="%">0</span><span class="l">Pagos sin demora</span></div>
+      <div class="stat"><span class="n shimmer count" data-to="24" data-suffix="/7">0</span><span class="l">Soporte real</span></div>
+    </div>
+    <div class="reviews">
+      <div class="review reveal">
+        <div class="rs">★★★★★</div>
+        <p>"Cargué a la noche y en 7 minutos ya tenía la plata en Mercado Pago. No lo podía creer."</p>
+        <div class="who"><span class="av">M</span><div><b>Martín R.</b><span>Córdoba</span></div></div>
+      </div>
+      <div class="review reveal d1">
+        <div class="rs">★★★★★</div>
+        <p>"El bono del 100% me re sirvió para arrancar. Atención por WhatsApp impecable, te responden al toque."</p>
+        <div class="who"><span class="av">V</span><div><b>Valentina S.</b><span>Rosario</span></div></div>
+      </div>
+      <div class="review reveal d2">
+        <div class="rs">★★★★★</div>
+        <p>"Probé otros y este es el único que paga rápido de verdad. Ya soy cliente fijo."</p>
+        <div class="who"><span class="av">D</span><div><b>Diego L.</b><span>Buenos Aires</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ MÉTODOS DE PAGO -->
+<section class="band paper" id="pagos">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="eyebrow-row" style="justify-content:center"><span class="rule"></span><span class="overline">Cargá y cobrá fácil</span><span class="rule"></span></div>
+      <h2>Tus métodos de <em>siempre.</em></h2>
+      <p>Sin tarjetas raras ni pasos de más. Usás lo que ya tenés en el celular.</p>
+    </div>
+    <div class="pays reveal">
+      <div class="pay"><i data-lucide="smartphone" class="pico"></i><b>Mercado Pago</b><span>Acreditación al instante</span></div>
+      <div class="pay"><i data-lucide="building-2" class="pico"></i><b>Transferencia</b><span>CBU / CVU bancario</span></div>
+      <div class="pay"><i data-lucide="bitcoin" class="pico"></i><b>Cripto</b><span>USDT y otras</span></div>
+      <div class="pay"><i data-lucide="banknote" class="pico"></i><b>Efectivo</b><span>Puntos de carga</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CTA FINAL -->
+<section class="final" id="cta">
+  <div class="fx" id="ctaFx"><div class="grid-fx"></div><div class="orb red" style="top:-30%;left:50%;margin-left:-300px"></div><div class="beam"></div></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="reveal">
+      <span class="overline" style="color:var(--gold)">Cupos limitados</span>
+      <h2 style="margin-top:18px">Duplicá tu primera carga</h2>
+      <div class="fb shimmer">+100%</div>
+      <div class="urg"><i data-lucide="clock" class="ic"></i> Oferta válida solo por hoy</div>
+      <div class="hero-actions" style="flex-direction:row;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-wa lg wa-link" target="_blank" rel="noopener">
+          <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.86 9.86 0 0 1-5.031-1.378l-.361-.214-3.741 .982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.511-5.26c.002-5.45 4.437-9.884 9.889-9.884a9.825 9.825 0 0 1 6.993 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.884-9.889 9.884z"/></svg>
+          Jugar ya con mi bono
+        </a>
+      </div>
+      <p class="sub" style="margin:26px auto 0;color:var(--stone)">+18 · Jugá con responsabilidad. El juego puede generar adicción.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FOOTER -->
+<footer>
+  <div class="wrap foot-top">
+    <div class="foot-brand">
+      <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M13 2 4 13.5h6L9 22l11-13h-7l2-7Z"/></svg>
+      <span class="name"><b>RED</b> <span class="z">ZEUS</span></span>
+    </div>
+    <div class="responsible">
+      <span class="plus">+18</span>
+      <p><b style="color:var(--gold-light)">Jugá con responsabilidad.</b> El juego de azar puede generar adicción y debe practicarse con moderación. Prohibida la participación de menores de 18 años. Si el juego deja de ser un entretenimiento, buscá ayuda. Línea de juego responsable disponible.</p>
+    </div>
+    <div class="foot-links">
+      <a href="#beneficios">Beneficios</a>
+      <a href="#bono">Bono 100%</a>
+      <a href="#pagos">Métodos de pago</a>
+      <a href="#">Términos y condiciones</a>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Juego responsable</a>
+    </div>
+    <p class="foot-copy">© <span id="year"></span> RED ZEUS. Todos los derechos reservados. Este sitio es solo para mayores de 18 años.</p>
+  </div>
+</footer>
+
+<!-- ============================================================ WHATSAPP FLOTANTE -->
+<a class="wa-float wa-link" target="_blank" rel="noopener" aria-label="Reclamar bono por WhatsApp">
+  <span class="tip">Reclamá tu 100% 🎰</span>
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.86 9.86 0 0 1-5.031-1.378l-.361-.214-3.741 .982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.511-5.26c.002-5.45 4.437-9.884 9.889-9.884a9.825 9.825 0 0 1 6.993 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.884-9.889 9.884z"/></svg>
+</a>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN — editá estas variables fácilmente
+   ============================================================ */
+const CONFIG = {
+  numero:  "5491125506025",                                  // ← tu número con código de país
+  mensaje: "Hola! Quiero reclamar mi bono del 100% 🎰🔥",      // ← mensaje predefinido
+  bono:    "100%",                                           // ← porcentaje del bono
+  marca:   "RED ZEUS"                                        // ← nombre de la marca
+};
+
+/* Armado del link de WhatsApp + inyección en todos los CTAs */
+(function(){
+  const href = "https://wa.me/" + CONFIG.numero + "?text=" + encodeURIComponent(CONFIG.mensaje);
+  document.querySelectorAll(".wa-link").forEach(a => {
+    a.setAttribute("href", href);
+    a.addEventListener("click", () => {
+      if (typeof fbq === "function") fbq("track", "Lead");
+    });
+  });
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+
+/* Iconos Lucide */
+lucide.createIcons();
+
+/* Nav con borde al hacer scroll */
+const nav = document.getElementById("nav");
+addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 30), {passive:true});
+
+/* ============================================================
+   FONDO — fichas flotantes + brillos (se reduce en mobile)
+   ============================================================ */
+(function(){
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;
+  const mobile = innerWidth < 720;
+  const suits = ["♠","♥","♦","♣"];
+  const hero = document.getElementById("heroFx");
+  const cta  = document.getElementById("ctaFx");
+
+  function chip(host, i){
+    const c = document.createElement("div");
+    c.className = "chip";
+    const size = 44 + Math.random()*70;
+    c.style.width = c.style.height = size + "px";
+    c.style.left = Math.random()*100 + "%";
+    c.style.bottom = (-20 - Math.random()*40) + "%";
+    c.style.setProperty("--op", (0.18 + Math.random()*0.3).toFixed(2));
+    c.style.animationDuration = (14 + Math.random()*16) + "s";
+    c.style.animationDelay = (-Math.random()*18) + "s";
+    const s = document.createElement("span");
+    s.textContent = suits[i % suits.length];
+    s.style.fontSize = (size*0.4) + "px";
+    if (suits[i%4]==="♥"||suits[i%4]==="♦") s.style.color = "color-mix(in srgb,var(--borgona) 65%,transparent)";
+    c.appendChild(s);
+    host.appendChild(c);
+  }
+  function spark(host){
+    const s = document.createElement("div");
+    s.className = "spark";
+    s.style.left = Math.random()*100 + "%";
+    s.style.top = (40 + Math.random()*60) + "%";
+    s.style.animationDuration = (5 + Math.random()*6) + "s";
+    s.style.animationDelay = (-Math.random()*8) + "s";
+    host.appendChild(s);
+  }
+  const nChips = mobile ? 5 : 11;
+  const nSparks = mobile ? 8 : 22;
+  for (let i=0;i<nChips;i++) chip(hero, i);
+  for (let i=0;i<nSparks;i++) spark(hero);
+  if (cta){ for (let i=0;i<(mobile?6:14);i++) spark(cta); }
+})();
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
+}, {threshold:0.15, rootMargin:"0px 0px -8% 0px"});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+/* ============================================================
+   CONTADORES ANIMADOS (count-up)
+   ============================================================ */
+function animateCount(el){
+  const to = parseFloat(el.dataset.to);
+  const pre = (el.dataset.prefix || "").replace("&lt;","<");
+  const suf = el.dataset.suffix || "";
+  const dur = 1600, start = performance.now();
+  function frame(now){
+    const p = Math.min((now-start)/dur, 1);
+    const eased = 1 - Math.pow(1-p, 3);
+    const val = Math.round(to*eased);
+    el.textContent = pre + val.toLocaleString("es-AR") + suf;
+    if (p<1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+const cio = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ animateCount(e.target); cio.unobserve(e.target);} });
+}, {threshold:0.5});
+document.querySelectorAll(".count").forEach(el=>cio.observe(el));
+</script>
+</body>
+</html>
