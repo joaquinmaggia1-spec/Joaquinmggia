@@ -1,4 +1,6 @@
 {
-  "buildCommand": null,
-  "outputDirectory": "."
+  "framework": null,
+  "installCommand": "echo skip",
+  "buildCommand": "mkdir -p dist && cp index.html styles.css script.js dist/",
+  "outputDirectory": "dist"
 }
