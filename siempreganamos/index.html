@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SIEMPREGANAMOS — Bono de bienvenida 100% por WhatsApp</title>
+  <meta name="description" content="SIEMPREGANAMOS: duplicá tu primera carga con el bono de bienvenida del 100%. Cargas y retiros rápidos, atención 24/7 por WhatsApp.">
+  <meta name="theme-color" content="#0b0a0a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SIEMPREGANAMOS">
+  <meta property="og:title" content="SIEMPREGANAMOS — Bono de bienvenida 100% por WhatsApp">
+  <meta property="og:description" content="Duplicá tu primera carga. Atención 24/7 por WhatsApp.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%B0%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://connect.facebook.net">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- ============================================================
+       CONFIGURACIÓN — editá solo estas variables
+       ============================================================ -->
+  <script>
+    window.CONFIG = {
+      numero:        "5493416770182",                          // WhatsApp Business (código país, sin + ni espacios)
+      mensaje:       "Hola SIEMPREGANAMOS! Quiero reclamar mi bono del 100% 🎰🔥", // mensaje precargado
+      marca:         "SIEMPREGANAMOS",                             // nombre que se muestra en la landing
+      bono:          "100%",
+      META_PIXEL_ID: "1614968140405018"                         // Pixel ID de Meta
+    };
+  </script>
+
+  <!-- Meta Pixel: se carga solo si hay un Pixel ID configurado -->
+  <script>
+    (function () {
+      var id = window.CONFIG.META_PIXEL_ID;
+      if (!id) return;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', id);
+      fbq('track', 'PageView');
+    })();
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=1614968140405018&ev=PageView&noscript=1"></noscript>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a href="#" class="brand" aria-label="SIEMPREGANAMOS">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M13 2 4 13.5h6L9 22l11-13h-7l2-7Z"/></svg>
+        <span class="name"><b>SIEMPRE</b><span class="z">GANAMOS</span></span>
+      </a>
+      <a href="#" class="btn btn-wa nav-cta" data-wa data-cta="nav">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa"/></svg>
+        <span>Quiero mi bono</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- BONO (única sección) -->
+  <main class="bono">
+    <div class="glow g1" aria-hidden="true"></div>
+    <div class="glow g2" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="rule"></span><span>El bono</span><span class="rule"></span></div>
+        <h1>Tu primera carga vale <em>el doble.</em></h1>
+      </div>
+
+      <div class="grid">
+        <div class="ticket">
+          <span class="tk-label">Bono de bienvenida</span>
+          <span class="perf"></span>
+          <div class="tk-big shimmer">+<span data-bono>100%</span></div>
+          <div class="tk-sub">extra en tu primera carga</div>
+          <span class="perf"></span>
+          <p class="tk-fine">Cargás $10.000 → jugás con $20.000. Válido para nuevos jugadores.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step"><span class="sn">1</span><div><h4>Escribinos por WhatsApp</h4><p>Tocá el botón y mandá el mensaje. Te respondemos al instante.</p></div></li>
+          <li class="step"><span class="sn">2</span><div><h4>Hacé tu primera carga</h4><p>Elegí tu método favorito: Mercado Pago, transferencia o cripto.</p></div></li>
+          <li class="step"><span class="sn">3</span><div><h4>Recibí tu 100% extra</h4><p>Acreditamos el bono al toque y arrancás a jugar con el doble.</p></div></li>
+        </ol>
+
+        <a href="#" class="btn btn-wa lg main-cta" data-wa data-cta="principal">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#wa"/></svg>
+          <span>Reclamar mi 100%</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <span class="age">+18</span> Juego responsable. Prohibida la participación de menores de 18 años.
+  </footer>
+
+  <!-- Ícono WhatsApp reutilizable -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="wa" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.86 9.86 0 0 1-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.511-5.26c.002-5.45 4.437-9.884 9.889-9.884a9.825 9.825 0 0 1 6.993 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.884-9.889 9.884zM20.463 3.488A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    </symbol>
+  </svg>
+
+  <script src="script.js"></script>
+</body>
+</html>
