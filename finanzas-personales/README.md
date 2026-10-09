@@ -18,14 +18,17 @@ Atajo: tecla **N** para cargar un movimiento nuevo.
 
 Cuando usás la app desde tu link de Vercel, podés conectar todos tus dispositivos a una base de datos en la nube. Lo que cargás en uno aparece en los demás.
 
-### Configuración (una sola vez, en vercel.com)
-1. Abrí tu proyecto en Vercel y andá a la pestaña **Storage**.
-2. Tocá **Create Database**, elegí **Upstash → Redis** (el plan gratis alcanza) y conectala a tu proyecto. Vercel agrega sola las variables `KV_REST_API_URL` y `KV_REST_API_TOKEN`.
-3. Andá a **Settings → Environment Variables** y creá **`SYNC_PASSWORD`** con una clave larga que solo vos sepas (por ejemplo, 4 o 5 palabras). Esa clave protege tus datos.
-4. Andá a **Deployments**, abrí el menú **⋯** del último deploy y tocá **Redeploy** para que tome los cambios.
+### Configuración (una sola vez, 2 minutos)
+La app te guía: en **⚙️ Ajustes → Sincronizar compu y celular** aparecen estos mismos pasos.
+1. Abrí [Upstash en el Marketplace de Vercel](https://vercel.com/marketplace/upstash) y tocá **Install** (o **Add Database**).
+2. Elegí el plan **Free**, cualquier región, y tocá **Create**.
+3. Cuando te pregunte el proyecto, elegí el de Mis Finanzas y tocá **Connect**. Vercel agrega solas las variables `KV_REST_API_URL` y `KV_REST_API_TOKEN`.
+4. En tu proyecto de Vercel, andá a **Deployments**, abrí el menú **⋯** del primer deploy y tocá **Redeploy**.
+
+No hace falta crear ninguna clave en Vercel: **la primera clave que escribas en la app queda como tu clave** (se guarda cifrada). Si preferís fijarla vos, podés crear la variable `SYNC_PASSWORD`.
 
 ### En cada dispositivo
-Abrí tu link, andá a **⚙️ Ajustes → Sincronizar compu y celular**, escribí la clave y tocá **Conectar**.
+Abrí tu link, andá a **⚙️ Ajustes → Sincronizar compu y celular** (o tocá **☁️ Activar sincronización**, arriba a la derecha), escribí la clave y tocá **Conectar**. La primera vez, la clave que inventes queda como tu clave: anotala.
 - El primer dispositivo sube sus datos a la nube. Los siguientes los descargan.
 - Si un dispositivo ya tenía datos propios, la app pregunta si querés combinarlos.
 - Arriba a la derecha vas a ver **☁️ Sincronizado**. Los cambios se suben solos al guardar y se bajan al abrir la app o volver a ella.

@@ -24,6 +24,7 @@
   --bad:#f87171; --bad-soft:#3a1c1c; --warn:#fbbf24; --warn-soft:#3a2e12; --shadow:none;
 }
 *{box-sizing:border-box}
+a{color:var(--primary)}
 body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
 .top{display:flex;align-items:center;gap:12px;padding:10px 16px;max-width:1200px;margin:0 auto;flex-wrap:wrap}
@@ -195,7 +196,15 @@ const canSync = location.protocol.startsWith('http');
 const lsGet = k => { try { return localStorage.getItem(k); } catch(e){ return null; } };
 const lsSet = (k,v) => { try { v==null ? localStorage.removeItem(k) : localStorage.setItem(k,v); } catch(e){} };
 let syncStatus = 'off', syncing = false, syncAgain = false, syncTimer;
-const SYNC_LABEL = {off:'', busy:'🔄 Sincronizando…', ok:'☁️ Sincronizado', error:'⚠️ Sin conexión', auth:'🔒 Clave incorrecta', locked:'🔒 Bloqueado 15 min', setup:'⚙️ Falta configurar la nube'};
+let cloud = null; // null = sin comprobar, {configured, hasPassword} o {configured:false}
+async function checkCloud(){
+  if (!canSync) return;
+  try { const r = await fetch('api/sync?check', {cache:'no-store'}); cloud = r.ok ? await r.json() : {configured:false}; }
+  catch(e){ cloud = {configured:false, offline:true}; }
+  if (curView==='ajustes' && !$('#dlg').open && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName||'')) render();
+  if (!lsGet(SYNC_KEY)) setSync('off');
+}
+const SYNC_LABEL = {off: canSync ? '☁️ Activar sincronización' : '', busy:'🔄 Sincronizando…', ok:'☁️ Sincronizado', error:'⚠️ Sin conexión', auth:'🔒 Clave incorrecta', locked:'🔒 Bloqueado 15 min', setup:'⚙️ Falta configurar la nube'};
 function setSync(st){ syncStatus=st; const b=$('#syncBadge'); if (b){ b.textContent=SYNC_LABEL[st]; b.hidden=!SYNC_LABEL[st]; } const s=$('#syncStatusTxt'); if (s) s.textContent=SYNC_LABEL[st]||'Desconectado'; }
 function scheduleSync(){ if (!canSync || !lsGet(SYNC_KEY)) return; clearTimeout(syncTimer); syncTimer=setTimeout(sync, 1200); }
 async function syncApi(method, body){
@@ -548,10 +557,14 @@ function viewSettings(){
   </div></div>
   <div class="card"><h3>☁️ Sincronizar compu y celular</h3>
   ${!canSync ? '<div class="muted">Disponible cuando usás la app desde tu link de Vercel (no desde el archivo descargado).</div>'
+  : (cloud && !cloud.configured && !lsGet(SYNC_KEY)) ? cloudSetupHtml()
   : lsGet(SYNC_KEY) ? `<div class="row" style="margin-bottom:10px">Estado: <b id="syncStatusTxt">${SYNC_LABEL[syncStatus]||'Desconectado'}</b></div>
      <div class="row"><button class="btn" id="syncNow">🔄 Sincronizar ahora</button><button class="btn danger" id="syncOff">Desconectar este dispositivo</button></div>
      <div class="muted" style="font-size:12px;margin-top:10px">Los cambios se suben solos al guardar y se bajan al abrir la app o volver a ella.</div>`
-  : `<div class="muted" style="font-size:12px;margin-bottom:10px">Escribí la clave de sincronización (la que configuraste en Vercel como <code>SYNC_PASSWORD</code>). Hacelo en la compu y en el celular: los dos van a ver y cargar los mismos datos.</div>
+  : `<div class="insight good" style="font-size:13px"><span>✅</span><div>La nube está lista.</div></div>
+     <div class="muted" style="font-size:12px;margin-bottom:10px">${cloud && cloud.hasPassword===false
+        ? '<b>Primera vez:</b> inventá una clave (mínimo 6 caracteres, mejor varias palabras). La que escribas ahora queda como tu clave: anotala y usá la misma en el celular.'
+        : 'Escribí tu clave de sincronización. Usá la misma en la compu y en el celular: los dos van a ver y cargar los mismos datos.'}</div>
      <div class="row"><input id="syncPass" type="password" placeholder="Clave de sincronización" autocomplete="current-password" style="flex:1;min-width:160px"><button class="btn primary" id="syncOn">Conectar</button></div>`}
   </div>
   <div class="card"><h3>Copias de seguridad e importación</h3>
@@ -573,6 +586,18 @@ function viewSettings(){
   <div class="muted" style="font-size:12px;margin-bottom:8px">Si la descripción contiene la palabra clave, se asigna la categoría (al cargar o importar).</div>
   ${S.rules.length?`<table><tbody>${S.rules.map(r=>`<tr><td>"${esc(r.keyword)}"</td><td>→ ${esc(catById(r.categoryId)?.name||'—')}</td><td class="num"><button class="btn sm danger" data-del-rule="${r.id}">✕</button></td></tr>`).join('')}</tbody></table>`:'<div class="empty">Ej: "netflix" → Suscripciones, "uber" → Transporte</div>'}
   </div></div>`;
+}
+
+function cloudSetupHtml(){
+  return `<div class="insight warn" style="font-size:13px"><span>⚙️</span><div>Falta conectar la base de datos gratis. Es una sola vez y tarda 2 minutos.</div></div>
+  <ol style="padding-left:18px;margin:8px 0;line-height:1.6;font-size:13px">
+    <li>Abrí <a href="https://vercel.com/marketplace/upstash" target="_blank" rel="noopener"><b>Upstash en Vercel</b></a> y tocá <b>Install</b> (o <b>Add Database</b>).</li>
+    <li>Elegí el plan <b>Free</b>, cualquier región, y tocá <b>Create</b>.</li>
+    <li>Cuando pregunte el proyecto, elegí el de <b>esta app</b> y tocá <b>Connect</b>.</li>
+    <li>En tu proyecto de Vercel: <b>Deployments</b> → <b>⋯</b> en el primero → <b>Redeploy</b>.</li>
+    <li>Volvé acá y tocá <b>Comprobar de nuevo</b>.</li>
+  </ol>
+  <button class="btn primary" id="cloudCheck">🔄 Comprobar de nuevo</button>`;
 }
 
 /* ---------- Diálogos ---------- */
@@ -741,9 +766,10 @@ document.addEventListener('click', e=>{
     case 'expJson': download(`mis-finanzas-backup-${todayISO()}.json`, JSON.stringify(S,null,2), 'application/json'); break;
     case 'expCsv': exportCSV(); break;
     case 'demo': if (confirm('Se agregarán 6 meses de movimientos de ejemplo. ¿Continuar?')) loadDemo(); break;
-    case 'syncOn': { const v=$('#syncPass').value.trim(); if (!v) return toast('Escribí la clave'); lsSet(SYNC_KEY,v); lsSet(SYNC_INIT,null);
+    case 'syncOn': { const v=$('#syncPass').value.trim(); if (v.length<6) return toast('La clave debe tener al menos 6 caracteres'); lsSet(SYNC_KEY,v); lsSet(SYNC_INIT,null);
       sync().then(()=>{ if (syncStatus==='auth'){ lsSet(SYNC_KEY,null); toast('Clave incorrecta'); } else if (syncStatus==='ok') toast('¡Dispositivo conectado!'); else if (syncStatus==='setup') toast('Falta configurar la base de datos o la clave en Vercel'); else if (syncStatus==='locked'){ lsSet(SYNC_KEY,null); toast('Demasiados intentos: esperá 15 minutos'); } render(); }); break; }
     case 'syncNow': sync(); break;
+    case 'cloudCheck': cloud=null; checkCloud().then(()=>toast(cloud?.configured?'¡La nube está conectada!':'Todavía no está conectada')); break;
     case 'syncOff': if (confirm('Este dispositivo deja de sincronizar (tus datos quedan guardados acá y en la nube).')){ lsSet(SYNC_KEY,null); lsSet(SYNC_INIT,null); setSync('off'); render(); } break;
     case 'wipe': if (confirm('Esto borra TODOS tus datos. ¿Seguro? (Hacé un backup antes)')){ S=defaultState(); save(); render(); } break;
     case 'copyAvg': S.categories.filter(c=>c.kind==='gasto').forEach(c=>{ let s=0; for(let i=1;i<=3;i++) s+=totals(shiftMonth(curMonth,-i)).byCat[c.id]||0; if (s) c.budget=Math.round(s/3); }); save(); render(); toast('Presupuesto sugerido según tus últimos 3 meses'); break;
@@ -767,6 +793,7 @@ rebuildSnap();
 applyRecurring();
 render();
 if (canSync){
+  checkCloud();
   sync();
   document.addEventListener('visibilitychange', ()=>{ if (document.visibilityState==='visible') sync(); });
   window.addEventListener('online', sync);

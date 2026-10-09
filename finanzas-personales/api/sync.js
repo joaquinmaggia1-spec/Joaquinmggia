@@ -1,12 +1,14 @@
 // Sincronización en la nube para Mis Finanzas (función serverless de Vercel).
-// Guarda todos los datos en Upstash Redis. Variables de entorno necesarias:
-//   SYNC_PASSWORD                         → la clave que vas a escribir en cada dispositivo
-//   KV_REST_API_URL / KV_REST_API_TOKEN   → las agrega solas la integración de Upstash en Vercel
+// Guarda todos los datos en Upstash Redis. Variables de entorno:
+//   KV_REST_API_URL / KV_REST_API_TOKEN   → las agrega sola la integración de Upstash en Vercel
 //   (también acepta UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN)
+//   SYNC_PASSWORD (opcional)              → si no existe, la primera clave que se use desde la app
+//                                           queda guardada (cifrada con scrypt) como la clave.
 const crypto = require('crypto');
 
 const KEY = 'misfinanzas:state';
 const VER = 'misfinanzas:version';
+const PASS = 'misfinanzas:password';
 const MAX_FAILS = 10;          // intentos con clave incorrecta antes de bloquear
 const LOCK_SECONDS = 15 * 60;  // por 15 minutos
 
@@ -50,13 +52,28 @@ function sameSecret(a, b) {
   return crypto.timingSafeEqual(h(a), h(b));
 }
 
+const hashPassword = (pass, salt) => crypto.scryptSync(String(pass), salt, 32).toString('hex');
+
+// Devuelve true si la clave es correcta. Sin SYNC_PASSWORD, la primera clave recibida se guarda como la clave.
+async function checkPassword(given) {
+  if (process.env.SYNC_PASSWORD) return sameSecret(given, process.env.SYNC_PASSWORD);
+  if (String(given).length < 6) return false;
+  let stored = await redis('GET', PASS);
+  if (!stored) {
+    const salt = crypto.randomBytes(16).toString('hex');
+    await redis('SET', PASS, `${salt}:${hashPassword(given, salt)}`, 'NX'); // NX: si dos llegan juntos, gana uno solo
+    stored = await redis('GET', PASS);
+  }
+  const [salt, hash] = String(stored).split(':');
+  return sameSecret(hashPassword(given, salt), hash);
+}
+
 module.exports = async function handler(req, res) {
-  const password = process.env.SYNC_PASSWORD;
-  if (!REDIS_URL || !REDIS_TOKEN || !password) {
-    return send(res, 503, {
-      error: 'not_configured',
-      missing: [!password && 'SYNC_PASSWORD', !REDIS_URL && 'KV_REST_API_URL', !REDIS_TOKEN && 'KV_REST_API_TOKEN'].filter(Boolean),
-    });
+  if (!REDIS_URL || !REDIS_TOKEN) return send(res, 503, { error: 'not_configured', missing: ['KV_REST_API_URL', 'KV_REST_API_TOKEN'] });
+  // Chequeo sin clave para que la app sepa si la nube ya está conectada (no expone datos).
+  if (new URL(req.url, 'http://x').searchParams.has('check')) {
+    try { return send(res, 200, { configured: true, hasPassword: !!process.env.SYNC_PASSWORD || !!(await redis('GET', PASS)) }); }
+    catch (e) { return send(res, 503, { error: 'redis_unreachable' }); }
   }
 
   const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
@@ -65,7 +82,7 @@ module.exports = async function handler(req, res) {
   try {
     if ((Number(await redis('GET', failKey)) || 0) >= MAX_FAILS) return send(res, 429, { error: 'too_many_attempts' });
 
-    if (!sameSecret(req.headers['x-sync-key'] || '', password)) {
+    if (!(await checkPassword(req.headers['x-sync-key'] || ''))) {
       await redis('INCR', failKey);
       await redis('EXPIRE', failKey, LOCK_SECONDS);
       return send(res, 401, { error: 'unauthorized' });
