@@ -26,7 +26,7 @@
 *{box-sizing:border-box}
 a{color:var(--primary)}
 body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
 .top{display:flex;align-items:center;gap:12px;padding:10px 16px;max-width:1200px;margin:0 auto;flex-wrap:wrap}
 .brand{font-weight:700;font-size:16px;margin-right:auto}
 nav{display:flex;gap:4px;overflow-x:auto;padding:0 16px 8px;max-width:1200px;margin:0 auto}
@@ -44,6 +44,7 @@ main{max-width:1200px;margin:0 auto;padding:16px}
 button.btn,.btn{border:1px solid var(--line);background:var(--card);color:var(--text);padding:7px 12px;border-radius:8px;cursor:pointer;font:inherit;display:inline-flex;align-items:center;gap:6px}
 .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
 .btn.danger{color:var(--bad)}
+.btn.primary.danger-bg{background:var(--bad);border-color:var(--bad)}
 .btn.sm{padding:3px 8px;font-size:12px}
 input,select,textarea{font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px;width:100%}
 label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
@@ -92,6 +93,11 @@ dialog::backdrop{background:rgba(0,0,0,.4)}
 <main id="view"></main>
 
 <dialog id="dlg"><form method="dialog" id="dlgForm"></form></dialog>
+<dialog id="ask"><form method="dialog" id="askForm">
+  <p id="askMsg" style="margin:0 0 14px;white-space:pre-line"></p>
+  <input id="askInput" inputmode="decimal" hidden style="margin-bottom:14px">
+  <div class="row" style="justify-content:flex-end"><button class="btn" value="no" formnovalidate>Cancelar</button><button class="btn primary" id="askOk" value="ok">Aceptar</button></div>
+</form></dialog>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -162,15 +168,88 @@ function stamp(){
   for (const k in snap) if (k!=='settings' && !seen[k]){ S.deleted[k.slice(k.indexOf(':')+1)] = now; delete snap[k]; }
 }
 // Une dos estados: por cada registro gana la versión modificada más recientemente; lo borrado no vuelve.
+// Determinista: a igual fecha de cambio decide el contenido, y el orden sigue al de "b" (la nube),
+// así dos dispositivos llegan al mismo resultado y no se reescriben mutuamente.
+const canon = v => v===null || typeof v!=='object' ? JSON.stringify(v) : Array.isArray(v) ? '['+v.map(canon).join(',')+']' : '{'+Object.keys(v).sort().filter(k=>v[k]!==undefined).map(k=>JSON.stringify(k)+':'+canon(v[k])).join(',')+'}';
+const newer = (x, y) => (x.u||0) !== (y.u||0) ? (x.u||0) > (y.u||0) : canon(x) > canon(y);
 function mergeStates(a, b){
-  const out = { settings: (b.settings?.u||0) > (a.settings?.u||0) ? b.settings : a.settings, deleted: {...(a.deleted||{})} };
+  const as = a.settings || {}, bs = b.settings || {};
+  const out = { settings: newer(bs, as) ? bs : as, deleted: {...(a.deleted||{})} };
   for (const [id,t] of Object.entries(b.deleted||{})) out.deleted[id] = Math.max(out.deleted[id]||0, t);
   for (const c of COLLS){
     const m = new Map();
-    for (const it of [...(a[c]||[]), ...(b[c]||[])]){ if (out.deleted[it.id]) continue; const cur=m.get(it.id); if (!cur || (it.u||0) > (cur.u||0)) m.set(it.id, it); }
+    for (const it of [...(b[c]||[]), ...(a[c]||[])]){ if (out.deleted[it.id]) continue; const cur=m.get(it.id); if (!cur || newer(it, cur)) m.set(it.id, it); }
     out[c] = [...m.values()];
   }
   return out;
+}
+
+/* ---------- Sincronización con tu cuenta de Claude (cuando la app se abre en claude.ai) ----------
+   Los datos viven en tu espacio privado de la base del Artifact (data/users/<tu id>): solo vos los ves,
+   desde cualquier dispositivo donde inicies sesión. Se guardan en documentos chicos:
+   "meta" (cuentas, categorías, recurrentes, metas, reglas, ajustes), "deleted" (borrados) y uno por mes de movimientos. */
+const CL_INIT = 'misFinanzas.claudeInit';
+let clCol = null, clDocs = {}, clReady = false, clPushing = false, clAgain = false, clTimer;
+function chunksOf(st){
+  const out = { meta: { v:1, settings: st.settings, accounts: st.accounts, categories: st.categories, recurring: st.recurring, goals: st.goals, rules: st.rules } };
+  const cutoff = Date.now() - 180*864e5; const del = {};
+  for (const [id,t] of Object.entries(st.deleted||{})) if (t > cutoff) del[id] = t;
+  out.deleted = { ids: del };
+  for (const id of Object.keys(clDocs)) if (id.startsWith('m-')) out[id] = { txs: [] }; // mes que quedó vacío
+  for (const t of st.txs){ const k = 'm-'+ym(t.date); (out[k] ||= {txs:[]}).txs.push(t); }
+  for (const k in out) if (k.startsWith('m-')) out[k].txs.sort((x,y)=> x.id<y.id?-1:x.id>y.id?1:0);
+  return out;
+}
+function stateFromDocs(docs){
+  const m = docs.meta || {};
+  const st = { settings: m.settings || defaultState().settings, accounts: m.accounts||[], categories: m.categories||[], recurring: m.recurring||[], goals: m.goals||[], rules: m.rules||[], deleted: (docs.deleted||{}).ids || {}, txs: [] };
+  for (const [id,d] of Object.entries(docs)) if (id.startsWith('m-')) st.txs.push(...(d.txs||[]));
+  return JSON.parse(JSON.stringify(st));
+}
+async function startClaudeSync(){
+  setSync('busy');
+  const [db, user] = await Promise.all([claude.use('db'), claude.use('user')]);
+  const id = user ? await user.id() : null;
+  if (!db || !id) return setSync('local');
+  clCol = db.collection('data/users/' + id);
+  clCol.onSnapshot(onClaudeSnap, () => setSync('error'));
+}
+function onClaudeSnap(snap){
+  const docs = {}; for (const d of snap.docs) docs[d.id] = d.data();
+  clDocs = {}; for (const [k,v] of Object.entries(docs)) clDocs[k] = canon(v);
+  if (!lsGet(CL_INIT) && snap.metadata.fromCache) return; // la primera vez esperamos la respuesta real de la nube
+  const before = canon(S);
+  if (!lsGet(CL_INIT)){
+    if (docs.meta){ const remote = stateFromDocs(docs); S = Object.assign(defaultState(), S.txs.length ? mergeStates(adoptIds(S, remote), remote) : remote); }
+    lsSet(CL_INIT, '1');
+  } else if (Object.keys(docs).length) {
+    S = Object.assign(defaultState(), mergeStates(S, stateFromDocs(docs)));
+  }
+  rebuildSnap(); persist(); clReady = true;
+  if (canon(S)!==before && !$('#dlg').open && !$('#ask').open && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName||'')) render();
+  claudePush();
+}
+function schedulePush(){ if (!clCol) return; clearTimeout(clTimer); clTimer = setTimeout(claudePush, 800); }
+async function claudePush(){
+  if (!clCol || !clReady) return;
+  if (clPushing){ clAgain = true; return; }
+  clPushing = true;
+  try {
+    do {
+      clAgain = false;
+      for (const [id, body] of Object.entries(chunksOf(S))){
+        const c = canon(body); if (clDocs[id] === c) continue;
+        setSync('busy');
+        await clCol.doc(id).set(JSON.parse(JSON.stringify(body)));
+        clDocs[id] = c;
+      }
+    } while (clAgain);
+    setSync('ok');
+  } catch(e){
+    setSync('error');
+    if (e?.code==='quota_exceeded') toast('La nube está llena: borrá movimientos viejos o exportá un backup');
+    else if (e?.code==='invalid_argument') toast('No se pudo guardar en la nube (un mes tiene demasiados movimientos)');
+  } finally { clPushing = false; }
 }
 
 // Primera conexión combinando: las categorías/cuentas con el mismo nombre que en la nube se unifican (no se duplican).
@@ -192,7 +271,8 @@ function adoptIds(local, remote){
 
 /* ---------- Sincronización con la nube (solo al usar la app desde el link de Vercel) ---------- */
 const SYNC_KEY = 'misFinanzas.syncKey', SYNC_INIT = 'misFinanzas.syncInit';
-const canSync = location.protocol.startsWith('http');
+const inClaude = !!(window.claude && typeof window.claude.use === 'function'); // abierta como Artifact en claude.ai
+const canSync = !inClaude && location.protocol.startsWith('http');
 const lsGet = k => { try { return localStorage.getItem(k); } catch(e){ return null; } };
 const lsSet = (k,v) => { try { v==null ? localStorage.removeItem(k) : localStorage.setItem(k,v); } catch(e){} };
 let syncStatus = 'off', syncing = false, syncAgain = false, syncTimer;
@@ -204,9 +284,9 @@ async function checkCloud(){
   if (curView==='ajustes' && !$('#dlg').open && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName||'')) render();
   if (!lsGet(SYNC_KEY)) setSync('off');
 }
-const SYNC_LABEL = {off: canSync ? '☁️ Activar sincronización' : '', busy:'🔄 Sincronizando…', ok:'☁️ Sincronizado', error:'⚠️ Sin conexión', auth:'🔒 Clave incorrecta', locked:'🔒 Bloqueado 15 min', setup:'⚙️ Falta configurar la nube'};
+const SYNC_LABEL = {local:'💾 Solo en este dispositivo', off: canSync ? '☁️ Activar sincronización' : '', busy:'🔄 Sincronizando…', ok:'☁️ Sincronizado', error:'⚠️ Sin conexión', auth:'🔒 Clave incorrecta', locked:'🔒 Bloqueado 15 min', setup:'⚙️ Falta configurar la nube'};
 function setSync(st){ syncStatus=st; const b=$('#syncBadge'); if (b){ b.textContent=SYNC_LABEL[st]; b.hidden=!SYNC_LABEL[st]; } const s=$('#syncStatusTxt'); if (s) s.textContent=SYNC_LABEL[st]||'Desconectado'; }
-function scheduleSync(){ if (!canSync || !lsGet(SYNC_KEY)) return; clearTimeout(syncTimer); syncTimer=setTimeout(sync, 1200); }
+function scheduleSync(){ if (inClaude) return schedulePush(); if (!canSync || !lsGet(SYNC_KEY)) return; clearTimeout(syncTimer); syncTimer=setTimeout(sync, 1200); }
 async function syncApi(method, body){
   const r = await fetch('api/sync', {method, cache:'no-store', headers:{'Content-Type':'application/json','X-Sync-Key':lsGet(SYNC_KEY)||''}, body: body && JSON.stringify(body)});
   let j = {}; try { j = await r.json(); } catch(e){}
@@ -225,7 +305,7 @@ async function sync(){
       if (g.status!==200) throw new Error('HTTP '+g.status);
       let next, adopt=false, first=false;
       if (!g.data) next = S;
-      else if (!lsGet(SYNC_INIT) && S.txs.length && confirm('Ya hay datos en la nube. ¿Querés COMBINARLOS con los de este dispositivo?\n\nAceptar = combinar ambos\nCancelar = usar solo los de la nube (se descartan los de este dispositivo)')){ first=true; next = mergeStates(adoptIds(S, g.data), g.data); }
+      else if (!lsGet(SYNC_INIT) && S.txs.length){ first=true; next = mergeStates(adoptIds(S, g.data), g.data); }
       else if (!lsGet(SYNC_INIT)){ next = g.data; adopt = true; }
       else next = mergeStates(S, g.data);
       if (!adopt){
@@ -342,7 +422,7 @@ function progress(ratio, color){ const w=Math.min(100,Math.max(0,ratio*100)); re
 function insights(m){
   const t=totals(m), prev=totals(shiftMonth(m,-1)), out=[];
   const add=(kind,icon,html)=>out.push(`<div class="insight ${kind}"><span>${icon}</span><div>${html}</div></div>`);
-  if (!t.inc && !t.exp) { add('info','👋','Todavía no cargaste movimientos este mes. Empezá con <b>＋ Movimiento</b>.'); return out.join(''); }
+  if (!t.inc && !t.exp) { add('info','👋', S.txs.length ? 'Todavía no cargaste movimientos este mes. Empezá con <b>＋ Movimiento</b>.' : 'Empezá con <b>＋ Movimiento</b>. ¿Ya usabas la app en otro lado? Traé tus datos en <b>⚙️ Ajustes → Restaurar backup</b>.'); return out.join(''); }
   if (t.inc){
     const rate=t.net/t.inc;
     if (rate>=0.2) add('good','🎯',`Tasa de ahorro del <b>${pct(rate)}</b>. Superás el 20% recomendado. ¡Excelente!`);
@@ -387,8 +467,9 @@ function render(){
   $('#nav').innerHTML = Object.entries(VIEWS).map(([k,[l]])=>`<button data-v="${k}" class="${k===curView?'active':''}">${l}</button>`).join('');
   $('#month').value = curMonth;
   $('#view').innerHTML = VIEWS[curView][1]();
-  document.documentElement.dataset.theme = S.settings.theme==='auto' ? '' : S.settings.theme;
-  if (S.settings.theme==='auto') delete document.documentElement.dataset.theme;
+  // En "Automático" dentro de claude.ai se respeta el tema que pone Claude.
+  if (S.settings.theme!=='auto') document.documentElement.dataset.theme = S.settings.theme;
+  else if (!inClaude) delete document.documentElement.dataset.theme;
 }
 
 function viewPanel(){
@@ -556,7 +637,11 @@ function viewSettings(){
     <div><label>Fondo de emergencia (meses)</label><input id="setEm" type="number" min="1" value="${S.settings.emergencyMonths}"></div>
   </div></div>
   <div class="card"><h3>☁️ Sincronizar compu y celular</h3>
-  ${!canSync ? '<div class="muted">Disponible cuando usás la app desde tu link de Vercel (no desde el archivo descargado).</div>'
+  ${inClaude ? `<div class="row" style="margin-bottom:10px">Estado: <b id="syncStatusTxt">${SYNC_LABEL[syncStatus]||'Conectando…'}</b></div>
+     <div class="muted" style="font-size:13px">${syncStatus==='local'
+       ? 'Iniciá sesión en claude.ai para guardar tus datos en la nube y verlos en todos tus dispositivos.'
+       : 'Tus datos se guardan solos en tu cuenta de Claude, en un espacio privado que solo vos ves. Abrí este mismo link en el celular o en otra compu, con tu misma cuenta, y vas a ver y cargar los mismos datos.'}</div>`
+  : !canSync ? '<div class="muted">Disponible cuando usás la app desde tu link de Vercel (no desde el archivo descargado).</div>'
   : (cloud && !cloud.configured && !lsGet(SYNC_KEY)) ? cloudSetupHtml()
   : lsGet(SYNC_KEY) ? `<div class="row" style="margin-bottom:10px">Estado: <b id="syncStatusTxt">${SYNC_LABEL[syncStatus]||'Desconectado'}</b></div>
      <div class="row"><button class="btn" id="syncNow">🔄 Sincronizar ahora</button><button class="btn danger" id="syncOff">Desconectar este dispositivo</button></div>
@@ -601,6 +686,16 @@ function cloudSetupHtml(){
 }
 
 /* ---------- Diálogos ---------- */
+// Confirmación y pregunta numérica dentro de la página.
+function ask(msg, {ok='Aceptar', danger=false, input=false}={}){
+  return new Promise(resolve=>{
+    const d=$('#ask'), inp=$('#askInput'), okBtn=$('#askOk');
+    $('#askMsg').textContent=msg; okBtn.textContent=ok; okBtn.classList.toggle('danger-bg', danger);
+    inp.hidden=!input; inp.value='';
+    d.onclose=()=>resolve(d.returnValue==='ok' ? (input ? inp.value : true) : (input ? null : false));
+    d.returnValue=''; d.showModal(); if (input) inp.focus();
+  });
+}
 function openDialog(html, onSubmit){
   const d=$('#dlg'), f=$('#dlgForm'); f.innerHTML=html+`<div class="row" style="justify-content:flex-end;margin-top:16px"><button class="btn" value="cancel" formnovalidate>Cancelar</button><button class="btn primary" value="ok">Guardar</button></div>`;
   f.onsubmit = e => { if (e.submitter?.value!=='ok') return; const data=Object.fromEntries(new FormData(f)); if (onSubmit(data)===false){ e.preventDefault(); return; } save(); render(); };
@@ -686,7 +781,14 @@ function ruleDialog(){
 }
 
 /* ---------- Importar / exportar ---------- */
-function download(name, content, type){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([content],{type})); a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); }
+async function download(name, content, type){
+  if (inClaude){
+    const dl = await claude.use('downloads');
+    if (!dl) return toast('La descarga no está disponible en esta vista');
+    try { await dl.save({filename:name, data:content}); } catch(e){ if (e?.code!=='declined') toast('No se pudo descargar el archivo'); }
+    return;
+  }
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([content],{type})); a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); }
 function parseCSV(text){
   const sep = (text.split('\n')[0].match(/;/g)||[]).length > (text.split('\n')[0].match(/,/g)||[]).length ? ';' : ',';
   const rows=[]; let row=[], cell='', q=false;
@@ -742,7 +844,7 @@ function loadDemo(){
 /* ---------- Eventos ---------- */
 document.addEventListener('click', e=>{
   const el=e.target.closest('button,[data-go]'); if (!el) return; const ds=el.dataset;
-  const del=(arr,id,msg)=>{ if (confirm(msg)){ const i=arr.findIndex(x=>x.id===id); arr.splice(i,1); save(); render(); } };
+  const del=(arr,id,msg)=>ask(msg,{ok:'Eliminar',danger:true}).then(yes=>{ if (!yes) return; const i=arr.findIndex(x=>x.id===id); if (i>=0){ arr.splice(i,1); save(); render(); } });
   if (ds.v){ curView=ds.v; render(); window.scrollTo(0,0); }
   else if (ds.go){ curView=ds.go; render(); }
   else if (ds.editTx) txDialog(S.txs.find(t=>t.id===ds.editTx));
@@ -756,7 +858,7 @@ document.addEventListener('click', e=>{
   else if (ds.editGoal) goalDialog(S.goals.find(g=>g.id===ds.editGoal));
   else if (ds.delGoal) del(S.goals, ds.delGoal, '¿Eliminar meta?');
   else if (ds.delRule) del(S.rules, ds.delRule, '¿Eliminar regla?');
-  else if (ds.goalAdd){ const g=S.goals.find(x=>x.id===ds.goalAdd); const v=parseNum(prompt(`¿Cuánto aportás a "${g.name}"?`)||''); if (v){ g.saved+=v; save(); render(); toast('Aporte registrado'); } }
+  else if (ds.goalAdd){ const g=S.goals.find(x=>x.id===ds.goalAdd); ask(`¿Cuánto aportás a "${g.name}"?`,{ok:'Aportar',input:true}).then(r=>{ const v=parseNum(r||''); if (v){ g.saved+=v; save(); render(); toast('Aporte registrado'); } }); }
   else switch(el.id){
     case 'quickAdd': txDialog(); break;
     case 'prevM': curMonth=shiftMonth(curMonth,-1); render(); break;
@@ -765,13 +867,13 @@ document.addEventListener('click', e=>{
     case 'addGoal': goalDialog(); break; case 'addRule': ruleDialog(); break;
     case 'expJson': download(`mis-finanzas-backup-${todayISO()}.json`, JSON.stringify(S,null,2), 'application/json'); break;
     case 'expCsv': exportCSV(); break;
-    case 'demo': if (confirm('Se agregarán 6 meses de movimientos de ejemplo. ¿Continuar?')) loadDemo(); break;
+    case 'demo': ask('Se van a agregar 6 meses de movimientos de ejemplo. ¿Continuar?',{ok:'Cargar ejemplo'}).then(y=>y&&loadDemo()); break;
     case 'syncOn': { const v=$('#syncPass').value.trim(); if (v.length<6) return toast('La clave debe tener al menos 6 caracteres'); lsSet(SYNC_KEY,v); lsSet(SYNC_INIT,null);
       sync().then(()=>{ if (syncStatus==='auth'){ lsSet(SYNC_KEY,null); toast('Clave incorrecta'); } else if (syncStatus==='ok') toast('¡Dispositivo conectado!'); else if (syncStatus==='setup') toast('Falta configurar la base de datos o la clave en Vercel'); else if (syncStatus==='locked'){ lsSet(SYNC_KEY,null); toast('Demasiados intentos: esperá 15 minutos'); } render(); }); break; }
     case 'syncNow': sync(); break;
     case 'cloudCheck': cloud=null; checkCloud().then(()=>toast(cloud?.configured?'¡La nube está conectada!':'Todavía no está conectada')); break;
-    case 'syncOff': if (confirm('Este dispositivo deja de sincronizar (tus datos quedan guardados acá y en la nube).')){ lsSet(SYNC_KEY,null); lsSet(SYNC_INIT,null); setSync('off'); render(); } break;
-    case 'wipe': if (confirm('Esto borra TODOS tus datos. ¿Seguro? (Hacé un backup antes)')){ S=defaultState(); save(); render(); } break;
+    case 'syncOff': ask('Este dispositivo deja de sincronizar. Tus datos quedan guardados acá y en la nube.',{ok:'Desconectar'}).then(y=>{ if (y){ lsSet(SYNC_KEY,null); lsSet(SYNC_INIT,null); setSync('off'); render(); } }); break;
+    case 'wipe': ask('Esto borra TODOS tus datos, también en la nube y en tus otros dispositivos. Hacé un backup antes.',{ok:'Borrar todo',danger:true}).then(y=>{ if (y){ S=defaultState(); save(); render(); toast('Datos borrados'); } }); break;
     case 'copyAvg': S.categories.filter(c=>c.kind==='gasto').forEach(c=>{ let s=0; for(let i=1;i<=3;i++) s+=totals(shiftMonth(curMonth,-i)).byCat[c.id]||0; if (s) c.budget=Math.round(s/3); }); save(); render(); toast('Presupuesto sugerido según tus últimos 3 meses'); break;
   }
 });
@@ -783,8 +885,8 @@ document.addEventListener('change', e=>{
   else if (el.id==='setCur'){ S.settings.currency=el.value; save(); render(); }
   else if (el.id==='setTheme'){ S.settings.theme=el.value; save(); render(); }
   else if (el.id==='setEm'){ S.settings.emergencyMonths=Math.max(1,+el.value||6); save(); }
-  else if (el.id==='impJson' && el.files[0]){ el.files[0].text().then(t=>{ try{ const d=JSON.parse(t); if(!d.txs||!d.categories) throw 0; if(confirm('Esto reemplaza tus datos actuales por el backup. ¿Continuar?')){ S=Object.assign(defaultState(),d); save(); render(); toast('Backup restaurado'); } }catch(_){ toast('Archivo de backup inválido'); } }); }
-  else if (el.id==='impCsv' && el.files[0]){ el.files[0].text().then(importCSV); }
+  else if (el.id==='impJson' && el.files[0]){ const f=el.files[0]; el.value=''; f.text().then(t=>{ try{ const d=JSON.parse(t); if(!d.txs||!d.categories) throw 0; ask('Esto reemplaza tus datos actuales por los del backup. ¿Continuar?',{ok:'Restaurar'}).then(y=>{ if (y){ S=Object.assign(defaultState(),d); save(); render(); toast('Backup restaurado'); } }); }catch(_){ toast('Archivo de backup inválido'); } }); }
+  else if (el.id==='impCsv' && el.files[0]){ const f=el.files[0]; el.value=''; f.text().then(importCSV); }
 });
 document.addEventListener('input', e=>{ if (e.target.id==='fq'){ txFilter.q=e.target.value; const pos=e.target.selectionStart; render(); const f=$('#fq'); f.focus(); f.setSelectionRange(pos,pos); } });
 document.addEventListener('keydown', e=>{ if (e.key==='n' && !e.ctrlKey && !e.metaKey && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName) && !$('#dlg').open){ e.preventDefault(); txDialog(); } });
@@ -792,6 +894,7 @@ document.addEventListener('keydown', e=>{ if (e.key==='n' && !e.ctrlKey && !e.me
 rebuildSnap();
 applyRecurring();
 render();
+if (inClaude) startClaudeSync();
 if (canSync){
   checkCloud();
   sync();
