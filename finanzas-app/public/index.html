@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="Mis Finanzas: control personal de ingresos, gastos, cuentas, presupuestos y metas.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Mis Finanzas</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Finanzas">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><img src="/icons/icon.svg" alt=""><span>Mis Finanzas</span></div>
+      <nav id="side-nav"></nav>
+      <button class="btn primary block" data-action="new-tx">+ Nuevo movimiento</button>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <h1 id="page-title">Inicio</h1>
+        <div class="topbar-right">
+          <button id="sync-indicator" class="sync-pill" data-action="go" data-route="ajustes" hidden></button>
+          <button class="icon-btn" data-action="toggle-theme" title="Cambiar tema" aria-label="Cambiar tema">🌓</button>
+        </div>
+      </header>
+      <div id="view" class="view"></div>
+    </main>
+    <nav class="bottomnav" id="bottom-nav"></nav>
+    <button class="fab" data-action="new-tx" aria-label="Nuevo movimiento">+</button>
+  </div>
+  <div id="modal-root"></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

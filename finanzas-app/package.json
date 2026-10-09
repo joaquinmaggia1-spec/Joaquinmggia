@@ -1,0 +1,14 @@
+{
+  "name": "mis-finanzas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "App personal de finanzas: ingresos, gastos, cuentas, presupuestos, metas y reportes. PWA para PC y celular.",
+  "type": "module",
+  "scripts": {
+    "dev": "npx vercel dev",
+    "start": "npx serve public -l 3000"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
