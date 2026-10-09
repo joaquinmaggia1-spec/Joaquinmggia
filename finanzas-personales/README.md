@@ -9,11 +9,29 @@ App para registrar gastos e ingresos y analizar tus finanzas personales. Es **un
 3. Tip: guardala en favoritos o creá un acceso directo en el escritorio.
 4. Para probarla con datos de ejemplo: **⚙️ Ajustes → Cargar datos de ejemplo**. Después usá **Borrar todo** y empezá con tus datos reales.
 
-> ⚠️ Los datos se guardan en el navegador que usás. Si borrás el historial o los datos de sitios, se pierden.
-> Hacé un backup seguido en **Ajustes → Exportar backup (JSON)** (por ejemplo, a Google Drive).
-> Usá siempre el mismo navegador y la misma ubicación del archivo.
+> ⚠️ Si abrís el archivo descargado, los datos quedan solo en ese navegador. Para tenerlos en la compu y el celular, usá la versión web con sincronización (ver abajo).
+> En cualquier caso, hacé un backup cada tanto en **Ajustes → Exportar backup (JSON)**.
 
 Atajo: tecla **N** para cargar un movimiento nuevo.
+
+## ☁️ Sincronizar compu y celular (versión web en Vercel)
+
+Cuando usás la app desde tu link de Vercel, podés conectar todos tus dispositivos a una base de datos en la nube. Lo que cargás en uno aparece en los demás.
+
+### Configuración (una sola vez, en vercel.com)
+1. Abrí tu proyecto en Vercel y andá a la pestaña **Storage**.
+2. Tocá **Create Database**, elegí **Upstash → Redis** (el plan gratis alcanza) y conectala a tu proyecto. Vercel agrega sola las variables `KV_REST_API_URL` y `KV_REST_API_TOKEN`.
+3. Andá a **Settings → Environment Variables** y creá **`SYNC_PASSWORD`** con una clave larga que solo vos sepas (por ejemplo, 4 o 5 palabras). Esa clave protege tus datos.
+4. Andá a **Deployments**, abrí el menú **⋯** del último deploy y tocá **Redeploy** para que tome los cambios.
+
+### En cada dispositivo
+Abrí tu link, andá a **⚙️ Ajustes → Sincronizar compu y celular**, escribí la clave y tocá **Conectar**.
+- El primer dispositivo sube sus datos a la nube. Los siguientes los descargan.
+- Si un dispositivo ya tenía datos propios, la app pregunta si querés combinarlos.
+- Arriba a la derecha vas a ver **☁️ Sincronizado**. Los cambios se suben solos al guardar y se bajan al abrir la app o volver a ella.
+- Si dos dispositivos cargan cosas al mismo tiempo, se combinan sin perder nada. Si un mismo movimiento se editó en los dos, gana la última edición.
+- Después de 10 intentos con la clave incorrecta, el acceso se bloquea 15 minutos.
+- Tip: en el celular, usá **Agregar a pantalla de inicio** para abrirla como una app.
 
 ## Qué incluye
 
@@ -64,5 +82,3 @@ Fuentes:
 - [Cómo elegir un sistema de presupuesto (NerdWallet)](https://www.nerdwallet.com/article/finance/how-to-choose-the-right-budget-system)
 - [Apps de presupuesto base cero (WalletHub)](https://wallethub.com/answers/b/zero-based-budget-app-2140884105/)
 
-## Si querés más adelante
-- **Sincronizar entre compu y celular**: autohospedar [Actual Budget](https://actualbudget.org) o [Firefly III](https://www.firefly-iii.org) con Docker. Podés exportar tus movimientos a CSV desde acá e importarlos allá.

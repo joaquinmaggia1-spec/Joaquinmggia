@@ -83,6 +83,7 @@ dialog::backdrop{background:rgba(0,0,0,.4)}
       <input type="month" id="month" style="width:auto">
       <button class="btn sm" id="nextM" aria-label="Mes siguiente">▶</button>
     </div>
+    <button class="btn sm" id="syncBadge" data-v="ajustes" hidden></button>
     <button class="btn primary" id="quickAdd">＋ Movimiento</button>
   </div>
   <nav id="nav"></nav>
@@ -102,7 +103,7 @@ const KEY = 'misFinanzas.v1';
 const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $ = s => document.querySelector(s);
-const todayISO = () => new Date().toISOString().slice(0, 10);
+const todayISO = () => { const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); };
 const ym = d => d.slice(0, 7);
 const PALETTE = ['#2f6fed','#16a34a','#d97706','#dc2626','#7c3aed','#0891b2','#db2777','#65a30d','#ea580c','#4f46e5','#0d9488','#a16207','#9333ea','#475569'];
 
@@ -133,7 +134,7 @@ function defaultState(){
       cat('Deudas / Cuotas','gasto','ahorro','#475569'),
       cat('Otros','gasto','deseo','#94a3b8'),
     ],
-    txs:[], recurring:[], goals:[], rules:[],
+    txs:[], recurring:[], goals:[], rules:[], deleted:{},
   };
 }
 
@@ -142,7 +143,97 @@ function load(){
   try { const raw = localStorage.getItem(KEY); if (raw) return Object.assign(defaultState(), JSON.parse(raw)); } catch(e){}
   return defaultState();
 }
-function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){ toast('No se pudo guardar (almacenamiento bloqueado)'); } }
+function persist(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){ toast('No se pudo guardar (almacenamiento bloqueado)'); } }
+function save(){ stamp(); persist(); scheduleSync(); }
+
+/* ---------- Control de cambios (para sincronizar entre dispositivos) ----------
+   Cada registro lleva "u" = momento de su última modificación. Al guardar se compara
+   contra una foto del último estado: lo que cambió recibe nueva marca y lo que
+   desapareció queda anotado en S.deleted, así el borrado llega a los otros dispositivos. */
+const COLLS = ['accounts','categories','txs','recurring','goals','rules'];
+let snap = {};
+const strip = o => { const {u, ...rest} = o; return JSON.stringify(rest); };
+function rebuildSnap(){ snap = {settings: strip(S.settings)}; for (const c of COLLS) for (const it of S[c]) snap[c+':'+it.id] = strip(it); }
+function stamp(){
+  const now = Date.now(), seen = {}; S.deleted ||= {};
+  for (const c of COLLS) for (const it of S[c]){ const k=c+':'+it.id, j=strip(it); seen[k]=1; if (snap[k]!==j){ it.u=now; snap[k]=j; } }
+  const sj = strip(S.settings); if (snap.settings!==sj){ S.settings.u=now; snap.settings=sj; }
+  for (const k in snap) if (k!=='settings' && !seen[k]){ S.deleted[k.slice(k.indexOf(':')+1)] = now; delete snap[k]; }
+}
+// Une dos estados: por cada registro gana la versión modificada más recientemente; lo borrado no vuelve.
+function mergeStates(a, b){
+  const out = { settings: (b.settings?.u||0) > (a.settings?.u||0) ? b.settings : a.settings, deleted: {...(a.deleted||{})} };
+  for (const [id,t] of Object.entries(b.deleted||{})) out.deleted[id] = Math.max(out.deleted[id]||0, t);
+  for (const c of COLLS){
+    const m = new Map();
+    for (const it of [...(a[c]||[]), ...(b[c]||[])]){ if (out.deleted[it.id]) continue; const cur=m.get(it.id); if (!cur || (it.u||0) > (cur.u||0)) m.set(it.id, it); }
+    out[c] = [...m.values()];
+  }
+  return out;
+}
+
+// Primera conexión combinando: las categorías/cuentas con el mismo nombre que en la nube se unifican (no se duplican).
+function adoptIds(local, remote){
+  const L = JSON.parse(JSON.stringify(local)), now = Date.now();
+  for (const c of ['categories','accounts']){
+    const drop = new Set();
+    for (const it of L[c]){
+      if ((remote[c]||[]).some(x=>x.id===it.id)) continue;
+      const twin = (remote[c]||[]).find(x=>x.name.trim().toLowerCase()===it.name.trim().toLowerCase());
+      if (!twin) continue;
+      for (const t of [...L.txs, ...L.recurring, ...L.rules]) for (const f of ['categoryId','accountId','toAccountId']) if (t[f]===it.id){ t[f]=twin.id; t.u=now; }
+      drop.add(it.id);
+    }
+    L[c] = L[c].filter(x=>!drop.has(x.id));
+  }
+  return L;
+}
+
+/* ---------- Sincronización con la nube (solo al usar la app desde el link de Vercel) ---------- */
+const SYNC_KEY = 'misFinanzas.syncKey', SYNC_INIT = 'misFinanzas.syncInit';
+const canSync = location.protocol.startsWith('http');
+const lsGet = k => { try { return localStorage.getItem(k); } catch(e){ return null; } };
+const lsSet = (k,v) => { try { v==null ? localStorage.removeItem(k) : localStorage.setItem(k,v); } catch(e){} };
+let syncStatus = 'off', syncing = false, syncAgain = false, syncTimer;
+const SYNC_LABEL = {off:'', busy:'🔄 Sincronizando…', ok:'☁️ Sincronizado', error:'⚠️ Sin conexión', auth:'🔒 Clave incorrecta', locked:'🔒 Bloqueado 15 min', setup:'⚙️ Falta configurar la nube'};
+function setSync(st){ syncStatus=st; const b=$('#syncBadge'); if (b){ b.textContent=SYNC_LABEL[st]; b.hidden=!SYNC_LABEL[st]; } const s=$('#syncStatusTxt'); if (s) s.textContent=SYNC_LABEL[st]||'Desconectado'; }
+function scheduleSync(){ if (!canSync || !lsGet(SYNC_KEY)) return; clearTimeout(syncTimer); syncTimer=setTimeout(sync, 1200); }
+async function syncApi(method, body){
+  const r = await fetch('api/sync', {method, cache:'no-store', headers:{'Content-Type':'application/json','X-Sync-Key':lsGet(SYNC_KEY)||''}, body: body && JSON.stringify(body)});
+  let j = {}; try { j = await r.json(); } catch(e){}
+  return {status:r.status, ...j};
+}
+async function sync(){
+  if (!canSync || !lsGet(SYNC_KEY)) return setSync('off');
+  if (syncing){ syncAgain=true; return; }
+  syncing=true; setSync('busy');
+  try {
+    for (let attempt=0; attempt<4; attempt++){
+      const g = await syncApi('GET');
+      if (g.status===401) return setSync('auth');
+      if (g.status===429) return setSync('locked');
+      if (g.status===503) return setSync('setup');
+      if (g.status!==200) throw new Error('HTTP '+g.status);
+      let next, adopt=false, first=false;
+      if (!g.data) next = S;
+      else if (!lsGet(SYNC_INIT) && S.txs.length && confirm('Ya hay datos en la nube. ¿Querés COMBINARLOS con los de este dispositivo?\n\nAceptar = combinar ambos\nCancelar = usar solo los de la nube (se descartan los de este dispositivo)')){ first=true; next = mergeStates(adoptIds(S, g.data), g.data); }
+      else if (!lsGet(SYNC_INIT)){ next = g.data; adopt = true; }
+      else next = mergeStates(S, g.data);
+      if (!adopt){
+        const p = await syncApi('PUT', {data: next, baseVersion: g.version});
+        if (p.status===409) continue; // otro dispositivo guardó justo ahora: reintentar
+        if (p.status!==200) throw new Error('HTTP '+p.status);
+      }
+      const before = JSON.stringify(S);
+      S = adopt ? Object.assign(defaultState(), next) : mergeStates(first ? adoptIds(S, next) : S, next); // conserva lo cargado mientras sincronizaba
+      rebuildSnap(); persist(); lsSet(SYNC_INIT,'1'); setSync('ok');
+      if (JSON.stringify(S)!==before && !$('#dlg').open && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName||'')) render();
+      return;
+    }
+    throw new Error('conflicto');
+  } catch(e){ setSync('error'); }
+  finally { syncing=false; if (syncAgain){ syncAgain=false; scheduleSync(); } }
+}
 function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),2200); }
 
 const money = (n, opts={}) => {
@@ -197,11 +288,13 @@ function applyRecurring(){
       const day = String(Math.min(r.day, lastDay(m))).padStart(2,'0');
       const date = m+'-'+day;
       if (date > today) break;
-      S.txs.push({id:uid(), date, type:r.type, amount:r.amount, accountId:r.accountId, categoryId:r.categoryId, note:r.name+' (recurrente)', recurringId:r.id});
-      r.lastApplied = m; added++; m = shiftMonth(m,1);
+      const id = 'rec_'+r.id+'_'+m; // id fijo por mes: si dos dispositivos lo registran, no se duplica
+      if (!S.txs.some(t=>t.id===id) && !S.deleted?.[id]){ S.txs.push({id, date, type:r.type, amount:r.amount, accountId:r.accountId, categoryId:r.categoryId, note:r.name+' (recurrente)', recurringId:r.id}); added++; }
+      r.lastApplied = m; m = shiftMonth(m,1);
     }
   }
-  if (added){ save(); setTimeout(()=>toast(`Se registraron ${added} movimiento(s) recurrente(s)`),300); }
+  save();
+  if (added){ setTimeout(()=>toast(`Se registraron ${added} movimiento(s) recurrente(s)`),300); }
 }
 
 /* ---------- Gráficos SVG (sin dependencias, funciona offline) ---------- */
@@ -453,6 +546,14 @@ function viewSettings(){
     <div><label>Tema</label><select id="setTheme">${[['auto','Automático'],['light','Claro'],['dark','Oscuro']].map(([v,l])=>`<option value="${v}" ${S.settings.theme===v?'selected':''}>${l}</option>`).join('')}</select></div>
     <div><label>Fondo de emergencia (meses)</label><input id="setEm" type="number" min="1" value="${S.settings.emergencyMonths}"></div>
   </div></div>
+  <div class="card"><h3>☁️ Sincronizar compu y celular</h3>
+  ${!canSync ? '<div class="muted">Disponible cuando usás la app desde tu link de Vercel (no desde el archivo descargado).</div>'
+  : lsGet(SYNC_KEY) ? `<div class="row" style="margin-bottom:10px">Estado: <b id="syncStatusTxt">${SYNC_LABEL[syncStatus]||'Desconectado'}</b></div>
+     <div class="row"><button class="btn" id="syncNow">🔄 Sincronizar ahora</button><button class="btn danger" id="syncOff">Desconectar este dispositivo</button></div>
+     <div class="muted" style="font-size:12px;margin-top:10px">Los cambios se suben solos al guardar y se bajan al abrir la app o volver a ella.</div>`
+  : `<div class="muted" style="font-size:12px;margin-bottom:10px">Escribí la clave de sincronización (la que configuraste en Vercel como <code>SYNC_PASSWORD</code>). Hacelo en la compu y en el celular: los dos van a ver y cargar los mismos datos.</div>
+     <div class="row"><input id="syncPass" type="password" placeholder="Clave de sincronización" autocomplete="current-password" style="flex:1;min-width:160px"><button class="btn primary" id="syncOn">Conectar</button></div>`}
+  </div>
   <div class="card"><h3>Copias de seguridad e importación</h3>
     <div class="row" style="margin-bottom:10px">
       <button class="btn" id="expJson">⬇️ Exportar backup (JSON)</button>
@@ -640,6 +741,10 @@ document.addEventListener('click', e=>{
     case 'expJson': download(`mis-finanzas-backup-${todayISO()}.json`, JSON.stringify(S,null,2), 'application/json'); break;
     case 'expCsv': exportCSV(); break;
     case 'demo': if (confirm('Se agregarán 6 meses de movimientos de ejemplo. ¿Continuar?')) loadDemo(); break;
+    case 'syncOn': { const v=$('#syncPass').value.trim(); if (!v) return toast('Escribí la clave'); lsSet(SYNC_KEY,v); lsSet(SYNC_INIT,null);
+      sync().then(()=>{ if (syncStatus==='auth'){ lsSet(SYNC_KEY,null); toast('Clave incorrecta'); } else if (syncStatus==='ok') toast('¡Dispositivo conectado!'); else if (syncStatus==='setup') toast('Falta configurar la base de datos o la clave en Vercel'); else if (syncStatus==='locked'){ lsSet(SYNC_KEY,null); toast('Demasiados intentos: esperá 15 minutos'); } render(); }); break; }
+    case 'syncNow': sync(); break;
+    case 'syncOff': if (confirm('Este dispositivo deja de sincronizar (tus datos quedan guardados acá y en la nube).')){ lsSet(SYNC_KEY,null); lsSet(SYNC_INIT,null); setSync('off'); render(); } break;
     case 'wipe': if (confirm('Esto borra TODOS tus datos. ¿Seguro? (Hacé un backup antes)')){ S=defaultState(); save(); render(); } break;
     case 'copyAvg': S.categories.filter(c=>c.kind==='gasto').forEach(c=>{ let s=0; for(let i=1;i<=3;i++) s+=totals(shiftMonth(curMonth,-i)).byCat[c.id]||0; if (s) c.budget=Math.round(s/3); }); save(); render(); toast('Presupuesto sugerido según tus últimos 3 meses'); break;
   }
@@ -658,8 +763,15 @@ document.addEventListener('change', e=>{
 document.addEventListener('input', e=>{ if (e.target.id==='fq'){ txFilter.q=e.target.value; const pos=e.target.selectionStart; render(); const f=$('#fq'); f.focus(); f.setSelectionRange(pos,pos); } });
 document.addEventListener('keydown', e=>{ if (e.key==='n' && !e.ctrlKey && !e.metaKey && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName) && !$('#dlg').open){ e.preventDefault(); txDialog(); } });
 
+rebuildSnap();
 applyRecurring();
 render();
+if (canSync){
+  sync();
+  document.addEventListener('visibilitychange', ()=>{ if (document.visibilityState==='visible') sync(); });
+  window.addEventListener('online', sync);
+  setInterval(()=>{ if (document.visibilityState==='visible') sync(); }, 30000);
+}
 </script>
 </body>
 </html>
