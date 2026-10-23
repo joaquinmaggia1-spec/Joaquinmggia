@@ -322,7 +322,7 @@ svg { width: 18px; height: 18px; flex: none; }
 
 /* Tools */
 .tools { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 900px; margin: 0 auto; }
-.tools li { padding: 11px 22px; border: 1px solid var(--line-2); border-radius: 999px; font-size: 15px; background: rgba(255, 255, 255, .03); }
+.tools li { display: inline-flex; align-items: center; gap: 10px; padding: 10px 20px 10px 14px; border: 1px solid var(--line-2); border-radius: 999px; font-size: 15px; background: rgba(255, 255, 255, .03); }
 
 /* CTA */
 .cta {
@@ -503,3 +503,8 @@ svg { width: 18px; height: 18px; flex: none; }
   .ad-roas b { font-size: 15pt; }
   .case-sub { font-size: 8.5pt; }
 }
+
+/* Tool icons */
+.tool-ico { width: 20px; height: 20px; flex: none; }
+.tool-icos { display: inline-flex; align-items: center; gap: 5px; }
+.tool-icos .tool-ico { width: 18px; height: 18px; }
