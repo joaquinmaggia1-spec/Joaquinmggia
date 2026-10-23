@@ -436,3 +436,70 @@ svg { width: 18px; height: 18px; flex: none; }
   .foot-brand p { margin-top: 3mm; }
   .footer-grid { grid-template-columns: 1.3fr .7fr .8fr 1.3fr; gap: 8mm; }
 }
+
+/* ---------- Featured case (Stride Lab) ---------- */
+.case-featured { grid-template-columns: 1fr; gap: 36px; }
+.case-head { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 6px; }
+.case-head .card-title { margin-bottom: 0; }
+.badge-demo { padding: 4px 12px; border: 1px solid rgba(255, 180, 84, .5); border-radius: 999px; font-size: 12px; font-weight: 500; letter-spacing: .04em; color: #FFC878; background: rgba(255, 180, 84, .1); }
+.case-sub { font-size: 14px; }
+.steps.two { grid-template-columns: 1fr; }
+.small-p { font-size: 13px; }
+.case-visuals { display: grid; grid-template-columns: 1fr; gap: 20px; }
+.chart-card, .ad-metrics-wrap { padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255, 255, 255, .025); min-width: 0; }
+.chart-card h4, .ad-metrics-wrap h4 { font-family: var(--display); font-weight: 600; font-size: 17px; }
+.chart { width: 100%; height: auto; display: block; margin-top: 14px; overflow: visible; }
+.chart .g { stroke: rgba(255, 255, 255, .08); stroke-width: 1; }
+.chart .t { fill: var(--muted); font-size: 14px; font-family: var(--sans); }
+.chart .ln { fill: none; stroke: url(#fl); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.chart .d { fill: #fff; stroke: #B58BFF; stroke-width: 2; }
+.chart .v { fill: #fff; font-size: 18px; font-weight: 600; font-family: var(--display); }
+
+.creative-card { display: grid; grid-template-columns: 1fr; gap: 16px; min-width: 0; }
+.ad-card { border: 1px solid var(--line-2); border-radius: 18px; background: #0D0928; overflow: hidden; font-size: 12px; max-width: 320px; width: 100%; justify-self: center; }
+.ad-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; }
+.ad-head b { display: block; font-weight: 500; font-size: 13px; line-height: 1.2; }
+.ad-head small { color: var(--muted); font-size: 11px; }
+.ad-avatar { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(140deg, #7B3FE4, #C26BFF); font-size: 11px; font-weight: 700; flex: none; }
+.ad-dots { margin-left: auto; color: var(--muted); letter-spacing: 2px; }
+.ad-img { position: relative; aspect-ratio: 1 / 1; display: grid; place-items: center; background: radial-gradient(80% 60% at 50% 70%, rgba(194, 107, 255, .75), rgba(123, 63, 228, .35) 55%, #120B35 100%); overflow: hidden; }
+.ad-tag { position: absolute; top: 14px; left: 14px; padding: 4px 10px; border-radius: 999px; background: rgba(255, 255, 255, .14); font-size: 11px; font-weight: 600; letter-spacing: .1em; }
+.shoe { width: 86%; height: auto; margin-top: 18%; filter: drop-shadow(0 12px 20px rgba(0, 0, 0, .35)); }
+.ad-copy { position: absolute; left: 14px; bottom: 14px; font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.05; letter-spacing: -.02em; }
+.ad-cta { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 14px; background: rgba(255, 255, 255, .06); }
+.ad-cta span { color: var(--muted); }
+.ad-cta b { padding: 6px 12px; border-radius: 8px; background: rgba(255, 255, 255, .14); font-weight: 500; white-space: nowrap; }
+.ad-react { padding: 10px 14px 12px; color: var(--muted); font-size: 11px; }
+.ad-metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 14px; }
+.ad-metrics > div { display: flex; flex-direction: column-reverse; gap: 2px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255, 255, 255, .03); min-width: 0; }
+.ad-metrics dd { font-family: var(--display); font-weight: 600; font-size: 17px; line-height: 1.1; }
+.ad-metrics dt { font-size: 11px; color: var(--muted); }
+.ad-roas { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 10px; padding: 12px 14px; border: 1px solid rgba(183, 166, 255, .35); border-radius: 12px; background: linear-gradient(90deg, rgba(123, 63, 228, .35), rgba(123, 63, 228, .08)); }
+.ad-roas span { font-size: 12px; color: var(--muted); }
+.ad-roas b { font-family: var(--display); font-weight: 700; font-size: 26px; line-height: 1; }
+.ad-roas .delta { font-style: normal; margin-left: auto; }
+@media (min-width: 900px) {
+  .case-featured { grid-template-columns: 1fr; }
+  .steps.two { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .case-visuals { grid-template-columns: 1fr 1.35fr; align-items: stretch; }
+  .creative-card { grid-template-columns: 250px 1fr; align-items: start; }
+  .ad-card { justify-self: stretch; }
+}
+@media print {
+  .case-featured { grid-template-columns: 1fr; gap: 4mm; padding: 6mm; break-inside: avoid; }
+  .steps.two { grid-template-columns: 1fr 1fr; }
+  .case-visuals { grid-template-columns: .8fr 1.7fr; gap: 4mm; }
+  .creative-card { grid-template-columns: 46mm 1fr; gap: 3mm; }
+  .ad-metrics > div { padding: 2mm; }
+  .ad-metrics dd { white-space: nowrap; }
+  .ad-metrics dt { font-size: 7pt; }
+  .ad-card { font-size: 8pt; }
+  .ad-copy { font-size: 11pt; }
+  .ad-roas { padding: 2mm 3mm; }
+  .chart-card h4, .ad-metrics-wrap h4 { font-size: 10pt; }
+  #casos { break-before: page; }
+  .chart-card, .ad-metrics-wrap { padding: 4mm; }
+  .ad-metrics dd { font-size: 9pt; }
+  .ad-roas b { font-size: 15pt; }
+  .case-sub { font-size: 8.5pt; }
+}
