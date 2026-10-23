@@ -1,11 +1,11 @@
 # Portfolio — Joaquín Maggia
 
-Sitio one-page (HTML/CSS/JS sin dependencias) + versión PDF para enviar como CV.
+Sitio one-page de estilo oscuro con glow violeta y tarjetas glass (HTML/CSS/JS sin dependencias) + versión PDF para enviar como CV.
 
 - `index.html` — contenido del portfolio
 - `styles.css` — estilos de pantalla y `@media print` (A4) para el PDF
 - `script.js` — animaciones de entrada y navegación activa
-- `joaquin-maggia-portfolio.pdf` — PDF generado desde el mismo HTML (4 páginas)
+- `joaquin-maggia-portfolio.pdf` — PDF generado desde el mismo HTML (5 páginas, fondo oscuro)
 
 ## Qué reemplazar
 
@@ -19,7 +19,7 @@ Todo lo que está entre corchetes `[ ... ]` es un placeholder:
 
 ## Regenerar el PDF
 
-Abrí `index.html` en Chrome → Imprimir → Guardar como PDF (A4, márgenes predeterminados, "Gráficos de fondo" activado),
+Abrí `index.html` en Chrome → Imprimir → Guardar como PDF (A4, márgenes: ninguno, "Gráficos de fondo" activado),
 y guardalo como `joaquin-maggia-portfolio.pdf` en esta carpeta.
 
 ## Deploy

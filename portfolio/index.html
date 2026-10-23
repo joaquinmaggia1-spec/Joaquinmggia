@@ -3,226 +3,367 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Joaquín Maggia — Portfolio</title>
+<title>Joaquín Maggia Portfolio</title>
 <meta name="description" content="Joaquín Maggia, Paid Media & Social Strategist. Meta Ads, estrategia de redes y creación de contenido para marcas que quieren crecer.">
+<meta name="theme-color" content="#07041A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Schibsted+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="nav">
-  <a href="#top" class="nav-brand">JM<span>.</span></a>
-  <nav class="nav-links">
-    <a href="#sobre-mi">Sobre mí</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#casos">Casos</a>
-    <a href="#experiencia">Experiencia</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
-  <a href="joaquin-maggia-portfolio.pdf" class="nav-cta" download>CV en PDF</a>
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="stars" data-stars="70"></div>
+  <div class="hero-lines" data-lines></div>
+  <div class="hero-glow"></div>
+
+  <div class="wrap">
+    <nav class="nav">
+      <a href="#top" class="logo"><span class="logo-mark">JM</span><span class="logo-text">joaquín</span></a>
+      <div class="nav-links">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#casos">Casos</a>
+        <a href="#experiencia">Experiencia</a>
+      </div>
+      <div class="nav-actions">
+        <a href="joaquin-maggia-portfolio.pdf" class="link-quiet" download data-pdf>CV</a>
+        <a href="#contacto" class="pill">Contacto</a>
+      </div>
+    </nav>
+
+    <div class="hero-copy">
+      <h1 class="grad">Resultados<br>que escalan</h1>
+      <p class="lead">Soy Joaquín Maggia, Paid Media &amp; Social Strategist. Convierto inversión en <b>Meta Ads</b> en resultados medibles y redes sociales en marcas que la gente elige.</p>
+      <a href="#casos" class="badge">Disponible para nuevos proyectos</a>
+    </div>
+
+    <!-- Mockup Ads Manager -->
+    <div class="mock hero-mock" aria-label="Ejemplo de panel de campañas">
+      <aside class="mock-side">
+        <div class="mock-ws"><span class="mock-w">J</span> joaquin <i>›</i></div>
+        <p class="mock-label">Panel</p>
+        <ul>
+          <li class="on"><svg><use href="#i-chart"/></svg> Campañas</li>
+          <li><svg><use href="#i-layers"/></svg> Conjuntos</li>
+          <li><svg><use href="#i-image"/></svg> Anuncios</li>
+          <li><svg><use href="#i-doc"/></svg> Informes</li>
+        </ul>
+      </aside>
+      <div class="mock-main">
+        <div class="mock-bar">
+          <strong>Meta Ads Manager</strong>
+          <span class="mock-new">+ Nueva campaña</span>
+          <span class="mock-tag">Datos de ejemplo</span>
+        </div>
+        <div class="mock-tools">
+          <span class="chip-mini">Últimos 30 días</span>
+          <span class="chip-mini">Filtro</span>
+          <span class="chip-mini">Ordenar</span>
+        </div>
+        <div class="table-wrap">
+          <div class="tbl tbl-hero">
+            <div class="tr th"><span>Campaña</span><span>Gasto</span><span>Tendencia</span><span>Objetivo</span><span>ROAS</span><span>CPA</span><span>Cambio</span></div>
+            <div class="tr"><span>Ventas · Catálogo</span><span>$2,4K</span><span class="bars" data-bars="3,4,4,5,6,5,7,8,9,10,12,13" data-hi="11"></span><span>Compras</span><span>4,2x</span><span>$8,10</span><span class="delta up">+12</span></div>
+            <div class="tr"><span>Retargeting 30d</span><span>$0,9K</span><span class="bars" data-bars="6,6,7,7,8,8,8,9,9,10,10,11" data-hi="11"></span><span>Compras</span><span>6,1x</span><span>$5,40</span><span class="delta up">+4</span></div>
+            <div class="tr"><span>Leads · Formulario</span><span>$1,2K</span><span class="bars" data-bars="5,5,6,5,6,6,5,6,6,6,6,6" data-hi="5"></span><span>Leads</span><span>—</span><span>$2,35</span><span class="delta flat">0</span></div>
+            <div class="tr"><span>Prospección fría</span><span>$3,1K</span><span class="bars" data-bars="12,11,11,10,9,9,8,7,7,6,5,5" data-hi="2"></span><span>Compras</span><span>1,8x</span><span>$19,70</span><span class="delta down">−18</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
-<main id="top">
+<main>
 
-  <!-- HERO -->
-  <section class="hero">
-    <p class="eyebrow">Portfolio — <span data-year></span></p>
-    <h1 class="hero-title">Joaquín<br>Maggia</h1>
-    <div class="hero-bottom">
-      <p class="hero-role">Paid Media &amp; Social Strategist</p>
-      <p class="hero-lead">Convierto inversión en <em>Meta Ads</em> en resultados medibles, y redes sociales en marcas que la gente elige.</p>
-      <div class="hero-ctas">
-        <a href="#casos" class="btn btn-primary">Ver casos</a>
-        <a href="joaquin-maggia-portfolio.pdf" class="btn btn-ghost" download>Descargar CV (PDF)</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 01 SOBRE MÍ -->
+  <!-- ============ SOBRE MÍ ============ -->
   <section id="sobre-mi" class="section">
-    <div class="section-head">
-      <span class="section-num">01</span>
-      <h2>Sobre mí</h2>
+    <div class="wrap">
+      <h2 class="grad h2">Datos y creatividad,<br>en la misma mesa</h2>
+      <div class="card about">
+        <div class="stars" data-stars="22"></div>
+        <div class="about-text">
+          <p class="about-lead">Trabajo en marketing digital con foco en <b>pauta publicitaria en Meta</b> (Facebook e Instagram Ads). Estructuro campañas que escalan, testeo mensajes y entiendo qué hace que una persona frene el scroll y compre.</p>
+          <p>Además de la pauta, gestiono y creo contenido para redes. Hoy co-dirijo <b>Vértice Studio Creativo</b>, donde acompañamos a e-commerce, negocios locales y profesionales en todo su desarrollo digital: desde la estrategia de contenido hasta la optimización de campañas.</p>
+        </div>
+        <dl class="stats">
+          <div><dd class="grad">[X]+</dd><dt>Años en marketing digital</dt></div>
+          <div><dd class="grad">[XX]</dd><dt>Marcas gestionadas</dt></div>
+          <div><dd class="grad">[US$ XXk]</dd><dt>Inversión administrada en Meta</dt></div>
+        </dl>
+      </div>
     </div>
-    <div class="about">
-      <p class="about-lead">Trabajo en marketing digital con foco en <strong>pauta publicitaria en Meta</strong> (Facebook e Instagram Ads). Me interesa la intersección entre datos y creatividad: estructurar campañas que escalen, testear mensajes y entender qué hace que una persona frene el scroll y compre.</p>
-      <p>Además de la pauta, gestiono y creo contenido para redes. Hoy co-dirijo <strong>Vértice Studio Creativo</strong>, donde acompañamos a e-commerce, negocios locales y profesionales en todo su desarrollo digital: desde la estrategia de contenido hasta la optimización de campañas.</p>
-    </div>
-    <dl class="stats">
-      <div class="stat"><dt>Años en marketing digital</dt><dd>[X]+</dd></div>
-      <div class="stat"><dt>Marcas gestionadas</dt><dd>[XX]</dd></div>
-      <div class="stat"><dt>Inversión administrada en Meta</dt><dd>[US$ XXk]</dd></div>
-    </dl>
   </section>
 
-  <!-- 02 SERVICIOS -->
+  <!-- ============ SERVICIOS ============ -->
   <section id="servicios" class="section">
-    <div class="section-head">
-      <span class="section-num">02</span>
-      <h2>Qué hago</h2>
-    </div>
-    <div class="services">
-      <article class="service service-main">
-        <h3>Meta Ads</h3>
-        <p>Mi especialidad. Campañas orientadas a ventas, leads y mensajes con foco en rentabilidad.</p>
-        <ul>
-          <li>Estructura de campañas y presupuestos (CBO / ABO / Advantage+)</li>
-          <li>Segmentación, públicos personalizados y lookalikes</li>
-          <li>Testing creativo y de copies</li>
-          <li>Píxel, Conversions API y eventos</li>
-          <li>Optimización por CPA, ROAS y costo por lead</li>
-        </ul>
-      </article>
-      <article class="service">
-        <h3>Estrategia y gestión de redes</h3>
-        <p>Planificación de contenido, calendario, tono de marca, comunidad y métricas orgánicas.</p>
-      </article>
-      <article class="service">
-        <h3>Creación de contenido</h3>
-        <p>Carruseles, reels, piezas para pauta y copies pensados para cada etapa del embudo.</p>
-      </article>
-      <article class="service">
-        <h3>Reportes y análisis</h3>
-        <p>Reportes claros para el cliente: qué pasó, por qué pasó y qué hacemos el próximo mes.</p>
-      </article>
+    <div class="wrap">
+      <h2 class="grad h2">Qué hago</h2>
+
+      <div class="grid-2">
+        <article class="card pad">
+          <div class="stars" data-stars="18"></div>
+          <h3 class="card-title">Meta Ads</h3>
+          <p class="muted">Mi especialidad. Campañas orientadas a ventas, leads y mensajes con foco en rentabilidad.</p>
+          <ul class="list">
+            <li>Estructura de campañas y presupuestos (CBO / ABO / Advantage+)</li>
+            <li>Segmentación, públicos personalizados y lookalikes</li>
+            <li>Testing creativo y de copies</li>
+            <li>Píxel, Conversions API y eventos</li>
+            <li>Optimización por CPA, ROAS y costo por lead</li>
+          </ul>
+          <div class="float-bubble b1"><svg><use href="#i-chart"/></svg></div>
+        </article>
+
+        <article class="card pad flow">
+          <div class="stars" data-stars="30"></div>
+          <div class="mock-tools big">
+            <span class="chip-mini sel">Objetivo: Ventas</span>
+            <span class="chip-mini sel">Presupuesto: CBO</span>
+            <span class="chip-mini sel">Público: Lookalike 1%</span>
+            <span class="chip-mini solid">Optimizar</span>
+          </div>
+          <div class="chips-flow">
+            <span class="chip on">testing creativo</span>
+            <span class="chip">segmentación</span>
+            <span class="chip">conversions api</span>
+          </div>
+          <div class="table-wrap">
+            <div class="tbl tbl-svc">
+              <div class="tr th"><span></span><span>CTR</span><span>Tendencia</span><span>CPA</span><span>Cambio</span></div>
+              <div class="tr"><span class="ico"><svg><use href="#i-image"/></svg>Creatividad A</span><span>2,8%</span><span class="bars" data-bars="4,5,5,6,7,7,8,9,10" data-hi="8"></span><span>$7,90</span><span class="delta up">+2</span></div>
+              <div class="tr"><span class="ico"><svg><use href="#i-image"/></svg>Creatividad B</span><span>1,6%</span><span class="bars" data-bars="9,9,8,8,7,7,6,6,5" data-hi="3"></span><span>$13,20</span><span class="delta down">−4</span></div>
+            </div>
+          </div>
+          <p class="mini-note">Datos de ejemplo</p>
+        </article>
+      </div>
+
+      <div class="grid-3">
+        <article class="card pad small">
+          <div class="bubble"><svg><use href="#i-people"/></svg></div>
+          <h3 class="card-title sm">Estrategia y gestión de redes</h3>
+          <p class="muted">Planificación de contenido, calendario, tono de marca, comunidad y métricas orgánicas.</p>
+        </article>
+        <article class="card pad small">
+          <div class="bubble"><svg><use href="#i-image"/></svg></div>
+          <h3 class="card-title sm">Creación de contenido</h3>
+          <p class="muted">Carruseles, reels, piezas para pauta y copies pensados para cada etapa del embudo.</p>
+        </article>
+        <article class="card pad small">
+          <div class="bubble"><svg><use href="#i-doc"/></svg></div>
+          <h3 class="card-title sm">Reportes y análisis</h3>
+          <p class="muted">Reportes claros para el cliente: qué pasó, por qué pasó y qué hacemos el próximo mes.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- 03 CASOS -->
+  <!-- ============ CASOS ============ -->
   <section id="casos" class="section">
-    <div class="section-head">
-      <span class="section-num">03</span>
-      <h2>Casos seleccionados</h2>
+    <div class="wrap">
+      <h2 class="grad h2">Casos<br>seleccionados</h2>
+
+      <article class="card case">
+        <div class="stars" data-stars="26"></div>
+        <div class="case-text">
+          <p class="eyebrow">E-commerce · Meta Ads</p>
+          <h3 class="card-title">[Nombre de la marca]</h3>
+          <dl class="steps">
+            <div><dt>Desafío</dt><dd>[Ej: ventas estancadas con un ROAS por debajo del punto de equilibrio.]</dd></div>
+            <div><dt>Estrategia</dt><dd>[Ej: reestructura en campaña Advantage+, testing de 6 creatividades UGC y retargeting por catálogo.]</dd></div>
+          </dl>
+          <div class="kpis">
+            <div><dd class="grad">[X,X]x</dd><dt>ROAS</dt></div>
+            <div><dd class="grad">-[XX]%</dd><dt>Costo por compra</dt></div>
+            <div><dd class="grad">+[XX]%</dd><dt>Facturación</dt></div>
+          </div>
+        </div>
+        <div class="case-art" aria-label="Espacio para captura o creatividad">
+          <div class="art-window"><i></i><i></i><i></i></div>
+          <div class="art-body">
+            <div class="donut" style="--a:48;--b:30"></div>
+            <div class="art-rows"><b></b><b></b><b></b><b></b></div>
+          </div>
+          <div class="float-bubble b2"><svg><use href="#i-chart"/></svg></div>
+          <div class="float-bubble b3"><svg><use href="#i-doc"/></svg></div>
+          <span class="art-note">Reemplazar por captura / creatividad</span>
+        </div>
+      </article>
+
+      <article class="card case">
+        <div class="stars" data-stars="26"></div>
+        <div class="case-text">
+          <p class="eyebrow">Negocio local · Leads por WhatsApp</p>
+          <h3 class="card-title">[Nombre del negocio]</h3>
+          <dl class="steps">
+            <div><dt>Desafío</dt><dd>[Ej: dependencia del boca a boca y agenda con baja ocupación.]</dd></div>
+            <div><dt>Estrategia</dt><dd>[Ej: campaña de mensajes segmentada por radio, oferta de entrada y contenido de prueba social.]</dd></div>
+          </dl>
+          <div class="kpis">
+            <div><dd class="grad">[XXX]</dd><dt>Conversaciones</dt></div>
+            <div><dd class="grad">$[XXX]</dd><dt>Costo por mensaje</dt></div>
+            <div><dd class="grad">[XX]%</dd><dt>Tasa de cierre</dt></div>
+          </div>
+        </div>
+        <div class="case-art" aria-label="Espacio para captura o creatividad">
+          <div class="art-window"><i></i><i></i><i></i></div>
+          <div class="art-body">
+            <div class="donut" style="--a:35;--b:40"></div>
+            <div class="art-rows"><b></b><b></b><b></b><b></b></div>
+          </div>
+          <div class="float-bubble b2"><svg><use href="#i-people"/></svg></div>
+          <div class="float-bubble b3"><svg><use href="#i-chart"/></svg></div>
+          <span class="art-note">Reemplazar por captura / creatividad</span>
+        </div>
+      </article>
+
+      <article class="card case">
+        <div class="stars" data-stars="26"></div>
+        <div class="case-text">
+          <p class="eyebrow">Servicios profesionales · Contenido + Pauta</p>
+          <h3 class="card-title">[Nombre del cliente]</h3>
+          <dl class="steps">
+            <div><dt>Desafío</dt><dd>[Ej: marca personal sin posicionamiento ni flujo constante de consultas.]</dd></div>
+            <div><dt>Estrategia</dt><dd>[Ej: línea editorial de carruseles educativos + pauta de leads con formulario instantáneo.]</dd></div>
+          </dl>
+          <div class="kpis">
+            <div><dd class="grad">+[X.XXX]</dd><dt>Seguidores</dt></div>
+            <div><dd class="grad">[XX]%</dd><dt>Engagement</dt></div>
+            <div><dd class="grad">[XXX]</dd><dt>Leads calificados</dt></div>
+          </div>
+        </div>
+        <div class="case-art" aria-label="Espacio para captura o creatividad">
+          <div class="art-window"><i></i><i></i><i></i></div>
+          <div class="art-body">
+            <div class="donut" style="--a:30;--b:25"></div>
+            <div class="art-rows"><b></b><b></b><b></b><b></b></div>
+          </div>
+          <div class="float-bubble b2"><svg><use href="#i-image"/></svg></div>
+          <div class="float-bubble b3"><svg><use href="#i-people"/></svg></div>
+          <span class="art-note">Reemplazar por captura / creatividad</span>
+        </div>
+      </article>
     </div>
-
-    <article class="case">
-      <div class="case-media" aria-label="Espacio para captura o creatividad">Reemplazar por captura / creatividad</div>
-      <div class="case-body">
-        <p class="case-tag">E-commerce · Meta Ads</p>
-        <h3>[Nombre de la marca]</h3>
-        <dl class="case-steps">
-          <div><dt>Desafío</dt><dd>[Ej: ventas estancadas con un ROAS por debajo del punto de equilibrio.]</dd></div>
-          <div><dt>Estrategia</dt><dd>[Ej: reestructura en campaña Advantage+, testing de 6 creatividades UGC y retargeting por catálogo.]</dd></div>
-        </dl>
-        <dl class="kpis">
-          <div><dd>[X,X]x</dd><dt>ROAS</dt></div>
-          <div><dd>-[XX]%</dd><dt>Costo por compra</dt></div>
-          <div><dd>+[XX]%</dd><dt>Facturación</dt></div>
-        </dl>
-      </div>
-    </article>
-
-    <article class="case">
-      <div class="case-media" aria-label="Espacio para captura o creatividad">Reemplazar por captura / creatividad</div>
-      <div class="case-body">
-        <p class="case-tag">Negocio local · Leads por WhatsApp</p>
-        <h3>[Nombre del negocio]</h3>
-        <dl class="case-steps">
-          <div><dt>Desafío</dt><dd>[Ej: dependencia del boca a boca y agenda con baja ocupación.]</dd></div>
-          <div><dt>Estrategia</dt><dd>[Ej: campaña de mensajes segmentada por radio, oferta de entrada y contenido de prueba social.]</dd></div>
-        </dl>
-        <dl class="kpis">
-          <div><dd>[XXX]</dd><dt>Conversaciones</dt></div>
-          <div><dd>$[XXX]</dd><dt>Costo por mensaje</dt></div>
-          <div><dd>[XX]%</dd><dt>Tasa de cierre</dt></div>
-        </dl>
-      </div>
-    </article>
-
-    <article class="case">
-      <div class="case-media" aria-label="Espacio para captura o creatividad">Reemplazar por captura / creatividad</div>
-      <div class="case-body">
-        <p class="case-tag">Servicios profesionales · Contenido + Pauta</p>
-        <h3>[Nombre del cliente]</h3>
-        <dl class="case-steps">
-          <div><dt>Desafío</dt><dd>[Ej: marca personal sin posicionamiento ni flujo constante de consultas.]</dd></div>
-          <div><dt>Estrategia</dt><dd>[Ej: línea editorial de carruseles educativos + pauta de leads con formulario instantáneo.]</dd></div>
-        </dl>
-        <dl class="kpis">
-          <div><dd>+[X.XXX]</dd><dt>Seguidores</dt></div>
-          <div><dd>[XX]%</dd><dt>Engagement</dt></div>
-          <div><dd>[XXX]</dd><dt>Leads calificados</dt></div>
-        </dl>
-      </div>
-    </article>
   </section>
 
-  <!-- 04 EXPERIENCIA -->
+  <!-- ============ EXPERIENCIA ============ -->
   <section id="experiencia" class="section">
-    <div class="section-head">
-      <span class="section-num">04</span>
-      <h2>Experiencia</h2>
-    </div>
-    <ol class="timeline">
-      <li class="job">
+    <div class="wrap">
+      <h2 class="grad h2">Experiencia</h2>
+
+      <article class="card job">
+        <div class="stars" data-stars="16"></div>
         <p class="job-date">[Año] — Actualidad</p>
         <div>
-          <h3>Co-fundador &amp; Paid Media Lead</h3>
+          <h3 class="card-title sm">Co-fundador &amp; Paid Media Lead</h3>
           <p class="job-company">Vértice Studio Creativo</p>
-          <ul>
+          <ul class="list">
             <li>Planificación, ejecución y optimización de campañas de Meta Ads para [XX] clientes.</li>
             <li>Gestión integral de redes: estrategia, calendario de contenido y comunidad.</li>
             <li>Creación de piezas y copies para orgánico y pauta.</li>
             <li>Reportes mensuales de resultados y propuestas de mejora a clientes.</li>
           </ul>
         </div>
-      </li>
-      <li class="job">
+      </article>
+
+      <article class="card job">
         <p class="job-date">[Año] — [Año]</p>
         <div>
-          <h3>[Puesto anterior]</h3>
+          <h3 class="card-title sm">[Puesto anterior]</h3>
           <p class="job-company">[Empresa / Freelance]</p>
-          <ul>
+          <ul class="list">
             <li>[Logro o responsabilidad principal]</li>
             <li>[Logro o responsabilidad principal]</li>
           </ul>
         </div>
-      </li>
-    </ol>
+      </article>
+    </div>
   </section>
 
-  <!-- 05 HERRAMIENTAS -->
+  <!-- ============ HERRAMIENTAS ============ -->
   <section id="herramientas" class="section">
-    <div class="section-head">
-      <span class="section-num">05</span>
-      <h2>Herramientas</h2>
+    <div class="wrap">
+      <h2 class="grad h2">Herramientas</h2>
+      <ul class="tools">
+        <li>Meta Ads Manager</li>
+        <li>Meta Business Suite</li>
+        <li>Events Manager · Píxel · CAPI</li>
+        <li>Google Analytics 4</li>
+        <li>Canva</li>
+        <li>CapCut</li>
+        <li>Notion</li>
+        <li>IA generativa (texto e imagen)</li>
+        <li>Shopify · Tiendanube</li>
+      </ul>
     </div>
-    <ul class="tools">
-      <li>Meta Ads Manager</li>
-      <li>Meta Business Suite</li>
-      <li>Events Manager · Píxel · CAPI</li>
-      <li>Google Analytics 4</li>
-      <li>Canva</li>
-      <li>CapCut</li>
-      <li>Notion</li>
-      <li>IA generativa (texto e imagen)</li>
-      <li>Shopify · Tiendanube</li>
-    </ul>
   </section>
 
-  <!-- 06 CONTACTO -->
-  <section id="contacto" class="section contact">
-    <div class="section-head">
-      <span class="section-num">06</span>
-      <h2>Contacto</h2>
+  <!-- ============ CONTACTO ============ -->
+  <section id="contacto" class="section cta-section">
+    <div class="wrap">
+      <div class="cta">
+        <div class="stars" data-stars="60"></div>
+        <div class="cta-lines top" data-lines="flip"></div>
+        <div class="cta-lines bottom" data-lines></div>
+        <div class="cta-glow top"></div>
+        <div class="cta-glow bottom"></div>
+        <div class="app-icon"><span>JM</span></div>
+        <h2 class="grad h2 cta-title">Escalemos tu marca.<br>Desde hoy.</h2>
+        <p class="lead">Contame qué querés lograr y armamos un plan de pauta y contenido a tu medida.</p>
+        <div class="capsule">
+          <span class="capsule-text">joaquin.maggia1@gmail.com</span>
+          <a href="mailto:joaquin.maggia1@gmail.com" class="capsule-btn">Escribime</a>
+        </div>
+        <p class="mini-note">Respondo en menos de 24 hs</p>
+      </div>
     </div>
-    <p class="contact-title">¿Hablamos de cómo hacer crecer tu marca?</p>
-    <ul class="contact-list">
-      <li><span>Email</span><a href="mailto:joaquin.maggia1@gmail.com">joaquin.maggia1@gmail.com</a></li>
-      <li><span>WhatsApp</span><a href="https://wa.me/[NUMERO]">[+54 9 XXX XXX XXXX]</a></li>
-      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/[usuario]">linkedin.com/in/[usuario]</a></li>
-      <li><span>Instagram</span><a href="https://www.instagram.com/[usuario]">@[usuario]</a></li>
-    </ul>
   </section>
-
 </main>
 
 <footer class="footer">
-  <p>© <span data-year></span> Joaquín Maggia</p>
-  <p>Paid Media &amp; Social Strategist</p>
+  <div class="wrap footer-grid">
+    <div class="foot-brand">
+      <a href="#top" class="logo"><span class="logo-mark">JM</span><span class="logo-text">joaquín</span></a>
+      <p>Paid Media &amp; Social Strategist.<br>Meta Ads, redes y contenido.</p>
+      <p class="copy">© <span data-year></span> Joaquín Maggia</p>
+    </div>
+    <div class="foot-col">
+      <h4>Portfolio</h4>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#casos">Casos</a>
+      <a href="#experiencia">Experiencia</a>
+    </div>
+    <div class="foot-col">
+      <h4>Servicios</h4>
+      <span>Meta Ads</span>
+      <span>Gestión de redes</span>
+      <span>Creación de contenido</span>
+      <span>Reportes</span>
+    </div>
+    <div class="card touch">
+      <h4>Contacto</h4>
+      <ul>
+        <li><span>Email</span><a href="mailto:joaquin.maggia1@gmail.com">joaquin.maggia1@gmail.com</a></li>
+        <li><span>WhatsApp</span><a href="https://wa.me/[NUMERO]">[+54 9 XXX XXX XXXX]</a></li>
+        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/[usuario]">linkedin.com/in/[usuario]</a></li>
+        <li><span>Instagram</span><a href="https://www.instagram.com/[usuario]">@[usuario]</a></li>
+      </ul>
+    </div>
+  </div>
 </footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-9 9"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.2a3.2 3.2 0 0 1 0 5.6M18 14.4c1.8.8 3 2.7 3 5.6"/></symbol>
+</svg>
 
 <script src="script.js"></script>
 </body>
