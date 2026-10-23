@@ -16,7 +16,7 @@ Todo lo que está entre corchetes `[ ... ]` es un placeholder:
 - **Casos 2 y 3**: nombre del cliente, desafío, estrategia y los 3 KPIs de cada caso.
   Los recuadros "Reemplazar por captura / creatividad" son para un `<img>` (captura de Ads Manager, creatividad o feed).
 - **Experiencia**: año de inicio en Vértice y experiencia previa.
-- **Contacto**: WhatsApp (`https://wa.me/549XXXXXXXXXX`), LinkedIn e Instagram.
+- **Contacto**: falta tu usuario de LinkedIn. WhatsApp e Instagram ya están cargados.
 
 ## Regenerar el PDF
 
