@@ -3,14 +3,14 @@ import Script from 'next/script'
 import './globals.css'
 
 export const metadata = {
-  title: 'KRIPTONITA — Escalamos casinos online con paid media de alto rendimiento',
-  description: 'Operamos campañas en Meta, Google y TikTok para operadores de iGaming. +47 casinos escalados, CPA promedio reducido −63%, ROAS sostenido sobre 8.4x.',
+  title: 'KRIPTONITA — Escalamos tu casino',
+  description: 'Escalamos tu casino. Somos serios y tenemos experiencia en el nicho. La seriedad y nuestra actitud reservada nos caracterizan.',
   icons: {
     icon: '/logo-isotipo.png',
   },
   openGraph: {
-    title: 'KRIPTONITA — Escalamos casinos online con paid media de alto rendimiento',
-    description: 'Performance marketing para iGaming. Paid media de alto rendimiento, no de suerte.',
+    title: 'KRIPTONITA — Escalamos tu casino',
+    description: 'Escalamos tu casino. Seriedad y experiencia en el nicho.',
     type: 'website',
   },
 }
