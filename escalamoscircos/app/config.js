@@ -5,5 +5,5 @@ export const CONFIG = {
   numero:        "5493533405062",
   mensaje:       "Hola Kriptonita, quiero escalar mi casino online",
   marca:         "KRIPTONITA",
-  META_PIXEL_ID: "1834084604407611",
+  META_PIXEL_ID: "953242590953239",
 };
