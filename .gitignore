@@ -7,3 +7,6 @@ token.json
 *.log
 .DS_Store
 downloads/
+
+# Biblioteca de recursos (binarios locales)
+recursos/
