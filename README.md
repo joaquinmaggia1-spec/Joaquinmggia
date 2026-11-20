@@ -61,6 +61,9 @@ bash scripts/setup-tools.sh --check   # solo verifica
 
 Documentación completa: [docs/HERRAMIENTAS_REELS.md](./docs/HERRAMIENTAS_REELS.md)
 
+Flujo de generación con IA (Higgsfield: GPT Image 2.6 para imágenes y Seedance 2.5 para
+videos, con audio de referencia obligatorio): [docs/FLUJO_GENERACION_IA.md](./docs/FLUJO_GENERACION_IA.md)
+
 ## Configuración
 
 El archivo `config.yaml` contiene:
