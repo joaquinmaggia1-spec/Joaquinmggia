@@ -6,7 +6,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "tools:check": "bash scripts/setup-tools.sh --check",
+    "tools:setup": "bash scripts/setup-tools.sh"
   },
   "dependencies": {
     "express": "^4.18.2",

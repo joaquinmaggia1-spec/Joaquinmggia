@@ -10,3 +10,6 @@ downloads/
 
 # Biblioteca de recursos (binarios locales)
 recursos/
+
+# Medios del pipeline de reels (descargas y renders)
+reels/media/

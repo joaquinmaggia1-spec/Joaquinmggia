@@ -49,6 +49,18 @@ npm run dev
 http://localhost:3000
 ```
 
+## Herramientas para reels
+
+El pipeline de generación de reels usa **ffmpeg** y **yt-dlp**. Para instalarlas y
+verificarlas:
+
+```bash
+bash scripts/setup-tools.sh      # instala lo que falte y verifica
+bash scripts/setup-tools.sh --check   # solo verifica
+```
+
+Documentación completa: [docs/HERRAMIENTAS_REELS.md](./docs/HERRAMIENTAS_REELS.md)
+
 ## Configuración
 
 El archivo `config.yaml` contiene:
