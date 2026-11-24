@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Microcréditos con DNI | Solicitá tu crédito</title>
+  <meta name="description" content="Microcréditos al alcance de un mensaje. Solo necesitás tu DNI y pagás en cuotas fijas.">
+  <style>
+    /* ==== Tokens de color: cambiá estos valores para ajustar la marca ==== */
+    :root {
+      --bg-1: #0b1d3a;
+      --bg-2: #13315c;
+      --accent: #2ee59d;
+      --accent-dark: #17b87a;
+      --text: #ffffff;
+      --muted: #b9c7dc;
+      --shadow: rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; }
+
+    body {
+      background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      color: var(--text);
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    /* ---- Fondo animado: círculos flotantes ---- */
+    .bg-orbs span {
+      position: fixed;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: .12;
+      filter: blur(40px);
+      animation: float 14s ease-in-out infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .bg-orbs span:nth-child(1) { width: 280px; height: 280px; top: -60px; left: -80px; }
+    .bg-orbs span:nth-child(2) { width: 220px; height: 220px; bottom: -40px; right: -60px; animation-delay: -5s; }
+    .bg-orbs span:nth-child(3) { width: 140px; height: 140px; top: 40%; right: 15%; animation-delay: -9s; }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50%      { transform: translate(30px, -40px); }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 640px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid rgba(46, 229, 157, .5);
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .4px;
+      animation: fadeUp .8s ease both;
+    }
+
+    h1 {
+      margin: 22px 0 16px;
+      font-size: clamp(34px, 8vw, 58px);
+      line-height: 1.1;
+      font-weight: 800;
+      animation: fadeUp .8s .15s ease both;
+    }
+    h1 .hl {
+      color: var(--accent);
+      display: inline-block;
+    }
+
+    .subtitle {
+      font-size: clamp(17px, 4vw, 20px);
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 28px;
+      animation: fadeUp .8s .3s ease both;
+    }
+
+    .features {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 36px;
+      animation: fadeUp .8s .45s ease both;
+    }
+    .features li {
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .12);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .features li::before {
+      content: "✓ ";
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    /* ---- CTA grande ---- */
+    .cta {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 26px 20px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #06241a;
+      text-decoration: none;
+      font-size: clamp(20px, 5vw, 26px);
+      font-weight: 900;
+      line-height: 1.25;
+      text-transform: uppercase;
+      letter-spacing: .3px;
+      box-shadow: 0 14px 40px var(--shadow), 0 0 0 0 rgba(46, 229, 157, .6);
+      animation: fadeUp .8s .6s ease both, pulse 2.2s 1.5s infinite;
+      transition: transform .2s ease;
+    }
+    .cta:hover, .cta:focus-visible { transform: translateY(-3px) scale(1.01); }
+    .cta:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+    .cta small {
+      display: block;
+      margin-top: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: none;
+      opacity: .8;
+    }
+    .cta .arrow {
+      display: inline-block;
+      animation: nudge 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%   { box-shadow: 0 14px 40px var(--shadow), 0 0 0 0 rgba(46, 229, 157, .6); }
+      70%  { box-shadow: 0 14px 40px var(--shadow), 0 0 0 22px rgba(46, 229, 157, 0); }
+      100% { box-shadow: 0 14px 40px var(--shadow), 0 0 0 0 rgba(46, 229, 157, 0); }
+    }
+
+    @keyframes nudge {
+      0%, 100% { transform: translateX(0); }
+      50%      { transform: translateX(6px); }
+    }
+
+    .fine-print {
+      margin-top: 22px;
+      font-size: 13px;
+      color: var(--muted);
+      animation: fadeUp .8s .8s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 20px 16px; }
+      .features li { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+
+  <main>
+    <span class="badge">Sin trámites complicados</span>
+
+    <h1>Microcréditos <span class="hl">al alcance de un mensaje</span></h1>
+
+    <p class="subtitle">Solo necesitás tu DNI. Recibí tu dinero rápido y devolvelo en cuotas fijas, siempre sabiendo cuánto pagás.</p>
+
+    <ul class="features">
+      <li>Solo con DNI</li>
+      <li>Cuotas fijas</li>
+      <li>Respuesta rápida</li>
+    </ul>
+
+    <!-- Link del botón: cambiá esta URL si querés apuntar a otra página de solicitud -->
+    <a class="cta" href="https://creditoahora.com.ar/activar/HBuIBJxhiJcBBct1NEHZqdjtOLwtK3bbXTgEd-WK9Is" rel="noopener">
+      Click aquí para solicitar tu crédito <span class="arrow">→</span>
+      <small>Es rápido, simple y 100% online</small>
+    </a>
+
+    <p class="fine-print">Sujeto a evaluación crediticia. Consultá condiciones antes de solicitar.</p>
+  </main>
+</body>
+</html>
