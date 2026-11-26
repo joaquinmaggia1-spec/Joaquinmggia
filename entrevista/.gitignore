@@ -1,0 +1,5 @@
+fuente/
+.hyperframes/
+node_modules/
+work-*/
+.*.hf-transaction-*/
