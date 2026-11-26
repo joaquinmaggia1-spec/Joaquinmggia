@@ -36,3 +36,9 @@ Subtítulos palabra por palabra en toda la voz, con las palabras clave en verde 
 ## Color
 
 LUT propio `lut/Vertice_Cine.cube` (teal & orange suave, contraste en S, piel protegida) + nitidez (unsharp). Sirve también en CapCut, Premiere o DaVinci.
+
+## Versión 2 (correcciones)
+
+- **Estabilización:** cada toma pasó por vidstab (2 pasadas, suavizado 90 y zoom 8 %; la toma 1, que tiene un giro de cámara, con zoom adaptativo). El temblor del fondo bajó entre 30 % y 67 % según la toma.
+- **Subtítulos sin tapar la cara:** se detectó la cara cada 0,2 s y cada subtítulo y gráfico se ubica automáticamente debajo del rostro (contando pelo, barba y los acercamientos de cámara). El título de apertura se quitó porque en la toma 1 la cara ocupa casi todo el cuadro; ahí el gancho lo llevan los subtítulos.
+- **Subtítulos a tiempo:** cada palabra se ancla al inicio real del sonido (había desfases de hasta 0,36 s) y cada bloque aparece 0,18 s antes de la frase.
