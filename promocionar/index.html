@@ -1,0 +1,76 @@
+<!doctype html>
+<html
+  lang="es"
+  data-composition-variables='[
+  {"id":"color-accent","type":"color","label":"Acento neón","default":"#D4FF3A"},
+  {"id":"color-alert","type":"color","label":"Alerta","default":"#FF3B4E"},
+  {"id":"color-ground","type":"color","label":"Fondo","default":"#0B0B0C"},
+  {"id":"font-display","type":"string","label":"Fuente","default":"Montserrat"}
+]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      :root { --color-accent: #d4ff3a; --color-alert: #ff3b4e; --color-ground: #0b0b0c; --font-display: "Montserrat"; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--color-ground); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--color-ground); }
+      .vw { position: absolute; inset: 0; transform-origin: 50% 40%; }
+      .vw video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="35" data-width="1080" data-height="1920">
+      <!-- FOOTAGE (Mixkit) -->
+      <div class="vw" id="w-h1" style="z-index:1"><video id="v-h1" class="clip" src="assets/video/h1-toque.mp4" data-start="0" data-duration="1.4" data-track-index="0" muted playsinline></video></div>
+      <div class="vw" id="w-h2" style="z-index:1"><video id="v-h2" class="clip" src="assets/video/h2-frustrada.mp4" data-start="1.4" data-duration="1" data-track-index="0" muted playsinline></video></div>
+      <div class="vw" id="w-o" style="z-index:1"><video id="v-o" class="clip" src="assets/video/bg-objetivo.mp4" data-start="2.4" data-duration="6" data-track-index="0" muted playsinline></video></div>
+      <div class="vw" id="w-p" style="z-index:1"><video id="v-p" class="clip" src="assets/video/bg-publico.mp4" data-start="8.4" data-duration="6.8" data-track-index="0" muted playsinline></video></div>
+      <div class="vw" id="w-b" style="z-index:1"><video id="v-b" class="clip" src="assets/video/bg-presupuesto.mp4" data-start="15.2" data-duration="7" data-track-index="0" muted playsinline></video></div>
+      <div class="vw" id="w-c1" style="z-index:1"><video id="v-c1" class="clip" src="assets/video/c1-compu.mp4" data-start="22.2" data-duration="4.2" data-track-index="0" muted playsinline></video></div>
+      <div class="vw" id="w-c2" style="z-index:1"><video id="v-c2" class="clip" src="assets/video/c2-compu.mp4" data-start="26.4" data-duration="3.8" data-track-index="0" muted playsinline></video></div>
+
+      <!-- GRAPHICS -->
+      <div id="gancho" data-composition-id="gancho" data-composition-src="compositions/gancho.html" data-start="0" data-duration="2.4" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:10"></div>
+      <div id="objetivo" data-composition-id="objetivo" data-composition-src="compositions/objetivo.html" data-start="2.4" data-duration="6" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:10"></div>
+      <div id="publico" data-composition-id="publico" data-composition-src="compositions/publico.html" data-start="8.4" data-duration="6.8" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:10"></div>
+      <div id="presupuesto" data-composition-id="presupuesto" data-composition-src="compositions/presupuesto.html" data-start="15.2" data-duration="7" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:10"></div>
+      <div id="campana" data-composition-id="campana" data-composition-src="compositions/campana.html" data-start="22.2" data-duration="8" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:10"></div>
+      <div id="cierre" data-composition-id="cierre" data-composition-src="compositions/cierre.html" data-start="30.2" data-duration="4.8" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:12"></div>
+
+      <!-- SFX (Pixabay, bundled) -->
+      <audio id="sfx-tap" src="assets/sfx/click.mp3" data-start="0.93" data-duration="0.4" data-track-index="3" data-volume="0.9"></audio>
+      <audio id="sfx-cut1" src="assets/sfx/whoosh-short.mp3" data-start="1.38" data-duration="0.57" data-track-index="4" data-volume="0.6"></audio>
+      <audio id="sfx-err1" src="assets/sfx/error.mp3" data-start="1.62" data-duration="0.7" data-track-index="3" data-volume="0.45" data-fade-out="0.2"></audio>
+      <audio id="sfx-cut2" src="assets/sfx/whoosh.mp3" data-start="2.38" data-duration="0.57" data-track-index="4" data-volume="0.6"></audio>
+      <audio id="sfx-o1" src="assets/sfx/pop.mp3" data-start="3.0" data-duration="0.4" data-track-index="3" data-volume="0.5"></audio>
+      <audio id="sfx-o2" src="assets/sfx/pop.mp3" data-start="3.4" data-duration="0.4" data-track-index="3" data-volume="0.5"></audio>
+      <audio id="sfx-o3" src="assets/sfx/pop.mp3" data-start="3.8" data-duration="0.4" data-track-index="3" data-volume="0.5"></audio>
+      <audio id="sfx-err2" src="assets/sfx/error.mp3" data-start="5.0" data-duration="0.7" data-track-index="3" data-volume="0.45" data-fade-out="0.2"></audio>
+      <audio id="sfx-cut3" src="assets/sfx/whoosh-short.mp3" data-start="8.38" data-duration="0.57" data-track-index="4" data-volume="0.6"></audio>
+      <audio id="sfx-sel" src="assets/sfx/click-soft.mp3" data-start="9.6" data-duration="0.36" data-track-index="3" data-volume="0.9"></audio>
+      <audio id="sfx-err3" src="assets/sfx/error.mp3" data-start="12.4" data-duration="0.7" data-track-index="3" data-volume="0.45" data-fade-out="0.2"></audio>
+      <audio id="sfx-cut4" src="assets/sfx/whoosh.mp3" data-start="15.18" data-duration="0.57" data-track-index="4" data-volume="0.6"></audio>
+      <audio id="sfx-err4" src="assets/sfx/glitch-1.mp3" data-start="18.6" data-duration="0.6" data-track-index="3" data-volume="0.4" data-fade-out="0.2"></audio>
+      <audio id="sfx-cut5" src="assets/sfx/whoosh-short.mp3" data-start="22.18" data-duration="0.57" data-track-index="4" data-volume="0.6"></audio>
+      <audio id="sfx-cut6" src="assets/sfx/whoosh.mp3" data-start="26.38" data-duration="0.57" data-track-index="4" data-volume="0.5"></audio>
+      <audio id="sfx-marca" src="assets/sfx/impact-bass-1.mp3" data-start="30.22" data-duration="2.1" data-track-index="5" data-volume="0.8"></audio>
+      <audio id="sfx-type" src="assets/sfx/key-press.mp3" data-start="31.5" data-duration="0.4" data-track-index="3" data-volume="0.6"></audio>
+      <audio id="sfx-send" src="assets/sfx/click-soft.mp3" data-start="32.42" data-duration="0.36" data-track-index="3" data-volume="0.9"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.set("#w-h1", { scale: 1 }, 0).set("#w-h1", { scale: 1.1 }, 0.95);
+      tl.set("#w-h2", { scale: 1.08 }, 1.4).set("#w-h2", { scale: 1.2 }, 1.62);
+      tl.fromTo("#w-o", { scale: 1.06 }, { scale: 1, duration: 6, ease: "none" }, 2.4);
+      tl.fromTo("#w-p", { scale: 1.06 }, { scale: 1, duration: 6.8, ease: "none" }, 8.4);
+      tl.fromTo("#w-b", { scale: 1.06 }, { scale: 1, duration: 7, ease: "none" }, 15.2);
+      tl.set("#w-c1", { scale: 1 }, 22.2).set("#w-c1", { scale: 1.12 }, 24.6);
+      tl.set("#w-c2", { scale: 1 }, 26.4).set("#w-c2", { scale: 1.1 }, 28.0);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
