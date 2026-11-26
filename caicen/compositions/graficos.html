@@ -1,0 +1,96 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; }
+    .gb { position: absolute; left: 120px; width: 768px; display: flex; flex-direction: column; align-items: center; gap: 14px; transform-origin: 50% 0; text-align: center; }
+    .w { display: inline-block; }
+    .sm { font-weight: 800; font-size: 54px; color: #fff; line-height: 1.08; text-shadow: 0 4px 0 rgba(0,0,0,.6), 0 8px 24px rgba(0,0,0,.6); }
+    .neon { font-weight: 900; color: #d4ff3a; letter-spacing: -.035em; line-height: .95; text-shadow: 0 0 26px rgba(212,255,58,.5), 0 6px 22px rgba(0,0,0,.6); }
+    .pill { padding: 12px 28px; border-radius: 40px; background: #d4ff3a; color: #0b0b0c; font-weight: 900; font-size: 40px; box-shadow: 0 0 26px rgba(212,255,58,.45); }
+    .chip { width: 708px; min-height: 88px; border-radius: 20px; display: flex; align-items: center; gap: 20px; padding: 10px 26px; color: #fff; font-weight: 800; font-size: 34px; box-shadow: 0 10px 30px rgba(0,0,0,.45); text-align: left; }
+    .chip.ok { background: rgba(10,14,6,.88); border: 2px solid rgba(212,255,58,.7); }
+    .chip.bad { background: rgba(30,6,10,.9); border: 2px solid rgba(255,59,78,.7); }
+    .chip.qn { background: rgba(11,11,12,.86); border: 2px solid rgba(255,255,255,.3); }
+    .chip.qn b { flex: 0 0 52px; height: 52px; border-radius: 50%; background: #d4ff3a; color: #0b0b0c; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 900; }
+    .chip svg { flex: 0 0 42px; }
+    .duo { display: flex; gap: 22px; }
+    .card { width: 340px; height: 170px; border-radius: 22px; background: rgba(11,11,12,.86); border: 2px solid rgba(212,255,58,.55); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: #fff; font-weight: 800; font-size: 32px; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+    .quote { width: 740px; padding: 26px 34px 30px; border-radius: 24px; background: rgba(11,11,12,.86); border-left: 8px solid #d4ff3a; color: #fff; font-weight: 800; font-size: 40px; line-height: 1.22; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+    .quote .qm { font-family: "Playfair Display", serif; color: #d4ff3a; font-size: 110px; line-height: .5; height: 44px; }
+    .quote .hl { margin-top: 8px; }
+    .reto { display: flex; align-items: center; gap: 18px; padding: 18px 30px; border-radius: 22px; background: #d4ff3a; color: #0b0b0c; font-weight: 900; font-size: 40px; box-shadow: 0 0 30px rgba(212,255,58,.5); }
+    .reto small { font-size: 26px; padding: 6px 12px; border-radius: 10px; background: #0b0b0c; color: #d4ff3a; letter-spacing: .1em; }
+    .strike-wrap { position: relative; display: inline-block; }
+    .strike-wrap i { position: absolute; left: -4%; right: -4%; top: 52%; height: 10px; border-radius: 5px; background: #ff3b4e; transform-origin: 0 50%; transform: scaleX(0); }
+    .flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+    .endbg { position: absolute; inset: 0; background: #0b0b0c; }
+    .endb { position: absolute; left: 120px; width: 768px; top: 600px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+  </style>
+  <div id="root" data-composition-id="graficos" data-width="1080" data-height="1920">
+    <div id="g1" class="clip" data-start="0.0" data-duration="5.95"><div class="gb" style="top:732px; transform: scale(1.000)"><div class="sm"><span class="w">¿Se</span> <span class="w">fue</span></div><div class="neon" style="font-size:112px"><span class="w">sin comprar?</span></div></div></div>
+    <div id="g2" class="clip" data-start="6.1" data-duration="4.75"><div class="gb" style="top:744px; transform: scale(1.000)"><div class="chip bad" id="g2a"><svg width="42" height="42" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff3b4e"/><path d="M16 16 L32 32 M32 16 L16 32" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg><span>No fue el precio</span></div><div class="chip ok" id="g2b"><svg width="42" height="42" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#d4ff3a"/><path d="M14 25 L21 32 L34 17" stroke="#0b0b0c" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>No descubriste qué necesitaba</span></div></div></div>
+    <div id="g3" class="clip" data-start="10.95" data-duration="4.6"><div class="gb" style="top:754px; transform: scale(1.000)"><div class="sm" id="g3a" style="font-size:46px">1ª C del método</div><div class="neon" id="g3b" style="font-size:150px">CAICEN</div><div class="pill" id="g3c">Conocimiento del cliente</div></div></div>
+    <div id="g4" class="clip" data-start="15.7" data-duration="6.9"><div class="gb" style="top:717px; transform: scale(1.000)"><div class="sm" id="g4t" style="font-size:44px">2 personas · 1 celular</div><div class="duo"><div class="card" id="g4a"><svg width="74" height="60" viewBox="0 0 74 60"><rect x="4" y="14" width="66" height="42" rx="9" fill="none" stroke="#d4ff3a" stroke-width="5"/><path d="M24 14 L29 5 H45 L50 14" fill="none" stroke="#d4ff3a" stroke-width="5" stroke-linejoin="round"/><circle cx="37" cy="35" r="11" fill="none" stroke="#d4ff3a" stroke-width="5"/></svg><span>Buenas fotos</span></div><div class="card" id="g4b"><svg width="80" height="44" viewBox="0 0 80 44"><rect x="3" y="3" width="66" height="38" rx="8" fill="none" stroke="#d4ff3a" stroke-width="5"/><rect x="71" y="14" width="7" height="16" rx="2" fill="#d4ff3a"/><rect x="11" y="11" width="50" height="22" rx="3" fill="#d4ff3a"/></svg><span>Batería todo el día</span></div></div></div></div>
+    <div id="g5" class="clip" data-start="22.7" data-duration="3.3"><div class="gb" style="top:758px; transform: scale(1.000)"><div class="neon" id="g5a" style="font-size:150px;line-height:.8">≠</div><div class="neon" id="g5b" style="font-size:76px">No necesariamente</div></div></div>
+    <div id="g6" class="clip" data-start="27.0" data-duration="10.3"><div class="gb" style="top:687px; transform: scale(0.858)"><div class="sm" id="g6t" style="font-size:44px">Antes de mostrar productos:</div><div class="chip qn" id="g6a"><b>1</b><span>¿Para qué lo necesitás?</span></div><div class="chip qn" id="g6b"><b>2</b><span>¿Qué es lo más importante?</span></div><div class="chip qn" id="g6c"><b>3</b><span>¿Qué problema querés resolver?</span></div><div class="neon" id="g6d" style="font-size:70px">+ Escuchá</div></div></div>
+    <div id="g7" class="clip" data-start="37.4" data-duration="4.5"><div class="gb" style="top:758px; transform: scale(1.000)"><div class="sm" id="g7a" style="font-size:48px">Más lo conocés</div><div class="neon" id="g7b" style="font-size:84px">mejor le vendés</div></div></div>
+    <div id="g8" class="clip" data-start="42.0" data-duration="5.6"><div class="gb" style="top:760px; transform: scale(1.000)"><div class="quote" id="g8"><div class="qm">“</div><div>Un buen vendedor no es el que más habla,</div><div class="hl">es el que mejor entiende a su cliente.</div></div></div></div>
+    <div id="g9" class="clip" data-start="47.7" data-duration="4.2"><div class="gb" style="top:758px; transform: scale(1.000)"><div class="reto" id="g9"><small>RETO</small><span>2 preguntas antes de ofrecer</span></div></div></div>
+    <div id="g10" class="clip" data-start="52.0" data-duration="5.95"><div class="gb" style="top:743px; transform: scale(1.000)"><div class="sm" id="g10a"><span class="strike-wrap">No es suerte<i id="g10s"></i></span></div><div class="neon" id="g10b" style="font-size:96px">es método</div><div class="pill" id="g10c">CAICEN</div></div></div>
+    <div id="g11" class="clip" data-start="58.0" data-duration="4.35"><div class="gb" style="top:779px; transform: scale(1.000)"><div class="chip bad" id="g11a"><svg width="42" height="42" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff3b4e"/><path d="M16 16 L32 32 M32 16 L16 32" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg><span>Sin iniciativa, no alcanza</span></div></div></div>
+    <div id="g-flash" class="clip" data-start="10" data-duration="49" data-layout-ignore><div class="flash" id="fl"></div></div>
+    <div id="g-end" class="clip" data-start="64.6" data-duration="3.40"><div class="endbg"></div>
+      <div class="endb"><div class="sm" id="ge1" style="font-size:46px">En el próximo video</div><div class="neon" id="ge2" style="font-size:104px">Actitud<br>comercial</div><div class="pill" id="ge3">Método CAICEN</div></div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    const OUT = { opacity: 0, filter: "blur(8px)", duration: .14, ease: "power2.in" };
+    const POP = (sel, t) => tl.fromTo(sel, { opacity: 0, scale: 1.6, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: .26, ease: "expo.out" }, t);
+    const UP = (sel, t) => tl.fromTo(sel, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .3, ease: "back.out(1.7)" }, t);
+    const FADE = (sel, t) => tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: .2 }, t);
+    tl.fromTo("#g1 .w", { opacity: 0, filter: "blur(10px)", scale: 1.15 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: .2, ease: "expo.out", stagger: .08 }, 0.02);
+    tl.to("#g1 .w", OUT, 5.78);
+    UP("#g2a", 7.2);
+    UP("#g2b", 8.9);
+    tl.to("#g2a, #g2b", OUT, 10.68);
+    FADE("#g3a", 11.0);
+    POP("#g3b", 12.85);
+    UP("#g3c", 13.65);
+    tl.to("#g3a, #g3b, #g3c", OUT, 15.38);
+    FADE("#g4t", 15.75);
+    UP("#g4a", 18.1);
+    UP("#g4b", 19.85);
+    tl.to("#g4t, #g4a, #g4b", OUT, 22.43);
+    POP("#g5a", 22.75);
+    POP("#g5b", 24.9);
+    tl.to("#g5a, #g5b", OUT, 25.83);
+    FADE("#g6t", 27.05);
+    UP("#g6a", 30.55);
+    UP("#g6b", 32.15);
+    UP("#g6c", 34.15);
+    POP("#g6d", 36.15);
+    tl.to("#g6t, #g6a, #g6b, #g6c, #g6d", OUT, 37.13);
+    FADE("#g7a", 37.45);
+    POP("#g7b", 39.75);
+    tl.to("#g7a, #g7b", OUT, 41.73);
+    UP("#g8", 42.75);
+    tl.fromTo("#g8 .hl", { color: "#ffffff" }, { color: "#d4ff3a", duration: .2 }, 45.3);
+    tl.to("#g8", OUT, 47.43);
+    POP("#g9", 47.75);
+    tl.to("#g9", OUT, 51.73);
+    FADE("#g10a", 52.1);
+    tl.fromTo("#g10s", { scaleX: 0 }, { scaleX: 1, duration: .25, ease: "power3.out" }, 53.9);
+    POP("#g10b", 54.7);
+    UP("#g10c", 56.95);
+    tl.to("#g10a, #g10b, #g10c", OUT, 57.78);
+    UP("#g11a", 59.75);
+    tl.to("#g11a", OUT, 62.18);
+    tl.set("#fl", { opacity: 0 }, 0);
+    [10.66, 15.63, 25.92, 26.77, 41.62, 51.55, 57.62].forEach((t) => { tl.set("#fl", { opacity: .65 }, t); tl.to("#fl", { opacity: 0, duration: .18, ease: "power2.out" }, t + .01); });
+    FADE("#ge1", 64.70);
+    POP("#ge2", 64.95);
+    UP("#ge3", 65.50);
+    window.__timelines["graficos"] = tl;
+  </script>
+</template>
