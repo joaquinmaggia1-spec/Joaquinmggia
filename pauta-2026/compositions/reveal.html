@@ -1,0 +1,38 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: var(--font-display, "Montserrat"), sans-serif; }
+    #rv-bg { position: absolute; inset: 0; background: var(--color-ground, #0b0b0c); }
+    #rv-bars { position: absolute; inset: 0; display: flex; }
+    #rv-bars i { flex: 1; height: 100%; background: #f2f2f2; transform-origin: 50% 0; }
+    #rv-bars i:nth-child(odd) { background: #111; }
+    #rv-glow { position: absolute; left: 504px; top: 960px; width: 1100px; height: 1100px; margin: -550px 0 0 -550px; border-radius: 50%; background: radial-gradient(circle, rgba(212,255,58,.22) 0%, rgba(212,255,58,0) 62%); }
+    #rv-ring { position: absolute; left: 504px; top: 960px; width: 720px; height: 720px; margin: -360px 0 0 -360px; border-radius: 50%; border: 4px solid rgba(212,255,58,.9); box-shadow: 0 0 40px rgba(212,255,58,.55), inset 0 0 40px rgba(212,255,58,.35); }
+    .blk { position: absolute; left: 120px; width: 768px; text-align: center; }
+    .w { display: inline-block; }
+    .sm { font-weight: 700; font-size: 62px; color: #fff; letter-spacing: -0.01em; }
+    .neon { font-weight: 900; color: var(--color-accent, #d4ff3a); letter-spacing: -0.035em; line-height: .95; text-shadow: 0 0 34px rgba(212,255,58,.6); }
+  </style>
+  <div id="root" data-composition-id="reveal" data-width="1080" data-height="1920">
+    <div id="rv-bg-clip" class="clip" data-start="0.28" data-duration="2.32"><div id="rv-bg"></div><div id="rv-glow"></div><div id="rv-ring"></div></div>
+    <div id="rv-bars-clip" class="clip" data-start="0" data-duration="0.52" data-layout-ignore>
+      <div id="rv-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+    <div id="rv-txt" class="clip blk" data-start="0.45" data-duration="2.15" style="top: 760px">
+      <div class="sm"><span class="w">en</span> <span class="w">2026</span></div>
+      <div class="neon" style="font-size: 172px"><span class="w" id="rv-word">Pautar</span></div>
+      <div class="sm"><span class="w">no</span> <span class="w">es</span> <span class="w">opcional.</span></div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#rv-bars i", { scaleY: 0 }, { scaleY: 1, duration: 0.18, ease: "power3.out", stagger: { each: 0.008, from: "random" } }, 0);
+    tl.to("#rv-bars i", { scaleY: 0, transformOrigin: "50% 100%", duration: 0.16, ease: "power3.in", stagger: { each: 0.006, from: "random" } }, 0.32);
+    tl.fromTo("#rv-ring", { scale: 0.55, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "expo.out" }, 0.5);
+    tl.fromTo("#rv-glow", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.5);
+    tl.fromTo("#rv-txt .sm .w", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "expo.out", stagger: 0.07 }, 0.45);
+    tl.fromTo("#rv-word", { opacity: 0, scale: 1.6, filter: "blur(18px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.28, ease: "expo.out" }, 0.52);
+    tl.to("#rv-txt .w, #rv-ring", { opacity: 0, filter: "blur(8px)", duration: 0.15, ease: "power2.in" }, 2.43);
+    window.__timelines["reveal"] = tl;
+  </script>
+</template>

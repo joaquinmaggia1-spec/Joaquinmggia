@@ -1,0 +1,38 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: var(--font-display, "Montserrat"), sans-serif; }
+    .blk { position: absolute; left: 120px; width: 768px; text-align: center; top: 800px; background: radial-gradient(ellipse 60% 55% at 50% 50%, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 100%); padding: 40px 0; }
+    .w { display: inline-block; }
+    .num { display: inline-block; font-weight: 900; font-size: 46px; color: #0b0b0c; background: var(--color-accent, #d4ff3a); padding: 6px 22px 4px; border-radius: 12px; letter-spacing: .02em; margin-bottom: 18px; box-shadow: 0 0 24px rgba(212,255,58,.45); }
+    .neon { font-weight: 900; color: var(--color-accent, #d4ff3a); letter-spacing: -0.035em; line-height: .95; text-shadow: 0 0 28px rgba(212,255,58,.55), 0 6px 24px rgba(0,0,0,.6); font-size: 150px; }
+    .sub { font-weight: 700; font-size: 54px; color: #fff; line-height: 1.12; margin-top: 18px; text-shadow: 0 6px 24px rgba(0,0,0,.75); }
+  </style>
+  <div id="root" data-composition-id="pasos" data-width="1080" data-height="1920">
+    <div id="p1" class="clip blk" data-start="0" data-duration="3.4">
+      <div class="w num">01</div>
+      <div class="neon"><span class="w">Segmentá</span></div>
+      <div class="sub"><span class="w">hablale</span> <span class="w">a</span> <span class="w">quien</span><br><span class="w">te</span> <span class="w">va</span> <span class="w">a</span> <span class="w">comprar</span></div>
+    </div>
+    <div id="p2" class="clip blk" data-start="3.4" data-duration="3.4">
+      <div class="w num">02</div>
+      <div class="neon"><span class="w">Testeá</span></div>
+      <div class="sub"><span class="w">que</span> <span class="w">decidan</span> <span class="w">los</span> <span class="w">datos,</span><br><span class="w">no</span> <span class="w">la</span> <span class="w">intuición</span></div>
+    </div>
+    <div id="p3" class="clip blk" data-start="6.8" data-duration="3.4" style="top: 360px">
+      <div class="w num">03</div>
+      <div class="neon"><span class="w">Escalá</span></div>
+      <div class="sub"><span class="w">más</span> <span class="w">presupuesto</span><br><span class="w">a</span> <span class="w">lo</span> <span class="w">que</span> <span class="w">ya</span> <span class="w">vende</span></div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    [["#p1", 0], ["#p2", 3.4], ["#p3", 6.8]].forEach(([id, t]) => {
+      tl.fromTo(`${id} .num`, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(1.6)" }, t + 0.08);
+      tl.fromTo(`${id} .neon .w`, { opacity: 0, scale: 1.4, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.26, ease: "expo.out" }, t + 0.2);
+      tl.fromTo(`${id} .sub .w`, { opacity: 0.0, color: "#8a8a8a" }, { opacity: 1, color: "#ffffff", duration: 0.12, ease: "none", stagger: 0.08 }, t + 0.6);
+      tl.to(`${id} .w`, { opacity: 0, filter: "blur(8px)", duration: 0.15, ease: "power2.in" }, t + 3.22);
+    });
+    window.__timelines["pasos"] = tl;
+  </script>
+</template>

@@ -1,0 +1,51 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: var(--font-display, "Montserrat"), sans-serif; }
+    .blk { position: absolute; left: 120px; width: 768px; text-align: center; background: radial-gradient(ellipse 60% 55% at 50% 50%, rgba(0,0,0,.72) 0%, rgba(0,0,0,0) 100%); padding: 40px 0; }
+    .w { display: inline-block; }
+    .sm { font-weight: 700; font-size: 58px; color: #fff; line-height: 1.08; text-shadow: 0 6px 24px rgba(0,0,0,.75); }
+    .neon { font-weight: 900; color: var(--color-accent, #d4ff3a); letter-spacing: -0.035em; line-height: .95; text-shadow: 0 0 28px rgba(212,255,58,.55), 0 6px 24px rgba(0,0,0,.6); }
+    .ok { position: absolute; left: 150px; width: 708px; height: 100px; border-radius: 22px; background: rgba(10,14,6,.84); border: 2px solid rgba(212,255,58,.6); display: flex; align-items: center; gap: 22px; padding: 0 28px; color: #fff; font-weight: 700; font-size: 40px; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+    .ok b { margin-left: auto; font-weight: 700; font-size: 28px; color: rgba(255,255,255,.6); }
+    .ok svg { flex: 0 0 48px; }
+  </style>
+  <div id="root" data-composition-id="payoff" data-width="1080" data-height="1920">
+    <div id="po-head" class="clip blk" data-start="0.05" data-duration="4.3" style="top: 330px">
+      <div class="sm"><span class="w">Así</span> <span class="w">se</span> <span class="w">ve</span> <span class="w">una</span> <span class="w">marca</span></div>
+      <div class="neon" style="font-size: 140px"><span class="w">Presente</span></div>
+    </div>
+
+    <div id="po-c1" class="clip" data-start="0.22" data-duration="4.13"><div class="ok" style="top: 760px">
+      <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#d4ff3a"/><path d="M14 25 L21 32 L34 17" stroke="#0b0b0c" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Nuevo pedido</span><b>ahora</b></div></div>
+    <div id="po-c2" class="clip" data-start="1.12" data-duration="3.23"><div class="ok" style="top: 880px">
+      <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#d4ff3a"/><path d="M14 25 L21 32 L34 17" stroke="#0b0b0c" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Nueva consulta</span><b>ahora</b></div></div>
+    <div id="po-c3" class="clip" data-start="2.12" data-duration="2.23"><div class="ok" style="top: 1000px">
+      <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#d4ff3a"/><path d="M14 25 L21 32 L34 17" stroke="#0b0b0c" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Pago aprobado</span><b>ahora</b></div></div>
+    <div id="po-c4" class="clip" data-start="3.22" data-duration="1.13"><div class="ok" style="top: 1120px">
+      <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#d4ff3a"/><path d="M14 25 L21 32 L34 17" stroke="#0b0b0c" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Pedido entregado</span><b>ahora</b></div></div>
+
+    <div id="po-claim" class="clip blk" data-start="4.45" data-duration="3.35" style="top: 330px">
+      <div class="sm"><span class="w">2027</span> <span class="w">es</span> <span class="w">de</span> <span class="w">las</span> <span class="w">marcas</span></div>
+      <div class="sm"><span class="w">que</span> <span class="w">se</span> <span class="w">hacen</span></div>
+      <div class="neon" style="font-size: 260px"><span class="w" id="po-ver">Ver</span></div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#po-head .sm .w", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "expo.out", stagger: 0.06 }, 0.05);
+    tl.fromTo("#po-head .neon .w", { opacity: 0, scale: 1.4, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.26, ease: "expo.out" }, 0.4);
+    [["#po-c1", 0.22], ["#po-c2", 1.12], ["#po-c3", 2.12], ["#po-c4", 3.22]].forEach(([id, t]) => {
+      tl.fromTo(`${id} .ok`, { opacity: 0, y: 50, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.6)" }, t);
+    });
+    tl.to("#po-head .w, .ok", { opacity: 0, filter: "blur(8px)", duration: 0.15, ease: "power2.in" }, 4.18);
+    tl.fromTo("#po-claim .sm .w", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "expo.out", stagger: 0.07 }, 4.45);
+    tl.fromTo("#po-ver", { opacity: 0, scale: 1.7, filter: "blur(20px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" }, 5.35);
+    tl.to("#po-claim .w", { opacity: 0, filter: "blur(8px)", duration: 0.15, ease: "power2.in" }, 7.62);
+    window.__timelines["payoff"] = tl;
+  </script>
+</template>

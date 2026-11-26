@@ -1,0 +1,86 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: var(--font-display, "Montserrat"), sans-serif; }
+    .blk { position: absolute; left: 120px; width: 768px; text-align: center; }
+    .w { display: inline-block; will-change: transform, filter, opacity; }
+    .sm { font-weight: 700; font-size: 60px; color: var(--color-ink, #fff); letter-spacing: -0.01em; text-shadow: 0 6px 24px rgba(0,0,0,.65); line-height: 1.05; }
+    .big { font-weight: 900; color: var(--color-ink, #fff); letter-spacing: -0.03em; line-height: .95; text-shadow: 0 6px 24px rgba(0,0,0,.65); }
+    .neon { color: var(--color-accent, #d4ff3a); text-shadow: 0 0 28px rgba(212,255,58,.55), 0 6px 24px rgba(0,0,0,.5); }
+    .strike-wrap { position: relative; display: inline-block; }
+    .strike { position: absolute; left: -4%; right: -4%; top: 52%; height: 14px; border-radius: 7px; background: var(--color-alert, #ff3b4e); transform-origin: 0 50%; box-shadow: 0 0 18px rgba(255,59,78,.6); transform: rotate(-4deg) scaleX(0); }
+    .chip { position: absolute; left: 150px; width: 708px; height: 104px; border-radius: 22px; background: rgba(30,6,10,.82); border: 2px solid rgba(255,59,78,.6); display: flex; align-items: center; gap: 24px; padding: 0 30px; color: #fff; font-weight: 700; font-size: 40px; }
+    .chip svg { flex: 0 0 48px; }
+    /* REC camera frame (from reference) */
+    #h-rec { position: absolute; inset: 0; }
+    .corner { position: absolute; width: 90px; height: 90px; border: 0 solid rgba(255,255,255,.85); }
+    .c-tl { left: 60px; top: 220px; border-left-width: 5px; border-top-width: 5px; }
+    .c-tr { right: 60px; top: 220px; border-right-width: 5px; border-top-width: 5px; }
+    .c-bl { left: 60px; bottom: 260px; border-left-width: 5px; border-bottom-width: 5px; }
+    .c-br { right: 60px; bottom: 260px; border-right-width: 5px; border-bottom-width: 5px; }
+    .rec { position: absolute; left: 130px; top: 300px; display: flex; align-items: center; gap: 14px; color: #fff; font-weight: 700; font-size: 34px; letter-spacing: .08em; }
+    .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--color-alert, #ff3b4e); }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="h-rec" class="clip" data-start="0" data-duration="6.35" data-layout-ignore>
+      <div class="corner c-tl"></div><div class="corner c-tr"></div><div class="corner c-bl"></div><div class="corner c-br"></div>
+      <div class="rec"><span class="dot" id="h-dot"></span>REC</div>
+    </div>
+
+    <div id="h-l1" class="clip blk" data-start="0" data-duration="1.55" style="top: 930px">
+      <div class="sm"><span class="w">Publicás</span></div>
+      <div class="big" style="font-size: 92px"><span class="w">todos</span> <span class="w">los</span> <span class="w">días…</span></div>
+    </div>
+
+    <div id="h-l2" class="clip blk" data-start="1.6" data-duration="1.6" style="top: 880px">
+      <div class="sm"><span class="w">y</span></div>
+      <div class="big neon" style="font-size: 200px"><span class="w">Nadie</span></div>
+      <div class="sm"><span class="w">te</span> <span class="w">ve.</span></div>
+    </div>
+
+    <div id="h-l3" class="clip blk" data-start="3.35" data-duration="2.95" style="top: 700px" data-layout-allow-overlap>
+      <div class="sm"><span class="w">tu</span> <span class="w">alcance</span></div>
+      <div class="big neon" style="font-size: 138px"><span class="w strike-wrap">Orgánico<span class="strike" id="h-strike"></span></span></div>
+    </div>
+    <div id="h-chip1" class="clip" data-start="4.7" data-duration="1.6"><div class="chip" style="top: 990px">
+      <svg width="48" height="44" viewBox="0 0 48 44"><path d="M24 3 L46 41 H2 Z" fill="#ff3b4e"/><rect x="22" y="15" width="4" height="14" rx="2" fill="#fff"/><circle cx="24" cy="34" r="2.6" fill="#fff"/></svg>
+      <span>el algoritmo te esconde</span>
+    </div></div>
+    <div id="h-chip2" class="clip" data-start="5.15" data-duration="1.15"><div class="chip" style="top: 1118px">
+      <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff3b4e"/><path d="M16 16 L32 32 M32 16 L16 32" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
+      <span>ninguna consulta nueva</span>
+    </div></div>
+
+    <div id="h-l4" class="clip blk" data-start="6.5" data-duration="1.3" style="top: 900px">
+      <div class="sm"><span class="w">Tus</span></div>
+      <div class="big neon" style="font-size: 140px"><span class="w">Clientes</span></div>
+      <div class="sm"><span class="w">están</span> <span class="w">acá…</span></div>
+    </div>
+
+    <div id="h-l5" class="clip blk" data-start="7.85" data-duration="1.3" style="top: 930px">
+      <div class="sm"><span class="w">pero</span> <span class="w">no</span> <span class="w">te</span></div>
+      <div class="big" style="font-size: 124px"><span class="w">encuentran</span></div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    const IN = { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.2, ease: "expo.out", stagger: 0.07 };
+    const FROM = { opacity: 0, filter: "blur(10px)", scale: 1.12 };
+    const OUT = { opacity: 0, filter: "blur(8px)", duration: 0.15, ease: "power2.in" };
+    const line = (id, tin, tout) => {
+      tl.fromTo(`${id} .w`, FROM, IN, tin);
+      tl.to(`${id} .w`, OUT, tout - 0.16);
+    };
+    // REC dot blink (deterministic, timeline-driven)
+    for (let i = 0; i < 6; i++) tl.set("#h-dot", { opacity: i % 2 ? 1 : 0.15 }, i * 0.5 + 0.5);
+    line("#h-l1", 0.02, 1.55);
+    line("#h-l2", 1.6, 3.2);
+    line("#h-l3", 3.35, 6.3);
+    tl.fromTo("#h-strike", { scaleX: 0, rotation: -4 }, { scaleX: 1, rotation: -4, duration: 0.25, ease: "power3.out" }, 4.15);
+    tl.fromTo("#h-chip1 .chip", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.6)" }, 4.7);
+    tl.fromTo("#h-chip2 .chip", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.6)" }, 5.15);
+    line("#h-l4", 6.5, 7.8);
+    line("#h-l5", 7.85, 9.15);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>
