@@ -1,0 +1,99 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; }
+    .blk { position: absolute; left: 120px; width: 768px; text-align: center; }
+    .w { display: inline-block; }
+    .sm { font-weight: 800; font-size: 56px; color: #fff; line-height: 1.08; text-shadow: 0 4px 0 rgba(0,0,0,.6), 0 8px 24px rgba(0,0,0,.6); }
+    .neon { font-weight: 900; color: #d4ff3a; letter-spacing: -0.035em; line-height: .95; text-shadow: 0 0 28px rgba(212,255,58,.55), 0 6px 24px rgba(0,0,0,.55); }
+    .grid { position: absolute; left: 120px; width: 768px; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+    .trio { position: absolute; left: 120px; width: 768px; display: flex; justify-content: center; gap: 14px; }
+    .aa { display: inline-block; padding: 10px 18px; border-radius: 14px; background: rgba(11,11,12,.78); border: 2px solid rgba(255,255,255,.35); color: #fff; font-weight: 800; font-size: 32px; }
+    .aa.on { background: #d4ff3a; color: #0b0b0c; border-color: #d4ff3a; font-size: 36px; box-shadow: 0 0 24px rgba(212,255,58,.5); }
+    .chip { position: absolute; left: 150px; width: 708px; height: 100px; border-radius: 22px; display: flex; align-items: center; gap: 22px; padding: 0 28px; color: #fff; font-weight: 800; font-size: 36px; box-shadow: 0 12px 34px rgba(0,0,0,.45); }
+    .chip.ok { background: rgba(10,14,6,.86); border: 2px solid rgba(212,255,58,.7); }
+    .chip.bad { background: rgba(30,6,10,.88); border: 2px solid rgba(255,59,78,.7); }
+    .chip svg { flex: 0 0 46px; }
+    .flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+    .endbg { position: absolute; inset: 0; background: #0b0b0c; }
+    .disc { margin-top: 60px; font-weight: 600; font-size: 30px; color: rgba(255,255,255,.7); }
+  </style>
+  <div id="root" data-composition-id="graficos" data-width="1080" data-height="1920">
+    <div id="g-hook" class="clip blk" data-start="0" data-duration="4.5" style="top: 300px">
+      <div class="sm"><span class="w">¿Necesitás</span> <span class="w">tomar</span></div>
+      <div class="neon" style="font-size: 118px"><span class="w">Aminoácidos?</span></div>
+    </div>
+    <div id="g-q" class="clip blk" data-start="5.0" data-duration="5.9" style="top: 300px">
+      <div class="sm"><span class="w">¿En</span> <span class="w">suplemento</span></div>
+      <div class="neon" style="font-size: 130px"><span class="w">aislados?</span></div>
+    </div>
+    <div id="g-9" class="clip" data-start="14.75" data-duration="2.3">
+      <div class="blk" style="top: 270px"><div class="neon" id="g9n" style="font-size: 300px; line-height: .9">9</div><div class="sm" id="g9t">aminoácidos esenciales</div></div>
+      <div class="grid" id="g9g" style="top: 680px"><span class="aa" id="aa0">Histidina</span><span class="aa" id="aa1">Isoleucina</span><span class="aa" id="aa2">Leucina</span><span class="aa" id="aa3">Lisina</span><span class="aa" id="aa4">Metionina</span><span class="aa" id="aa5">Fenilalanina</span><span class="aa" id="aa6">Treonina</span><span class="aa" id="aa7">Triptófano</span><span class="aa" id="aa8">Valina</span></div>
+    </div>
+    <div id="g-bcaa" class="clip" data-start="17.7" data-duration="8.9">
+      <div class="blk" style="top: 300px"><div class="neon" id="gbt" style="font-size: 170px">BCAA</div><div class="sm" id="gbs">= 3 de los 9</div></div>
+      <div class="trio" id="gb3" style="top: 640px"><span class="aa on">Leucina</span><span class="aa on">Isoleucina</span><span class="aa on">Valina</span></div>
+      <div class="chip bad" id="gbx" style="top:780px"><svg width="46" height="46" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff3b4e"/><path d="M16 16 L32 32 M32 16 L16 32" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg><span>Faltan los otros 6 esenciales</span></div>
+    </div>
+    <div id="g-chk" class="clip" data-start="28.3" data-duration="11.7">
+      <div class="blk" style="top: 700px"><div class="sm" id="gct" style="font-size: 46px">Si tu alimentación cumple…</div></div>
+      <div class="chip ok" id="gc1" style="top:770px"><svg width="46" height="46" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#d4ff3a"/><path d="M14 25 L21 32 L34 17" stroke="#0b0b0c" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>La proteína que pidió tu nutricionista</span></div>
+      <div class="chip ok" id="gc2" style="top:885px"><svg width="46" height="46" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#d4ff3a"/><path d="M14 25 L21 32 L34 17" stroke="#0b0b0c" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Según tu entrenamiento</span></div>
+      <div class="blk" style="top: 1000px"><div class="neon" id="gcl" style="font-size: 116px">Estás listo</div></div>
+    </div>
+    <div id="g-no" class="clip" data-start="40.1" data-duration="9.4">
+      <div class="blk" style="top: 300px"><div class="sm" id="gnt">No te hace</div><div class="neon" id="gnf" style="font-size: 140px">falta</div></div>
+      <div class="chip bad" id="gn1" style="top:600px"><svg width="46" height="46" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff3b4e"/><path d="M16 16 L32 32 M32 16 L16 32" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg><span>Suplemento proteico</span></div>
+      <div class="chip bad" id="gn2" style="top:720px"><svg width="46" height="46" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff3b4e"/><path d="M16 16 L32 32 M32 16 L16 32" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg><span>BCAA / ramificados</span></div>
+    </div>
+    <div id="g-flash" class="clip" data-start="4.45" data-duration="22.5" data-layout-ignore><div class="flash" id="fl"></div></div>
+    <div id="g-end" class="clip" data-start="49.63" data-duration="3.17">
+      <div class="endbg"></div>
+      <div class="blk" style="top: 560px">
+        <div class="sm" id="ge1">¿Tomás BCAA?</div>
+        <div class="neon" id="ge2" style="font-size: 120px; margin-top: 10px">Guardalo</div>
+        <div class="sm" id="ge3" style="margin-top: 6px">y compartilo</div>
+        <div class="disc" id="ge4">Info general. Consultá siempre con tu nutricionista.</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    const IN = { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.2, ease: "expo.out", stagger: 0.07 };
+    const FROM = { opacity: 0, filter: "blur(10px)", scale: 1.15 };
+    const OUT = { opacity: 0, filter: "blur(8px)", duration: 0.14, ease: "power2.in" };
+    tl.fromTo("#g-hook .w", FROM, IN, 0.02); tl.to("#g-hook .w", OUT, 4.32);
+    tl.fromTo("#g-q .w", FROM, IN, 5.0); tl.to("#g-q .w", OUT, 10.72);
+    tl.fromTo("#g9n", { opacity: 0, scale: 2.2, filter: "blur(20px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" }, 14.8);
+    tl.fromTo("#g9t", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 15.05);
+    tl.fromTo("#g9g .aa", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.22, ease: "back.out(2)", stagger: 0.07 }, 15.15);
+    tl.to("#g9n, #g9t, #g9g .aa", OUT, 16.9);
+    tl.fromTo("#gbt", { opacity: 0, scale: 1.8, filter: "blur(18px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" }, 17.8);
+    tl.fromTo("#gbs", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 18.3);
+    tl.fromTo("#gb3 .aa", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(1.8)", stagger: 0.12 }, 19.3);
+    tl.fromTo("#gbx", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.6)" }, 21.9);
+    tl.to("#gbt, #gbs, #gb3 .aa, #gbx", OUT, 26.4);
+    tl.fromTo("#gct", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2 }, 28.3);
+    tl.fromTo("#gc1", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.35, ease: "back.out(1.6)" }, 33.9);
+    tl.fromTo("#gc2", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.35, ease: "back.out(1.6)" }, 36.3);
+    tl.fromTo("#gcl", { opacity: 0, scale: 1.8, filter: "blur(18px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" }, 38.95);
+    tl.to("#gct, #gc1, #gc2, #gcl", OUT, 39.85);
+    tl.fromTo("#gnt", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2 }, 40.15);
+    tl.fromTo("#gnf", { opacity: 0, scale: 1.6, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.28, ease: "expo.out" }, 41.0);
+    tl.fromTo("#gn1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.6)" }, 42.85);
+    tl.fromTo("#gn2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.6)" }, 45.15);
+    tl.to("#gnt, #gnf, #gn1, #gn2", OUT, 49.3);
+    tl.set("#fl", { opacity: 0 }, 0);
+    [4.52, 10.97, 17.12, 26.82].forEach((t) => {
+      tl.set("#fl", { opacity: 0.75 }, t);
+      tl.to("#fl", { opacity: 0, duration: 0.18, ease: "power2.out" }, t + 0.01);
+    });
+    tl.fromTo("#ge1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 49.75);
+    tl.fromTo("#ge2", { opacity: 0, scale: 1.6, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "expo.out" }, 50.0);
+    tl.fromTo("#ge3", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 50.3);
+    tl.fromTo("#ge4", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 50.6);
+
+    window.__timelines["graficos"] = tl;
+  </script>
+</template>

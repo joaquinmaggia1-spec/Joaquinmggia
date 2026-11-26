@@ -1,0 +1,6 @@
+.hyperframes/
+node_modules/
+snapshots/
+work-*/
+.*.hf-transaction-*/
+aminoacidos-reel.mp4

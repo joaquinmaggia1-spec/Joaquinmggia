@@ -1,0 +1,566 @@
+[
+ {
+  "id": "w0",
+  "text": "Si",
+  "start": 0.64,
+  "end": 0.96
+ },
+ {
+  "id": "w1",
+  "text": "estás",
+  "start": 0.96,
+  "end": 1.12
+ },
+ {
+  "id": "w2",
+  "text": "buscando",
+  "start": 1.36,
+  "end": 1.84
+ },
+ {
+  "id": "w3",
+  "text": "información",
+  "start": 1.84,
+  "end": 2.24
+ },
+ {
+  "id": "w4",
+  "text": "sobre",
+  "start": 2.24,
+  "end": 2.56
+ },
+ {
+  "id": "w5",
+  "text": "aminoácidos,",
+  "start": 2.56,
+  "end": 3.36
+ },
+ {
+  "id": "w6",
+  "text": "quédate",
+  "start": 3.44,
+  "end": 3.92
+ },
+ {
+  "id": "w7",
+  "text": "que",
+  "start": 3.92,
+  "end": 4
+ },
+ {
+  "id": "w8",
+  "text": "te",
+  "start": 4,
+  "end": 4.16
+ },
+ {
+  "id": "w9",
+  "text": "lo",
+  "start": 4.16,
+  "end": 4.24
+ },
+ {
+  "id": "w10",
+  "text": "cuento.",
+  "start": 4.24,
+  "end": 4.72
+ },
+ {
+  "id": "w11",
+  "text": "¿Por",
+  "start": 4.96,
+  "end": 5.28
+ },
+ {
+  "id": "w12",
+  "text": "qué",
+  "start": 5.28,
+  "end": 5.44
+ },
+ {
+  "id": "w13",
+  "text": "los",
+  "start": 5.44,
+  "end": 5.68
+ },
+ {
+  "id": "w14",
+  "text": "aminoácidos",
+  "start": 5.68,
+  "end": 6.8
+ },
+ {
+  "id": "w15",
+  "text": "aislados",
+  "start": 6.8,
+  "end": 7.68
+ },
+ {
+  "id": "w16",
+  "text": "como",
+  "start": 7.68,
+  "end": 8
+ },
+ {
+  "id": "w17",
+  "text": "suplementos",
+  "start": 8,
+  "end": 8.88
+ },
+ {
+  "id": "w18",
+  "text": "no",
+  "start": 8.88,
+  "end": 9.12
+ },
+ {
+  "id": "w19",
+  "text": "suelen",
+  "start": 9.12,
+  "end": 9.6
+ },
+ {
+  "id": "w20",
+  "text": "ser",
+  "start": 9.6,
+  "end": 9.92
+ },
+ {
+  "id": "w21",
+  "text": "necesarios?",
+  "start": 9.92,
+  "end": 11.44
+ },
+ {
+  "id": "w22",
+  "text": "Porque",
+  "start": 11.44,
+  "end": 11.92
+ },
+ {
+  "id": "w23",
+  "text": "la",
+  "start": 11.92,
+  "end": 12.08
+ },
+ {
+  "id": "w24",
+  "text": "síntesis",
+  "start": 12.08,
+  "end": 12.8
+ },
+ {
+  "id": "w25",
+  "text": "de",
+  "start": 12.8,
+  "end": 12.96
+ },
+ {
+  "id": "w26",
+  "text": "proteína",
+  "start": 12.96,
+  "end": 13.52
+ },
+ {
+  "id": "w27",
+  "text": "muscular",
+  "start": 13.52,
+  "end": 14.24
+ },
+ {
+  "id": "w28",
+  "text": "necesita",
+  "start": 14.24,
+  "end": 14.64
+ },
+ {
+  "id": "w29",
+  "text": "de",
+  "start": 14.72,
+  "end": 14.88
+ },
+ {
+  "id": "w30",
+  "text": "nueve",
+  "start": 14.88,
+  "end": 15.2
+ },
+ {
+  "id": "w31",
+  "text": "aminoácidos",
+  "start": 15.2,
+  "end": 16
+ },
+ {
+  "id": "w32",
+  "text": "esenciales.",
+  "start": 16,
+  "end": 17.04
+ },
+ {
+  "id": "w33",
+  "text": "Los",
+  "start": 17.04,
+  "end": 17.12
+ },
+ {
+  "id": "w34",
+  "text": "famosos",
+  "start": 17.28,
+  "end": 17.76
+ },
+ {
+  "id": "w35",
+  "text": "BCAA,",
+  "start": 17.92,
+  "end": 19.28
+ },
+ {
+  "id": "w36",
+  "text": "aminoácidos",
+  "start": 19.28,
+  "end": 20.24
+ },
+ {
+  "id": "w37",
+  "text": "ramificados,",
+  "start": 20.24,
+  "end": 21.12
+ },
+ {
+  "id": "w38",
+  "text": "no",
+  "start": 21.12,
+  "end": 21.36
+ },
+ {
+  "id": "w39",
+  "text": "suelen",
+  "start": 21.36,
+  "end": 21.92
+ },
+ {
+  "id": "w40",
+  "text": "contener",
+  "start": 21.92,
+  "end": 22.56
+ },
+ {
+  "id": "w41",
+  "text": "todos",
+  "start": 22.56,
+  "end": 22.88
+ },
+ {
+  "id": "w42",
+  "text": "los",
+  "start": 22.88,
+  "end": 23.04
+ },
+ {
+  "id": "w43",
+  "text": "sustratos",
+  "start": 23.04,
+  "end": 23.76
+ },
+ {
+  "id": "w44",
+  "text": "necesarios",
+  "start": 23.76,
+  "end": 24.64
+ },
+ {
+  "id": "w45",
+  "text": "para",
+  "start": 24.64,
+  "end": 24.88
+ },
+ {
+  "id": "w46",
+  "text": "formar",
+  "start": 24.88,
+  "end": 25.28
+ },
+ {
+  "id": "w47",
+  "text": "tejido",
+  "start": 25.28,
+  "end": 25.84
+ },
+ {
+  "id": "w48",
+  "text": "muscular.",
+  "start": 25.84,
+  "end": 26.8
+ },
+ {
+  "id": "w49",
+  "text": "Si",
+  "start": 27.12,
+  "end": 27.44
+ },
+ {
+  "id": "w50",
+  "text": "tu",
+  "start": 27.44,
+  "end": 27.68
+ },
+ {
+  "id": "w51",
+  "text": "alimentación",
+  "start": 27.68,
+  "end": 28.56
+ },
+ {
+  "id": "w52",
+  "text": "cumple",
+  "start": 28.56,
+  "end": 29.28
+ },
+ {
+  "id": "w53",
+  "text": "con",
+  "start": 29.28,
+  "end": 29.44
+ },
+ {
+  "id": "w54",
+  "text": "las",
+  "start": 29.44,
+  "end": 29.6
+ },
+ {
+  "id": "w55",
+  "text": "cantidades",
+  "start": 29.6,
+  "end": 30.32
+ },
+ {
+  "id": "w56",
+  "text": "de",
+  "start": 30.32,
+  "end": 30.56
+ },
+ {
+  "id": "w57",
+  "text": "proteínas",
+  "start": 30.56,
+  "end": 31.36
+ },
+ {
+  "id": "w58",
+  "text": "que",
+  "start": 31.68,
+  "end": 31.92
+ },
+ {
+  "id": "w59",
+  "text": "puso",
+  "start": 32.16,
+  "end": 32.64
+ },
+ {
+  "id": "w60",
+  "text": "como",
+  "start": 32.64,
+  "end": 32.88
+ },
+ {
+  "id": "w61",
+  "text": "objetivo",
+  "start": 32.88,
+  "end": 33.6
+ },
+ {
+  "id": "w62",
+  "text": "tu",
+  "start": 33.84,
+  "end": 34.08
+ },
+ {
+  "id": "w63",
+  "text": "nutricionista,",
+  "start": 34.08,
+  "end": 35.28
+ },
+ {
+  "id": "w64",
+  "text": "de",
+  "start": 35.28,
+  "end": 35.52
+ },
+ {
+  "id": "w65",
+  "text": "acuerdo",
+  "start": 35.52,
+  "end": 35.92
+ },
+ {
+  "id": "w66",
+  "text": "a",
+  "start": 35.92,
+  "end": 36.08
+ },
+ {
+  "id": "w67",
+  "text": "tu",
+  "start": 36.08,
+  "end": 36.32
+ },
+ {
+  "id": "w68",
+  "text": "entrenamiento",
+  "start": 36.32,
+  "end": 37.12
+ },
+ {
+  "id": "w69",
+  "text": "o",
+  "start": 37.12,
+  "end": 37.44
+ },
+ {
+  "id": "w70",
+  "text": "tus",
+  "start": 37.44,
+  "end": 37.76
+ },
+ {
+  "id": "w71",
+  "text": "necesidades,",
+  "start": 37.76,
+  "end": 38.96
+ },
+ {
+  "id": "w72",
+  "text": "estás",
+  "start": 38.96,
+  "end": 39.44
+ },
+ {
+  "id": "w73",
+  "text": "listo.",
+  "start": 39.44,
+  "end": 40.16
+ },
+ {
+  "id": "w74",
+  "text": "No",
+  "start": 40.16,
+  "end": 40.4
+ },
+ {
+  "id": "w75",
+  "text": "te",
+  "start": 40.4,
+  "end": 40.64
+ },
+ {
+  "id": "w76",
+  "text": "hace",
+  "start": 40.64,
+  "end": 41.04
+ },
+ {
+  "id": "w77",
+  "text": "falta",
+  "start": 41.04,
+  "end": 41.68
+ },
+ {
+  "id": "w78",
+  "text": "ni",
+  "start": 42,
+  "end": 42.32
+ },
+ {
+  "id": "w79",
+  "text": "suplemento",
+  "start": 42.88,
+  "end": 43.6
+ },
+ {
+  "id": "w80",
+  "text": "proteico,",
+  "start": 43.6,
+  "end": 44.56
+ },
+ {
+  "id": "w81",
+  "text": "ni",
+  "start": 44.56,
+  "end": 44.8
+ },
+ {
+  "id": "w82",
+  "text": "siquiera",
+  "start": 44.8,
+  "end": 45.04
+ },
+ {
+  "id": "w83",
+  "text": "aminoácidos",
+  "start": 45.2,
+  "end": 46.16
+ },
+ {
+  "id": "w84",
+  "text": "ramificados",
+  "start": 46.16,
+  "end": 46.96
+ },
+ {
+  "id": "w85",
+  "text": "que",
+  "start": 46.96,
+  "end": 47.12
+ },
+ {
+  "id": "w86",
+  "text": "no",
+  "start": 47.12,
+  "end": 47.28
+ },
+ {
+  "id": "w87",
+  "text": "los",
+  "start": 47.28,
+  "end": 47.44
+ },
+ {
+  "id": "w88",
+  "text": "vas",
+  "start": 47.44,
+  "end": 47.68
+ },
+ {
+  "id": "w89",
+  "text": "a",
+  "start": 47.68,
+  "end": 47.84
+ },
+ {
+  "id": "w90",
+  "text": "necesitar",
+  "start": 47.84,
+  "end": 48.24
+ },
+ {
+  "id": "w91",
+  "text": "de",
+  "start": 48.32,
+  "end": 48.56
+ },
+ {
+  "id": "w92",
+  "text": "por",
+  "start": 48.56,
+  "end": 48.8
+ },
+ {
+  "id": "w93",
+  "text": "sí.",
+  "start": 48.8,
+  "end": 49.28
+ }
+]
