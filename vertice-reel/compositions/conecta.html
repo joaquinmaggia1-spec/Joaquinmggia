@@ -1,0 +1,33 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; }
+    .blk { position: absolute; left: 120px; width: 768px; text-align: center; }
+    .w { display: inline-block; }
+    .heavy { font-weight: 900; letter-spacing: -0.03em; line-height: .95; }
+    .serif { font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; }
+    .serif-b { font-family: "Playfair Display", serif; font-weight: 800; letter-spacing: .02em; }
+    .stk { display: inline-block; padding: 14px 30px 16px; border-radius: 14px; font-weight: 900; letter-spacing: -0.01em; box-shadow: 0 10px 26px rgba(0,0,0,.22); }
+
+    #c-bg { position: absolute; inset: 0; background: #f5f0e8; }
+    #c-circ { position: absolute; left: 104px; top: 470px; width: 800px; height: 520px; }
+  </style>
+  <div id="root" data-composition-id="conecta" data-width="1080" data-height="1920">
+    <div id="c-bgclip" class="clip" data-start="0" data-duration="2"><div id="c-bg"></div></div>
+    <div id="c-ci" class="clip" data-start="0" data-duration="2" data-layout-ignore>
+      <svg id="c-circ" viewBox="0 0 800 520"><circle id="c-c1" cx="270" cy="260" r="230" fill="none" stroke="#65023d" stroke-width="6" pathLength="100" stroke-dasharray="100 110" transform="rotate(-90 270 260)"/><circle id="c-c2" cx="530" cy="260" r="230" fill="none" stroke="#8a9b4a" stroke-width="6" pathLength="100" stroke-dasharray="100 110" transform="rotate(90 530 260)"/></svg>
+    </div>
+    <div id="c-t" class="clip blk" data-start="0.25" data-duration="1.75" style="top: 560px">
+      <div class="heavy" style="font-size: 64px; color: #141414"><span class="w">El</span> <span class="w">punto</span> <span class="w">donde</span></div>
+      <div class="heavy" style="font-size: 64px; color: #141414; margin-top: 8px"><span class="w">todo</span> <span class="w">se</span></div>
+      <div class="serif" style="font-size: 150px; color: #65023d; line-height: 1.05"><span class="w">conecta</span></div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#c-c1, #c-c2", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut", stagger: 0.12 }, 0.0);
+    tl.fromTo("#c-t .w", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out", stagger: 0.07 }, 0.25);
+    tl.to("#c-t .w, #c-c1, #c-c2", { opacity: 0, duration: 0.12, ease: "power2.in" }, 1.86);
+    window.__timelines["conecta"] = tl;
+  </script>
+</template>

@@ -1,0 +1,39 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; }
+    .blk { position: absolute; left: 120px; width: 768px; text-align: center; }
+    .w { display: inline-block; }
+    .heavy { font-weight: 900; letter-spacing: -0.03em; line-height: .95; }
+    .serif { font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; }
+    .serif-b { font-family: "Playfair Display", serif; font-weight: 800; letter-spacing: .02em; }
+    .stk { display: inline-block; padding: 14px 30px 16px; border-radius: 14px; font-weight: 900; letter-spacing: -0.01em; box-shadow: 0 10px 26px rgba(0,0,0,.22); }
+
+    #s-bg { position: absolute; inset: 0; background: #65023d; }
+    #s-frame { position: absolute; left: 150px; top: 640px; width: 708px; height: 430px; }
+  </style>
+  <div id="root" data-composition-id="somos" data-width="1080" data-height="1920">
+    <div id="s-bgclip" class="clip" data-start="0" data-duration="2.4"><div id="s-bg"></div></div>
+    <div id="s-logo" class="clip blk" data-start="0.05" data-duration="2.35" style="top: 330px"><svg id="s-lg" width="300" height="236" viewBox="120 210 840 660" style="color:#cbd186"><g fill="currentColor" fill-rule="evenodd"><path d="M411 228 H530 Q541 228 546 238 L556 264 Q561 290 539 290 H421 Q409 290 404 279 L395 255 Q389 228 411 228 Z"/><path d="M139 494 L914 241 Q945 234 942 268 L733 826 Q722 852 695 852 L649 852 Q622 852 611 826 L483 486 Q470 456 439 461 L143 505 Q133 505 139 494 Z M633 421 L813 383 Q834 382 830 402 L734 666 Q719 683 704 666 L621 441 Q617 424 633 421 Z"/></g></svg></div>
+    <div id="s-fr" class="clip" data-start="0.2" data-duration="2.2" data-layout-ignore>
+      <svg id="s-frame" viewBox="0 0 708 430"><rect id="s-rect" x="3" y="3" width="702" height="424" rx="22" fill="none" stroke="#f5f0e8" stroke-width="5" pathLength="100" stroke-dasharray="100 110" /></svg>
+    </div>
+    <div id="s-t" class="clip blk" data-start="0.3" data-duration="2.1" style="top: 690px">
+      <div class="serif" style="font-size: 72px; color: #cbd186"><span class="w">Somos</span></div>
+      <div class="serif-b" style="font-size: 128px; color: #f5f0e8; line-height: 1"><span class="w">VÉRTICE</span></div>
+      <div class="serif" style="font-size: 72px; color: #f5f0e8; margin-top: -6px"><span class="w">studio</span></div>
+    </div>
+    <div id="s-sub" class="clip blk" data-start="0.9" data-duration="1.5" style="top: 1110px">
+      <div style="font-weight: 700; font-size: 34px; letter-spacing: .24em; color: #cbd186; text-transform: uppercase"><span class="w">agencia de marketing</span></div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s-lg", { opacity: 0, scale: 0.6, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.6)" }, 0.05);
+    tl.fromTo("#s-rect", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 0.2);
+    tl.fromTo("#s-t .w", { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35, ease: "expo.out", stagger: 0.12 }, 0.3);
+    tl.fromTo("#s-sub .w", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.9);
+    tl.to("#s-t .w, #s-sub .w, #s-lg, #s-rect", { opacity: 0, duration: 0.12, ease: "power2.in" }, 2.26);
+    window.__timelines["somos"] = tl;
+  </script>
+</template>

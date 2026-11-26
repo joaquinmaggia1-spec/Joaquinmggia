@@ -1,0 +1,77 @@
+<!doctype html>
+<html
+  lang="es"
+  data-composition-variables='[
+  {"id":"color-bordo","type":"color","label":"Bordó","default":"#65023D"},
+  {"id":"color-crema","type":"color","label":"Crema","default":"#F5F0E8"},
+  {"id":"color-oliva","type":"color","label":"Oliva","default":"#CBD186"},
+  {"id":"color-tinta","type":"color","label":"Tinta","default":"#141414"}
+]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      :root { --color-bordo: #65023d; --color-crema: #f5f0e8; --color-oliva: #cbd186; --color-oliva-d: #8a9b4a; --color-tinta: #141414; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--color-crema); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--color-crema); }
+      .vw { position: absolute; inset: 0; transform-origin: 50% 40%; }
+      .vw video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+      .sv { position: absolute; left: 0; top: 880px; width: 1080px; height: 1040px; overflow: hidden; }
+      .sv video { position: absolute; left: 0; top: 0; width: 1080px; height: 1080px; object-fit: cover; }
+      #paper { position: absolute; inset: 0; width: 1080px; height: 1920px; mix-blend-mode: multiply; opacity: .32; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1080" data-height="1920">
+      <!-- FOOTAGE (Mixkit, B/N) -->
+      <div class="vw" id="w-hook" style="z-index:1"><video id="v-hook" class="clip" src="assets/video/hook-celu.mp4" data-start="0" data-duration="2.6" data-track-index="0" muted playsinline></video></div>
+      <div class="sv" id="w-sv1" style="z-index:1"><video id="v-sv1" class="clip" src="assets/video/sv1-estrategia.mp4" data-start="7" data-duration="3.6" data-track-index="0" muted playsinline></video></div>
+      <div class="sv" id="w-sv2" style="z-index:1"><video id="v-sv2" class="clip" src="assets/video/sv2-contenido.mp4" data-start="10.6" data-duration="3.6" data-track-index="0" muted playsinline></video></div>
+      <div class="sv" id="w-sv3" style="z-index:1"><video id="v-sv3" class="clip" src="assets/video/sv3-branding.mp4" data-start="14.2" data-duration="3.6" data-track-index="0" muted playsinline></video></div>
+      <div class="sv" id="w-sv4" style="z-index:1"><video id="v-sv4" class="clip" src="assets/video/sv4-pauta.mp4" data-start="17.8" data-duration="3.6" data-track-index="0" muted playsinline></video></div>
+      <div class="sv" id="w-sv5" style="z-index:1"><video id="v-sv5" class="clip" src="assets/video/sv5-web.mp4" data-start="21.4" data-duration="3.6" data-track-index="0" muted playsinline></video></div>
+
+      <!-- GRAPHICS -->
+      <div id="gancho" data-composition-id="gancho" data-composition-src="compositions/gancho.html" data-start="0" data-duration="2.6" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:10"></div>
+      <div id="somos" data-composition-id="somos" data-composition-src="compositions/somos.html" data-start="2.6" data-duration="2.4" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:10"></div>
+      <div id="conecta" data-composition-id="conecta" data-composition-src="compositions/conecta.html" data-start="5" data-duration="2" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:10"></div>
+      <div id="servicios" data-composition-id="servicios" data-composition-src="compositions/servicios.html" data-start="7" data-duration="18" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:10"></div>
+      <div id="etiquetas" data-composition-id="etiquetas" data-composition-src="compositions/etiquetas.html" data-start="25" data-duration="2" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:10"></div>
+      <div id="cierre" data-composition-id="cierre" data-composition-src="compositions/cierre.html" data-start="27" data-duration="3" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:10"></div>
+
+      <!-- PAPER TEXTURE (Wikimedia Commons, CC BY 2.0) -->
+      <img id="paper" class="clip" src="assets/img/papel.jpg" alt="" data-start="0" data-duration="30" data-track-index="2" data-layout-ignore style="z-index:40" />
+
+      <!-- SFX (Pixabay, bundled) -->
+      <audio id="sfx-stk1" src="assets/sfx/pop.mp3" data-start="1.25" data-duration="0.5" data-track-index="3" data-volume="0.7"></audio>
+      <audio id="sfx-c1" src="assets/sfx/whoosh.mp3" data-start="2.58" data-duration="0.57" data-track-index="4" data-volume="0.55"></audio>
+      <audio id="sfx-c2" src="assets/sfx/whoosh-short.mp3" data-start="4.98" data-duration="0.57" data-track-index="4" data-volume="0.55"></audio>
+      <audio id="sfx-c3" src="assets/sfx/whoosh.mp3" data-start="6.98" data-duration="0.57" data-track-index="4" data-volume="0.55"></audio>
+      <audio id="sfx-s1" src="assets/sfx/pop.mp3" data-start="8.0" data-duration="0.5" data-track-index="3" data-volume="0.6"></audio>
+      <audio id="sfx-c4" src="assets/sfx/whoosh-short.mp3" data-start="10.58" data-duration="0.57" data-track-index="4" data-volume="0.55"></audio>
+      <audio id="sfx-s2" src="assets/sfx/pop.mp3" data-start="11.6" data-duration="0.5" data-track-index="3" data-volume="0.6"></audio>
+      <audio id="sfx-c5" src="assets/sfx/whoosh.mp3" data-start="14.18" data-duration="0.57" data-track-index="4" data-volume="0.55"></audio>
+      <audio id="sfx-s3" src="assets/sfx/pop.mp3" data-start="15.2" data-duration="0.5" data-track-index="3" data-volume="0.6"></audio>
+      <audio id="sfx-c6" src="assets/sfx/whoosh-short.mp3" data-start="17.78" data-duration="0.57" data-track-index="4" data-volume="0.55"></audio>
+      <audio id="sfx-s4" src="assets/sfx/pop.mp3" data-start="18.8" data-duration="0.5" data-track-index="3" data-volume="0.6"></audio>
+      <audio id="sfx-c7" src="assets/sfx/whoosh.mp3" data-start="21.38" data-duration="0.57" data-track-index="4" data-volume="0.55"></audio>
+      <audio id="sfx-s5" src="assets/sfx/pop.mp3" data-start="22.4" data-duration="0.5" data-track-index="3" data-volume="0.6"></audio>
+      <audio id="sfx-c8" src="assets/sfx/whoosh-short.mp3" data-start="24.98" data-duration="0.57" data-track-index="4" data-volume="0.55"></audio>
+      <audio id="sfx-tags" src="assets/sfx/sparkle.mp3" data-start="25.1" data-duration="1.2" data-track-index="3" data-volume="0.5" data-fade-out="0.3"></audio>
+      <audio id="sfx-marca" src="assets/sfx/impact-bass-1.mp3" data-start="27.05" data-duration="2" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-cta" src="assets/sfx/click-soft.mp3" data-start="28.36" data-duration="0.36" data-track-index="3" data-volume="0.9"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#w-hook", { scale: 1.08 }, { scale: 1, duration: 2.6, ease: "power1.out" }, 0);
+      [["#w-sv1", 7], ["#w-sv2", 10.6], ["#w-sv3", 14.2], ["#w-sv4", 17.8], ["#w-sv5", 21.4]].forEach(([id, t]) => {
+        tl.fromTo(id, { y: 220 }, { y: 0, duration: 0.45, ease: "expo.out" }, t);
+      });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

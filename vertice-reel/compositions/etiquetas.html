@@ -1,0 +1,36 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; }
+    .blk { position: absolute; left: 120px; width: 768px; text-align: center; }
+    .w { display: inline-block; }
+    .heavy { font-weight: 900; letter-spacing: -0.03em; line-height: .95; }
+    .serif { font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; }
+    .serif-b { font-family: "Playfair Display", serif; font-weight: 800; letter-spacing: .02em; }
+    .stk { display: inline-block; padding: 14px 30px 16px; border-radius: 14px; font-weight: 900; letter-spacing: -0.01em; box-shadow: 0 10px 26px rgba(0,0,0,.22); }
+  </style>
+  <div id="root" data-composition-id="etiquetas" data-width="1080" data-height="1920">
+    <div id="e-bgclip" class="clip" data-start="0" data-duration="2"><div style="position:absolute;inset:0;background:#cbd186"></div></div>
+    <div id="e-tags" class="clip" data-start="0" data-duration="2" data-layout-allow-overlap>
+      <span class="stk heavy" id="e-t0" style="position:absolute; top:300px; left:180px; font-size: 60px; background:#65023d; color:#f5f0e8">Estrategia</span>
+      <span class="stk heavy" id="e-t1" style="position:absolute; top:420px; left:520px; font-size: 60px; background:#141414; color:#f5f0e8">Contenido</span>
+      <span class="stk heavy" id="e-t2" style="position:absolute; top:560px; left:240px; font-size: 60px; background:#f5f0e8; color:#65023d">Branding</span>
+      <span class="stk heavy" id="e-t3" style="position:absolute; top:690px; left:420px; font-size: 60px; background:#65023d; color:#cbd186">Pauta en Meta</span>
+      <span class="stk heavy" id="e-t4" style="position:absolute; top:820px; left:170px; font-size: 60px; background:#141414; color:#cbd186">Desarrollo web</span>
+      <span class="stk heavy" id="e-t5" style="position:absolute; top:950px; left:470px; font-size: 60px; background:#f5f0e8; color:#141414">Social Media</span>
+      <span class="stk heavy" id="e-t6" style="position:absolute; top:1080px; left:250px; font-size: 60px; background:#65023d; color:#f5f0e8">Marketing</span>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#e-t0", { opacity: 0, scale: 1.6, rotation: -18 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.3, ease: "back.out(1.8)" }, 0.05);
+    tl.fromTo("#e-t1", { opacity: 0, scale: 1.6, rotation: 15 }, { opacity: 1, scale: 1, rotation: 5, duration: 0.3, ease: "back.out(1.8)" }, 0.18);
+    tl.fromTo("#e-t2", { opacity: 0, scale: 1.6, rotation: -9 }, { opacity: 1, scale: 1, rotation: -3, duration: 0.3, ease: "back.out(1.8)" }, 0.31);
+    tl.fromTo("#e-t3", { opacity: 0, scale: 1.6, rotation: 21 }, { opacity: 1, scale: 1, rotation: 7, duration: 0.3, ease: "back.out(1.8)" }, 0.44);
+    tl.fromTo("#e-t4", { opacity: 0, scale: 1.6, rotation: -15 }, { opacity: 1, scale: 1, rotation: -5, duration: 0.3, ease: "back.out(1.8)" }, 0.57);
+    tl.fromTo("#e-t5", { opacity: 0, scale: 1.6, rotation: 12 }, { opacity: 1, scale: 1, rotation: 4, duration: 0.3, ease: "back.out(1.8)" }, 0.7);
+    tl.fromTo("#e-t6", { opacity: 0, scale: 1.6, rotation: -21 }, { opacity: 1, scale: 1, rotation: -7, duration: 0.3, ease: "back.out(1.8)" }, 0.83);
+    tl.to("#e-tags .stk", { opacity: 0, duration: 0.12, ease: "power2.in" }, 1.86);
+    window.__timelines["etiquetas"] = tl;
+  </script>
+</template>

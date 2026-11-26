@@ -1,0 +1,31 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; }
+    .blk { position: absolute; left: 120px; width: 768px; text-align: center; }
+    .w { display: inline-block; }
+    .heavy { font-weight: 900; letter-spacing: -0.03em; line-height: .95; }
+    .serif { font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; }
+    .serif-b { font-family: "Playfair Display", serif; font-weight: 800; letter-spacing: .02em; }
+    .stk { display: inline-block; padding: 14px 30px 16px; border-radius: 14px; font-weight: 900; letter-spacing: -0.01em; box-shadow: 0 10px 26px rgba(0,0,0,.22); }
+
+    #g-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,20,20,.55) 0%, rgba(20,20,20,.15) 45%, rgba(20,20,20,.0) 100%); }
+  </style>
+  <div id="root" data-composition-id="gancho" data-width="1080" data-height="1920">
+    <div id="g-shadeclip" class="clip" data-start="0" data-duration="2.6"><div id="g-shade"></div></div>
+    <div id="g-t" class="clip blk" data-start="0" data-duration="2.6" style="top: 360px">
+      <div class="heavy" style="font-size: 132px; color: #f5f0e8"><span class="w">¿Tu</span> <span class="w">marca</span></div>
+      <div class="serif" style="font-size: 88px; color: #f5f0e8; margin-top: 6px"><span class="w">está</span> <span class="w">en</span> <span class="w">redes…</span></div>
+    </div>
+    <div id="g-s" class="clip blk" data-start="1.2" data-duration="1.4" style="top: 760px">
+      <span class="stk heavy" id="g-stk" style="font-size: 84px; background: #cbd186; color: #65023d">…pero no vende?</span>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#g-t .w", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out", stagger: 0.09 }, 0.0);
+    tl.fromTo("#g-stk", { opacity: 0, scale: 1.5, rotation: -14 }, { opacity: 1, scale: 1, rotation: -5, duration: 0.4, ease: "back.out(1.7)" }, 1.22);
+    tl.to("#g-t .w, #g-stk", { opacity: 0, duration: 0.12, ease: "power2.in" }, 2.46);
+    window.__timelines["gancho"] = tl;
+  </script>
+</template>

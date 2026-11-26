@@ -1,0 +1,107 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; }
+    .blk { position: absolute; left: 120px; width: 768px; text-align: center; }
+    .w { display: inline-block; }
+    .heavy { font-weight: 900; letter-spacing: -0.03em; line-height: .95; }
+    .serif { font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; }
+    .serif-b { font-family: "Playfair Display", serif; font-weight: 800; letter-spacing: .02em; }
+    .stk { display: inline-block; padding: 14px 30px 16px; border-radius: 14px; font-weight: 900; letter-spacing: -0.01em; box-shadow: 0 10px 26px rgba(0,0,0,.22); }
+
+    .pan { position: absolute; left: 0; top: 0; width: 1080px; height: 880px; }
+    .band { position: absolute; left: 0; top: 872px; width: 1080px; height: 8px; }
+    .num { display: inline-flex; align-items: center; justify-content: center; width: 96px; height: 96px; border-radius: 50%; border: 4px solid currentColor; font-weight: 900; font-size: 38px; }
+  </style>
+  <div id="root" data-composition-id="servicios" data-width="1080" data-height="1920">
+    <div id="sv1" class="clip" data-start="0.0" data-duration="3.6">
+      <div class="pan" id="sv1-pan" style="background: #65023d"></div>
+      <div class="band" id="sv1-band" style="background: #cbd186"></div>
+      <div class="blk" style="top: 330px; color: #f5f0e8">
+        <div class="num" id="sv1-n" style="color: #cbd186">01</div>
+        <div class="heavy" id="sv1-nm" style="font-size: 112px; margin-top: 22px">Estrategia</div>
+        <div class="serif" id="sv1-tg" style="font-size: 50px; line-height: 1.15; margin-top: 16px; color: #cbd186">sabemos a dónde vamos<br>antes de arrancar</div>
+        <div style="margin-top: 30px"><span class="stk" id="sv1-st" style="font-size: 34px; background: #cbd186; color: #65023d">plan + objetivos</span></div>
+      </div>
+    </div>
+    <div id="sv2" class="clip" data-start="3.6" data-duration="3.6">
+      <div class="pan" id="sv2-pan" style="background: #cbd186"></div>
+      <div class="band" id="sv2-band" style="background: #141414"></div>
+      <div class="blk" style="top: 330px; color: #65023d">
+        <div class="num" id="sv2-n" style="color: #141414">02</div>
+        <div class="heavy" id="sv2-nm" style="font-size: 112px; margin-top: 22px">Contenido</div>
+        <div class="serif" id="sv2-tg" style="font-size: 50px; line-height: 1.15; margin-top: 16px; color: #141414">fotos, reels y diseño<br>que frenan el scroll</div>
+        <div style="margin-top: 30px"><span class="stk" id="sv2-st" style="font-size: 34px; background: #65023d; color: #f5f0e8">producción propia</span></div>
+      </div>
+    </div>
+    <div id="sv3" class="clip" data-start="7.2" data-duration="3.6">
+      <div class="pan" id="sv3-pan" style="background: #f5f0e8"></div>
+      <div class="band" id="sv3-band" style="background: #65023d"></div>
+      <div class="blk" style="top: 330px; color: #141414">
+        <div class="num" id="sv3-n" style="color: #65023d">03</div>
+        <div class="heavy" id="sv3-nm" style="font-size: 112px; margin-top: 22px">Branding</div>
+        <div class="serif" id="sv3-tg" style="font-size: 50px; line-height: 1.15; margin-top: 16px; color: #65023d">una identidad que<br>se reconoce al instante</div>
+        <div style="margin-top: 30px"><span class="stk" id="sv3-st" style="font-size: 34px; background: #cbd186; color: #65023d">logo · paleta · tono</span></div>
+      </div>
+    </div>
+    <div id="sv4" class="clip" data-start="10.8" data-duration="3.6">
+      <div class="pan" id="sv4-pan" style="background: #141414"></div>
+      <div class="band" id="sv4-band" style="background: #cbd186"></div>
+      <div class="blk" style="top: 330px; color: #f5f0e8">
+        <div class="num" id="sv4-n" style="color: #cbd186">04</div>
+        <div class="heavy" id="sv4-nm" style="font-size: 112px; margin-top: 22px">Pauta</div>
+        <div class="serif" id="sv4-tg" style="font-size: 50px; line-height: 1.15; margin-top: 16px; color: #cbd186">anuncios en Meta para<br>llegar a quien te compra</div>
+        <div style="margin-top: 30px"><span class="stk" id="sv4-st" style="font-size: 34px; background: #f5f0e8; color: #65023d">Meta Ads</span></div>
+      </div>
+    </div>
+    <div id="sv5" class="clip" data-start="14.4" data-duration="3.6">
+      <div class="pan" id="sv5-pan" style="background: #65023d"></div>
+      <div class="band" id="sv5-band" style="background: #cbd186"></div>
+      <div class="blk" style="top: 300px; color: #f5f0e8">
+        <div class="num" id="sv5-n" style="color: #cbd186">05</div>
+        <div class="heavy" id="sv5-nm" style="font-size: 104px; margin-top: 22px">Desarrollo<br>web</div>
+        <div class="serif" id="sv5-tg" style="font-size: 50px; line-height: 1.15; margin-top: 16px; color: #cbd186">una web que convierte<br>visitas en clientes</div>
+        <div style="margin-top: 30px"><span class="stk" id="sv5-st" style="font-size: 34px; background: #f5f0e8; color: #65023d">tu casa online</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#sv1-pan", { clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0%)", duration: 0.4, ease: "power3.inOut" }, 0.0);
+    tl.fromTo("#sv1-band", { scaleX: 0 }, { scaleX: 1, transformOrigin: "0 50%", duration: 0.4, ease: "power3.inOut" }, 0.1);
+    tl.fromTo("#sv1-n", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 0.3);
+    tl.fromTo("#sv1-nm", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 0.38);
+    tl.fromTo("#sv1-tg", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 0.6);
+    tl.fromTo("#sv1-st", { opacity: 0, scale: 1.5, rotation: -15 }, { opacity: 1, scale: 1, rotation: -5, duration: 0.4, ease: "back.out(1.7)" }, 1.0);
+    tl.to("#sv1-n, #sv1-nm, #sv1-tg, #sv1-st", { opacity: 0, duration: 0.12, ease: "power2.in" }, 3.46);
+    tl.fromTo("#sv2-pan", { clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0%)", duration: 0.4, ease: "power3.inOut" }, 3.6);
+    tl.fromTo("#sv2-band", { scaleX: 0 }, { scaleX: 1, transformOrigin: "0 50%", duration: 0.4, ease: "power3.inOut" }, 3.7);
+    tl.fromTo("#sv2-n", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 3.9);
+    tl.fromTo("#sv2-nm", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 3.98);
+    tl.fromTo("#sv2-tg", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 4.2);
+    tl.fromTo("#sv2-st", { opacity: 0, scale: 1.5, rotation: 12 }, { opacity: 1, scale: 1, rotation: 4, duration: 0.4, ease: "back.out(1.7)" }, 4.6);
+    tl.to("#sv2-n, #sv2-nm, #sv2-tg, #sv2-st", { opacity: 0, duration: 0.12, ease: "power2.in" }, 7.06);
+    tl.fromTo("#sv3-pan", { clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0%)", duration: 0.4, ease: "power3.inOut" }, 7.2);
+    tl.fromTo("#sv3-band", { scaleX: 0 }, { scaleX: 1, transformOrigin: "0 50%", duration: 0.4, ease: "power3.inOut" }, 7.3);
+    tl.fromTo("#sv3-n", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 7.5);
+    tl.fromTo("#sv3-nm", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 7.58);
+    tl.fromTo("#sv3-tg", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 7.8);
+    tl.fromTo("#sv3-st", { opacity: 0, scale: 1.5, rotation: -15 }, { opacity: 1, scale: 1, rotation: -5, duration: 0.4, ease: "back.out(1.7)" }, 8.2);
+    tl.to("#sv3-n, #sv3-nm, #sv3-tg, #sv3-st", { opacity: 0, duration: 0.12, ease: "power2.in" }, 10.66);
+    tl.fromTo("#sv4-pan", { clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0%)", duration: 0.4, ease: "power3.inOut" }, 10.8);
+    tl.fromTo("#sv4-band", { scaleX: 0 }, { scaleX: 1, transformOrigin: "0 50%", duration: 0.4, ease: "power3.inOut" }, 10.9);
+    tl.fromTo("#sv4-n", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 11.1);
+    tl.fromTo("#sv4-nm", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 11.18);
+    tl.fromTo("#sv4-tg", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 11.4);
+    tl.fromTo("#sv4-st", { opacity: 0, scale: 1.5, rotation: 12 }, { opacity: 1, scale: 1, rotation: 4, duration: 0.4, ease: "back.out(1.7)" }, 11.8);
+    tl.to("#sv4-n, #sv4-nm, #sv4-tg, #sv4-st", { opacity: 0, duration: 0.12, ease: "power2.in" }, 14.26);
+    tl.fromTo("#sv5-pan", { clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0%)", duration: 0.4, ease: "power3.inOut" }, 14.4);
+    tl.fromTo("#sv5-band", { scaleX: 0 }, { scaleX: 1, transformOrigin: "0 50%", duration: 0.4, ease: "power3.inOut" }, 14.5);
+    tl.fromTo("#sv5-n", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 14.7);
+    tl.fromTo("#sv5-nm", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 14.78);
+    tl.fromTo("#sv5-tg", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 15.0);
+    tl.fromTo("#sv5-st", { opacity: 0, scale: 1.5, rotation: -15 }, { opacity: 1, scale: 1, rotation: -5, duration: 0.4, ease: "back.out(1.7)" }, 15.4);
+    tl.to("#sv5-n, #sv5-nm, #sv5-tg, #sv5-st", { opacity: 0, duration: 0.12, ease: "power2.in" }, 17.86);
+    window.__timelines["servicios"] = tl;
+  </script>
+</template>

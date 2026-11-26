@@ -1,0 +1,37 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; }
+    .blk { position: absolute; left: 120px; width: 768px; text-align: center; }
+    .w { display: inline-block; }
+    .heavy { font-weight: 900; letter-spacing: -0.03em; line-height: .95; }
+    .serif { font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; }
+    .serif-b { font-family: "Playfair Display", serif; font-weight: 800; letter-spacing: .02em; }
+    .stk { display: inline-block; padding: 14px 30px 16px; border-radius: 14px; font-weight: 900; letter-spacing: -0.01em; box-shadow: 0 10px 26px rgba(0,0,0,.22); }
+
+    #ci-bg { position: absolute; inset: 0; background: #f5f0e8; }
+    .cta { display: inline-block; padding: 26px 46px; border-radius: 60px; background: #65023d; color: #f5f0e8; font-weight: 800; font-size: 50px; }
+  </style>
+  <div id="root" data-composition-id="cierre" data-width="1080" data-height="1920">
+    <div id="ci-bgclip" class="clip" data-start="0" data-duration="3"><div id="ci-bg"></div></div>
+    <div id="ci-l" class="clip blk" data-start="0.02" data-duration="2.98" style="top: 320px"><svg id="ci-lg" width="330" height="259" viewBox="120 210 840 660" style="color:#65023d"><g fill="currentColor" fill-rule="evenodd"><path d="M411 228 H530 Q541 228 546 238 L556 264 Q561 290 539 290 H421 Q409 290 404 279 L395 255 Q389 228 411 228 Z"/><path d="M139 494 L914 241 Q945 234 942 268 L733 826 Q722 852 695 852 L649 852 Q622 852 611 826 L483 486 Q470 456 439 461 L143 505 Q133 505 139 494 Z M633 421 L813 383 Q834 382 830 402 L734 666 Q719 683 704 666 L621 441 Q617 424 633 421 Z"/></g></svg></div>
+    <div id="ci-w" class="clip blk" data-start="0.3" data-duration="2.7" style="top: 620px">
+      <div><span class="serif-b w" style="font-size: 120px; color: #141414">VÉRTICE</span> <span class="serif w" style="font-size: 76px; color: #65023d">studio</span></div>
+      <div class="w" style="font-weight: 700; font-size: 31px; letter-spacing: .08em; color: #141414; margin-top: 18px">Marketing · Social Media · Branding · Ads</div>
+    </div>
+    <div id="ci-c" class="clip blk" data-start="0.9" data-duration="2.1" style="top: 940px">
+      <span class="cta" id="ci-cta">Escribinos por DM</span>
+      <div id="ci-h" style="font-weight: 700; font-size: 38px; color: #65023d; margin-top: 30px">@somos.verticestudio</div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ci-lg", { opacity: 0, scale: 0.5, rotation: -25 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(1.5)" }, 0.02);
+    tl.fromTo("#ci-w .w", { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35, ease: "expo.out", stagger: 0.12 }, 0.3);
+    tl.fromTo("#ci-cta", { opacity: 0, scale: 0.8, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.6)" }, 0.9);
+    tl.fromTo("#ci-h", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.95);
+    tl.to("#ci-cta", { scale: 0.95, duration: 0.08, ease: "power2.in" }, 1.36);
+    tl.to("#ci-cta", { scale: 1, duration: 0.18, ease: "back.out(2)" }, 1.44);
+    window.__timelines["cierre"] = tl;
+  </script>
+</template>
