@@ -1,0 +1,116 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; }
+    .gb { position: absolute; left: 120px; width: 768px; display: flex; flex-direction: column; align-items: center; gap: 14px; transform-origin: 50% 0; text-align: center; }
+    .w { display: inline-block; }
+    .sm { font-weight: 800; font-size: 54px; color: #fff; line-height: 1.08; text-shadow: 0 4px 0 rgba(0,0,0,.6), 0 8px 24px rgba(0,0,0,.6); }
+    .neon { font-family: "Poppins", sans-serif; font-weight: 700; color: #d4ff3a; letter-spacing: -.035em; line-height: .95; text-shadow: 0 0 26px rgba(212,255,58,.5), 0 6px 22px rgba(0,0,0,.6); }
+    .neon.red { color: #ff3b4e; text-shadow: 0 0 26px rgba(255,59,78,.5), 0 6px 22px rgba(0,0,0,.6); }
+    .tri, .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; width: 768px; }
+    .tag { padding: 10px 22px; border-radius: 14px; background: rgba(11,11,12,.84); border: 2px solid rgba(212,255,58,.6); color: #fff; font-family: "Poppins", sans-serif; font-weight: 700; font-size: 38px; }
+    .tag.bad { border-color: rgba(255,59,78,.8); color: #ff3b4e; }
+    .chip.warn { background: rgba(30,22,4,.9); border: 2px solid rgba(255,190,40,.75); }
+    .bw { display: flex; border-radius: 16px; overflow: hidden; font-family: "Poppins", sans-serif; font-weight: 700; font-size: 44px; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+    .bw .b { background: #fff; color: #0b0b0c; padding: 12px 34px; } .bw .n { background: #0b0b0c; color: #fff; padding: 12px 34px; border: 2px solid #fff; }
+    .eq { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; width: 768px; }
+    .plus, .gt { font-family: "Poppins", sans-serif; font-weight: 700; font-size: 80px; color: #d4ff3a; line-height: 1; text-shadow: 0 0 22px rgba(212,255,58,.5); }
+    .pill { font-family: "Poppins", sans-serif; padding: 12px 28px; border-radius: 40px; background: #d4ff3a; color: #0b0b0c; font-weight: 700; font-size: 40px; box-shadow: 0 0 26px rgba(212,255,58,.45); }
+    .chip { width: 708px; min-height: 88px; border-radius: 20px; display: flex; align-items: center; gap: 20px; padding: 10px 26px; color: #fff; font-weight: 800; font-size: 34px; box-shadow: 0 10px 30px rgba(0,0,0,.45); text-align: left; }
+    .chip.ok { background: rgba(10,14,6,.88); border: 2px solid rgba(212,255,58,.7); }
+    .chip.bad { background: rgba(30,6,10,.9); border: 2px solid rgba(255,59,78,.7); }
+    .chip span { font-family: "Montserrat", sans-serif; }
+    .chip.qn { background: rgba(11,11,12,.86); border: 2px solid rgba(255,255,255,.3); }
+    .chip.qn b { flex: 0 0 52px; height: 52px; border-radius: 50%; background: #d4ff3a; color: #0b0b0c; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 900; }
+    .chip svg { flex: 0 0 42px; }
+    .duo { display: flex; gap: 22px; }
+    .card { width: 340px; height: 170px; border-radius: 22px; background: rgba(11,11,12,.86); border: 2px solid rgba(212,255,58,.55); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: #fff; font-weight: 800; font-size: 32px; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+    .quote { width: 740px; padding: 26px 34px 30px; border-radius: 24px; background: rgba(11,11,12,.86); border-left: 8px solid #d4ff3a; color: #fff; font-weight: 800; font-size: 40px; line-height: 1.22; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+    .quote .qm { font-family: "Playfair Display", serif; color: #d4ff3a; font-size: 110px; line-height: .5; height: 44px; }
+    .quote .hl { margin-top: 8px; }
+    .reto { display: flex; align-items: center; gap: 18px; padding: 18px 30px; border-radius: 22px; background: #d4ff3a; color: #0b0b0c; font-weight: 900; font-size: 40px; box-shadow: 0 0 30px rgba(212,255,58,.5); }
+    .reto small { font-size: 26px; padding: 6px 12px; border-radius: 10px; background: #0b0b0c; color: #d4ff3a; letter-spacing: .1em; }
+    .strike-wrap { position: relative; display: inline-block; }
+    .strike-wrap i { position: absolute; left: -4%; right: -4%; top: 52%; height: 10px; border-radius: 5px; background: #ff3b4e; transform-origin: 0 50%; transform: scaleX(0); }
+    .flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+    .endbg { position: absolute; inset: 0; background: #0b0b0c; }
+    .disc { margin-top: 40px; font-weight: 600; font-size: 30px; color: rgba(255,255,255,.72); }
+    .endb { position: absolute; left: 120px; width: 768px; top: 600px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+  </style>
+  <div id="root" data-composition-id="graficos" data-width="1080" data-height="1920">
+    <div id="g1" class="clip" data-start="0.0" data-duration="3.9"><div class="gb" style="top:838px; transform: scale(1.000)"><div class="neon" id="g1a" style="font-size:130px">Colágeno</div><div class="tri"><span class="tag" id="g1b">¿Salud?</span><span class="tag" id="g1c">¿Belleza?</span><span class="tag bad" id="g1d">¿Marketing?</span></div></div></div>
+    <div id="g2" class="clip" data-start="4.0" data-duration="4.4"><div class="gb" style="top:915px; transform: scale(1.000)"><div class="sm" id="g2a" style="font-size:44px">Uno de los suplementos</div><div class="pill" id="g2b">más vendidos de Argentina</div></div></div>
+    <div id="g3" class="clip" data-start="8.5" data-duration="7.0"><div class="gb" style="top:880px; transform: scale(1.000)"><div class="sm" id="g3t" style="font-size:42px">Lo que escuchaste:</div><div class="tags"><span class="tag" id="g3a">Piel</span><span class="tag" id="g3b">Arrugas</span><span class="tag" id="g3c">Uñas</span><span class="tag" id="g3d">Pelo</span><span class="tag" id="g3e">Tendones</span><span class="tag" id="g3f">Articulaciones</span></div></div></div>
+    <div id="g4" class="clip" data-start="19.1" data-duration="2.3"><div class="gb" style="top:935px; transform: scale(1.000)"><div class="sm" id="g4a" style="font-size:46px">¿Qué dice</div><div class="neon" id="g4b" style="font-size:110px">la ciencia?</div></div></div>
+    <div id="g5" class="clip" data-start="21.45" data-duration="9.75"><div class="gb" style="top:910px; transform: scale(1.000)"><div class="tags"><span class="tag" id="g5a">¿Piel?</span><span class="tag" id="g5b">¿Uñas?</span><span class="tag" id="g5c">¿Cabello?</span></div></div></div>
+    <div id="g6" class="clip" data-start="31.25" data-duration="5.35"><div class="gb" style="top:900px; transform: scale(1.000)"><div class="neon red" id="g6a" style="font-size:150px">NO</div><div class="chip bad" id="g6b"><svg width="42" height="42" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff3b4e"/><path d="M16 16 L32 32 M32 16 L16 32" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg><span>Evidencia científica floja</span></div></div></div>
+    <div id="g7" class="clip" data-start="36.65" data-duration="3.2"><div class="gb" style="top:922px; transform: scale(1.000)"><div class="pill" id="g7a">Pero ojo: hay resultados</div></div></div>
+    <div id="g7c" class="clip" data-start="41.05" data-duration="4.85"><div class="gb" style="top:899px; transform: scale(1.000)"><div class="neon" id="g7b" style="font-size:88px">Tendones y ligamentos</div></div></div>
+    <div id="g8" class="clip" data-start="46.2" data-duration="8.1"><div class="gb" style="top:971px; transform: scale(0.799)"><div class="chip ok" id="g8a"><svg width="42" height="42" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#d4ff3a"/><path d="M14 25 L21 32 L34 17" stroke="#0b0b0c" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tejido conectivo + ejercicio de carga</span></div><div class="chip warn" id="g8b"><svg width="42" height="42" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff3b4e"/><path d="M16 16 L32 32 M32 16 L16 32" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg><span>Todavía falta evidencia</span></div></div></div>
+    <div id="g11" class="clip" data-start="61.55" data-duration="5.95"><div class="gb" style="top:910px; transform: scale(0.997)"><div class="neon" id="g11a" style="font-size:84px">¿Sirve o no sirve?</div><div class="bw" id="g11b"><span class="b">Blanco</span><span class="n">Negro</span></div></div></div>
+    <div id="g12" class="clip" data-start="67.55" data-duration="5.25"><div class="gb" style="top:931px; transform: scale(1.000)"><div class="chip warn" id="g12a"><svg width="42" height="42" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ff3b4e"/><path d="M16 16 L32 32 M32 16 L16 32" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg><span>Faltan más investigaciones</span></div></div></div>
+    <div id="g13" class="clip" data-start="72.9" data-duration="8.9"><div class="gb" style="top:900px; transform: scale(0.798)"><div class="eq"><span class="pill" id="g13a">Buena alimentación</span><span class="plus" id="g13p">+</span><span class="pill" id="g13b">Tu nutricionista</span></div><div class="gt" id="g13c">&gt;</div><div class="sm" id="g13d" style="font-size:48px">cualquier suplemento</div></div></div>
+    <div id="g-flash" class="clip" data-start="3" data-duration="72" data-layout-ignore><div class="flash" id="fl"></div></div>
+    <div id="g-end" class="clip" data-start="83.11" data-duration="3.29"><div class="endbg"></div>
+      <div class="endb"><div class="sm" id="ge1" style="font-size:50px">¿Tomás colágeno?</div><div class="neon" id="ge2" style="font-size:116px">Guardalo</div><div class="pill" id="ge3">y compartilo</div><div class="disc" id="ge4">Info general. Consultá siempre con tu nutricionista.</div></div>
+    </div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    const OUT = { opacity: 0, filter: "blur(8px)", duration: .14, ease: "power2.in" };
+    const POP = (sel, t) => tl.fromTo(sel, { opacity: 0, scale: 1.6, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: .26, ease: "expo.out" }, t);
+    const UP = (sel, t) => tl.fromTo(sel, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .3, ease: "back.out(1.7)" }, t);
+    const FADE = (sel, t) => tl.fromTo(sel, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: .2 }, t);
+    POP("#g1a", 0.18);
+    UP("#g1b", 1.4);
+    UP("#g1c", 2.12);
+    UP("#g1d", 3.05);
+    tl.to("#g1a, #g1b, #g1c, #g1d", OUT, 3.74);
+    FADE("#g2a", 4.95);
+    POP("#g2b", 5.9);
+    tl.to("#g2a, #g2b", OUT, 8.24);
+    FADE("#g3t", 8.55);
+    UP("#g3a", 10.75);
+    UP("#g3b", 11.55);
+    UP("#g3c", 12.68);
+    UP("#g3d", 13.4);
+    UP("#g3e", 14.44);
+    UP("#g3f", 15.0);
+    tl.to("#g3t, .tags .tag", OUT, 15.34);
+    FADE("#g4a", 19.2);
+    POP("#g4b", 20.0);
+    tl.to("#g4a, #g4b", OUT, 21.25);
+    UP("#g5a", 24.0);
+    UP("#g5b", 25.55);
+    UP("#g5c", 28.35);
+    tl.to("#g5a, #g5b, #g5c", OUT, 31.04);
+    POP("#g6a", 31.95);
+    UP("#g6b", 33.0);
+    tl.to("#g6a, #g6b", OUT, 36.44);
+    POP("#g7a", 37.0);
+    tl.to("#g7a", OUT, 39.69);
+    POP("#g7b", 42.5);
+    tl.to("#g7b", OUT, 45.74);
+    UP("#g8a", 49.1);
+    UP("#g8b", 53.4);
+    tl.to("#g8a, #g8b", OUT, 54.14);
+    POP("#g11a", 62.2);
+    UP("#g11b", 66.35);
+    tl.to("#g11a, #g11b", OUT, 67.34);
+    UP("#g12a", 68.9);
+    tl.to("#g12a", OUT, 72.64);
+    UP("#g13a", 74.7);
+    POP("#g13p", 75.8);
+    UP("#g13b", 77.95);
+    POP("#g13c", 79.5);
+    FADE("#g13d", 80.2);
+    tl.to("#g13a, #g13p, #g13b, #g13c, #g13d", OUT, 81.64);
+    tl.set("#fl", { opacity: 0 }, 0);
+    [3.6, 8.35, 21.19, 30.94, 45.84, 72.68].forEach((t) => { tl.set("#fl", { opacity: .65 }, t); tl.to("#fl", { opacity: 0, duration: .18, ease: "power2.out" }, t + .01); });
+    FADE("#ge1", 83.21);
+    POP("#ge2", 83.46);
+    UP("#ge3", 83.91);
+    FADE("#ge4", 84.11);
+    window.__timelines["graficos"] = tl;
+  </script>
+</template>
